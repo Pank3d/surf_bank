@@ -3,6 +3,7 @@ import {
   SectionWhatWeDo,
   SectionOurMission,
   SectionWeEmpower,
+  SectionMultiCards,
 } from "@/widgets/Sections";
 
 export const Main = () => (
@@ -11,5 +12,6 @@ export const Main = () => (
     <SectionWhatWeDo />
     <SectionOurMission />
     <SectionWeEmpower />
+    <SectionMultiCards />
   </>
 );
