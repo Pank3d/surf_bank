@@ -4,6 +4,7 @@ import {
   SectionOurMission,
   SectionWeEmpower,
   SectionMultiCards,
+  SectionSecureOurBusiness,
 } from "@/widgets/Sections";
 
 export const Main = () => (
@@ -13,5 +14,6 @@ export const Main = () => (
     <SectionOurMission />
     <SectionWeEmpower />
     <SectionMultiCards />
+    <SectionSecureOurBusiness />
   </>
 );

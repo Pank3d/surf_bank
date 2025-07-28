@@ -1,6 +1,6 @@
 import style from "./section-our-mission.module.scss";
 import { Button } from "@/shared/ui";
-import img_1 from "@/assets/images/section-our-mission/img-2.webp";
+import img_2 from "@/assets/images/section-our-mission/img-2.webp";
 
 export const SectionOurMission = () => (
   <section className={style.section}>
@@ -16,7 +16,7 @@ export const SectionOurMission = () => (
         </Button>
       </div>
       <div className={style.img}>
-        <img src={img_1} alt="" />
+        <img src={img_2} alt="" />
       </div>
     </div>
   </section>
