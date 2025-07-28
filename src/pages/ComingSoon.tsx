@@ -1,0 +1,1 @@
+export const ComingSoon = () => <div>ComingSoon</div>
