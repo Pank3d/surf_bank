@@ -17,5 +17,63 @@
     z-index: 10;
     max-width: 1252px;
     margin: 0 auto;
+    padding-top: 202px;
+
+    .title {
+      font-size: 62px;
+      font-weight: 700;
+      color: $white-color;
+      line-height: 140%;
+      padding: 24px;
+      max-width: 599px;
+      border-radius: 12px;
+      font-family: "Agrandir-Grand", sans-serif;
+      font-weight: 900;
+      margin-bottom: 32px;
+    }
+
+    .description {
+      font-size: 24px;
+      font-weight: 400;
+      color: $white-color;
+      line-height: 140%;
+      margin-bottom: 36px;
+      max-width: 434px;
+    }
+
+    .button {
+      font-size: 18px;
+      font-weight: 700;
+      padding: 20px 32px;
+      position: relative;
+    }
+
+    .button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      margin: -2px;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #dcf353, #a4ddfc, #ab86ff);
+      background-size: 200% 200%;
+      // animation: gradientMove 3s ease infinite;
+      border-radius: 50px;
+    }
+
+    // @keyframes gradientMove {
+    //   0% {
+    //     background-position: 0% 50%;
+    //   }
+    //   50% {
+    //     background-position: 100% 50%;
+    //   }
+    //   100% {
+    //     background-position: 0% 50%;
+    //   }
+    // }
   }
 }

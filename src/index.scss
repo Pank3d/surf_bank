@@ -20,11 +20,15 @@
   box-sizing: border-box;
 }
 
-a {
-  text-decoration: none;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: "Agrandir", sans-serif;
   overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
 }
