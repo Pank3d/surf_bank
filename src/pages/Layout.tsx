@@ -1,4 +1,4 @@
-import { Header } from "@/widgets";
+import { Header, Footer } from "@/widgets";
 import { Outlet } from "react-router";
 
 export const Layout = () => {
@@ -6,6 +6,7 @@ export const Layout = () => {
     <>
       <Header />
       <Outlet />
+      <Footer />
     </>
   );
 };
