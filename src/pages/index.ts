@@ -5,3 +5,4 @@ export { Login } from "./Login";
 export { AboutUs } from "./AboutUs";
 export { Banking } from "./Banking";
 export { ComingSoon } from "./ComingSoon";
+export { Layout } from "./Layout";
