@@ -1,8 +1,8 @@
-import { SectionHero } from "@/widgets/Sections";
+import { SectionHero, SectionWhatWeDo } from "@/widgets/Sections";
 
 export const Main = () => (
   <>
     <SectionHero />
-    Main
+    <SectionWhatWeDo />
   </>
 );
