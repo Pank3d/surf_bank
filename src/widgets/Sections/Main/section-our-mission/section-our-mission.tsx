@@ -5,7 +5,7 @@ import img_1 from "@/assets/images/section-our-mission/img-2.webp";
 export const SectionOurMission = () => (
   <section className={style.section}>
     <div className={style.section__inner}>
-      <div>
+      <div className={style.info}>
         <h2 className={style.title}>Our mission</h2>
         <p className={style.description}>
           Simplify and accelerate the processing of payments and cross-border

@@ -1,0 +1,50 @@
+.section {
+  background: url("@/assets/images/section-we-empower/img-1.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .section__inner {
+    max-width: 1332px;
+    margin: 0 auto;
+    padding: 74px 40px;
+
+    .title {
+      width: 100%;
+      margin-bottom: 54px;
+      font-size: 54px;
+      font-weight: 800;
+      font-family: "Agrandir-Grand", sans-serif;
+      text-align: center;
+    }
+
+    .cards {
+      display: flex;
+      gap: 20px;
+
+      .card {
+        background-color: $white-color;
+        border-radius: 8px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .card__title {
+          background-color: $blue-color;
+          color: $black-color;
+          border-radius: 100px;
+          padding: 10px 14px;
+          width: fit-content;
+          font-family: "Inter", sans-serif;
+          font-weight: 600;
+        }
+
+        .card__description {
+          font-size: 14px;
+          color: $gray-color;
+        }
+      }
+    }
+  }
+}
