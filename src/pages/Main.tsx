@@ -1,1 +1,8 @@
-export const Main = () => <div>Main</div>;
+import { SectionHero } from "@/widgets/Sections";
+
+export const Main = () => (
+  <>
+    <SectionHero />
+    Main
+  </>
+);
