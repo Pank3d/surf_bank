@@ -1,7 +1,15 @@
 .section {
   max-width: 1332px;
   margin: 0 auto;
-  padding: 32px 40px;
+  width: calc(100% - 96px);
+
+  @include breakpoint(tablet) {
+    width: calc(100% - 48px);
+  }
+
+  @include breakpoint(mobile) {
+    width: calc(100% - 24px);
+  }
 
   .title {
     font-size: 44px;
@@ -11,10 +19,19 @@
     .title__color {
       color: $green-color;
     }
+
+    @include breakpoint(tablet) {
+      font-size: 32px;
+    }
   }
 
   .img {
     max-width: 1252px;
+
+    @include breakpoint(tablet) {
+      max-width: 100%;
+    }
+
     img {
       width: 100%;
       height: 100%;
