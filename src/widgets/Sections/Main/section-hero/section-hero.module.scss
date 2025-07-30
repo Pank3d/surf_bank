@@ -23,13 +23,37 @@
       font-size: 62px;
       font-weight: 700;
       color: $white-color;
-      line-height: 140%;
-      padding: 24px;
-      max-width: 599px;
+      width: fit-content;
       border-radius: 12px;
       font-family: "Agrandir-Grand", sans-serif;
       font-weight: 900;
       margin-bottom: 32px;
+      display: flex;
+      flex-direction: column;
+
+      .title__color {
+        background-color: rgba($green-color, 0.5);
+        padding: 24px;
+        border-radius: 12px;
+        width: fit-content;
+        text-wrap: nowrap;
+
+        &:first-child {
+          border-bottom-right-radius: 0px;
+          border-bottom-left-radius: 0;
+          padding-bottom: 0;
+        }
+        &:nth-child(2) {
+          border-bottom-left-radius: 0;
+          border-top-left-radius: 0;
+          padding: 10px 24px;
+        }
+        &:last-child {
+          padding-top: 0;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        }
+      }
     }
 
     .description {
