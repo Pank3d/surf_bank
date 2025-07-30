@@ -9,4 +9,9 @@
   font-weight: 700;
   cursor: pointer;
   border: none;
+  text-wrap: nowrap;
+
+  @include breakpoint(tablet) {
+    padding: 10px 12px;
+  }
 }
