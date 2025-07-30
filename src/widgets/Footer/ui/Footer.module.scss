@@ -7,9 +7,18 @@
     padding: 82px 40px 50px 40px;
     color: $gray-color;
 
+    @include breakpoint(mobile) {
+      padding: 64px 24px 36px 24px;
+    }
+
     .inner__top {
       display: flex;
       justify-content: space-between;
+
+      @include breakpoint(mobile) {
+        flex-direction: column;
+        gap: 40px;
+      }
 
       .info {
         max-width: 450px;
@@ -35,6 +44,11 @@
         gap: 46px;
         max-width: 652px;
         width: 100%;
+
+        @include breakpoint(mobile) {
+          flex-direction: column;
+          gap: 24px;
+        }
 
         .navigation__list {
           .navigation__title {
@@ -89,6 +103,12 @@
       justify-content: space-between;
       align-items: center;
       font-size: 14px;
+
+      @include breakpoint(mobile) {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+      }
 
       .bottom__links {
         display: flex;
