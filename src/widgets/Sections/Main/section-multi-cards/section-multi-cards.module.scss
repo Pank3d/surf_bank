@@ -14,19 +14,33 @@
     justify-content: space-between;
     width: calc(100% - 96px);
 
+    @include breakpoint(tablet) {
+      width: calc(100% - 48px);
+    }
+
+    @include breakpoint(mobile) {
+      width: calc(100% - 24px);
+      flex-direction: column-reverse;
+      gap: 64px;
+    }
+
     .info {
       max-width: 409px;
 
+      @include breakpoint(tablet) {
+        max-width: 100%;
+      }
+
       .title {
         margin-bottom: 20px;
-        font-size: 54px;
-        font-weight: 800;
-        font-family: "Agrandir-Grand", sans-serif;
       }
 
       .description {
-        font-size: 24px;
         margin-bottom: 46px;
+
+        @include breakpoint(mobile) {
+          margin-bottom: 40px;
+        }
       }
 
       .button {

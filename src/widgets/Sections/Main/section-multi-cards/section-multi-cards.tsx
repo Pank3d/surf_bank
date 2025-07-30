@@ -1,16 +1,17 @@
 import style from "./section-multi-cards.module.scss";
 import { Button } from "@/shared/ui";
 import img_1 from "@/assets/images/section-multi-cards/img-2.webp";
+import { H2, Paragraph } from "@/shared/ui";
 
 export const SectionMultiCards = () => (
   <section className={style.section}>
     <div className={style.section__inner}>
       <div className={style.info}>
-        <h2 className={style.title}>Multi Cards</h2>
-        <p className={style.description}>
+        <H2 className={style.title}>Multi Cards</H2>
+        <Paragraph className={style.description}>
           Simplify and accelerate the processing of payments and cross-border
           transfers using stablecoins and cryptocurrencies
-        </p>
+        </Paragraph>
         <Button className={style.button} arrow>
           Get the card
         </Button>
