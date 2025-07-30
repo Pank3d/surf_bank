@@ -1,0 +1,11 @@
+.description {
+  font-size: 24px;
+  color: $black-color;
+
+  @include breakpoint(tablet) {
+    font-size: 20px;
+  }
+  @include breakpoint(mobile) {
+    font-size: 18px;
+  }
+}

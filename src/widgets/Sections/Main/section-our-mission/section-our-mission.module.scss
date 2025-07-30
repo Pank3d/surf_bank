@@ -29,30 +29,16 @@
 
       .title {
         margin-bottom: 20px;
-        font-size: 54px;
-        font-weight: 800;
-        font-family: "Agrandir-Grand", sans-serif;
-
-        @include breakpoint(tablet) {
-          font-size: 44px;
-        }
 
         @include breakpoint(mobile) {
-          font-size: 40px;
           margin-bottom: 24px;
         }
       }
 
       .description {
-        font-size: 24px;
         margin-bottom: 46px;
 
-        @include breakpoint(tablet) {
-          font-size: 20px;
-        }
-
         @include breakpoint(mobile) {
-          font-size: 18px;
           margin-bottom: 24px;
         }
       }

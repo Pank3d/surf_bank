@@ -1,0 +1,13 @@
+.title {
+  font-size: 54px;
+  font-weight: 800;
+  font-family: "Agrandir-Grand", sans-serif;
+
+  @include breakpoint(tablet) {
+    font-size: 44px;
+  }
+
+  @include breakpoint(mobile) {
+    font-size: 40px;
+  }
+}
