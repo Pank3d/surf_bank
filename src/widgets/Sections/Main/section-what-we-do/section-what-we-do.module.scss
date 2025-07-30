@@ -3,6 +3,7 @@
   background: url("@/assets/images/section-what-we-do/img-1.webp");
   background-size: cover;
   background-position: center;
+  overflow: hidden;
 
   .section__inner {
     max-width: 1252px;
@@ -13,10 +14,30 @@
     gap: 32px;
     position: relative;
     z-index: 1;
+    width: calc(100% - 96px);
+
+    @include breakpoint(tablet) {
+      gap: 20px;
+      padding: 64px 0;
+      width: calc(100% - 48px);
+    }
+
+    @include breakpoint(mobile) {
+      gap: 24px;
+      width: calc(100% - 24px);
+    }
 
     .description {
       font-size: 24px;
       color: $black-color;
+
+      @include breakpoint(tablet) {
+        font-size: 20px;
+        max-width: 595px;
+      }
+      @include breakpoint(mobile) {
+        font-size: 18px;
+      }
     }
 
     .title {
@@ -24,6 +45,13 @@
       color: $black-color;
       font-family: "Agrandir-Grand", sans-serif;
       font-weight: 800;
+
+      @include breakpoint(tablet) {
+        font-size: 44px;
+      }
+      @include breakpoint(mobile) {
+        font-size: 40px;
+      }
     }
   }
 
@@ -33,6 +61,10 @@
     right: 0;
     max-width: 518px;
     object-fit: cover;
+
+    @include breakpoint(mobile) {
+      display: none;
+    }
 
     img {
       width: 100%;

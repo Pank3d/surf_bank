@@ -12,6 +12,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: calc(100% - 96px);
 
     .info {
       max-width: 409px;
