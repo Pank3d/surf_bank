@@ -1,1 +1,3 @@
-export const ComingSoon = () => <div>ComingSoon</div>
+import { SectionSoon } from "@/widgets";
+
+export const ComingSoon = () => <SectionSoon />;

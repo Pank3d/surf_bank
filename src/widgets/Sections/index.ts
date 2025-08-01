@@ -8,3 +8,6 @@ export { SectionSecureOurBusiness } from "./Main/section-secure-our-business/sec
 
 //FAQ
 export { SectionFaq } from "./Faq/section-faq/section-faq";
+
+//COMING SOON
+export { SectionSoon } from "./ComingSoon/section-soon/section-soon";
