@@ -1,0 +1,15 @@
+.textarea {
+  border-radius: 24px;
+  background: $white-color;
+  padding: 16px 16px;
+  border: 1px solid $border-color;
+  outline: none;
+  max-width: 988px;
+  width: 100%;
+  min-height: 91px;
+  resize: none;
+
+  &::placeholder {
+    color: $gray-color;
+  }
+}

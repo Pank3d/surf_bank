@@ -1,1 +1,7 @@
-export const LetsConnect = () => <div>LetsConnect</div>
+import { SectionLetsConnect } from "@/widgets";
+
+export const LetsConnect = () => (
+  <>
+    <SectionLetsConnect />
+  </>
+);
