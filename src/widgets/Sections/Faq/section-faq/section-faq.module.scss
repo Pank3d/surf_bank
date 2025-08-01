@@ -1,0 +1,43 @@
+.container {
+  background-image: url("@/assets/images/section-faq/bg.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100dvh;
+
+  .section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 200px;
+    padding-bottom: 50px;
+    gap: 54px;
+
+    @include breakpoint(tablet) {
+      flex-direction: column;
+      align-items: center;
+      padding-top: 160px;
+    }
+
+    @include breakpoint(mobile) {
+      padding-top: 120px;
+    }
+
+    .title {
+      color: $black-color;
+      max-width: 490px;
+
+      @include breakpoint(tablet) {
+        max-width: 100%;
+        text-align: center;
+      }
+    }
+
+    .faqs {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+}

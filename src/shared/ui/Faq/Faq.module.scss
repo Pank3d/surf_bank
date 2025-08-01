@@ -1,0 +1,48 @@
+.faq {
+  background-color: $white-color;
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 588px;
+  width: 100%;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+
+  @include breakpoint(tablet) {
+    max-width: 100%;
+  }
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 100%;
+
+    .icon {
+      transition: 0.3s all;
+    }
+
+    .rotate {
+      transform: rotate(45deg);
+    }
+  }
+
+  .answer {
+    font-size: 14px;
+    line-height: 130%;
+    font-family: "Agrandir", sans-serif;
+    color: $gray-color;
+    max-height: 0;
+    opacity: 0;
+    transition: 0.3s all;
+    padding-top: 0;
+
+    &.active {
+      max-height: 500px;
+      padding-top: 20px;
+      opacity: 100;
+    }
+  }
+}

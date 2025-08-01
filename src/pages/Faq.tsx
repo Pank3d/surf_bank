@@ -1,1 +1,7 @@
-export const Faq = () => <div>Faq</div>
+import { SectionFaq } from "@/widgets";
+
+export const Faq = () => (
+  <>
+    <SectionFaq />
+  </>
+);

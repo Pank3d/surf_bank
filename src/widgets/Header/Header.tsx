@@ -2,9 +2,11 @@ import { useState } from "react";
 import style from "./Header.module.scss";
 import { Button } from "@/shared/ui";
 import clsx from "clsx";
+import { useBodyScrollLock } from "@/shared/hooks";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  useBodyScrollLock(menuOpen);
 
   return (
     <div className={style.header}>

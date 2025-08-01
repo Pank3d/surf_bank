@@ -1,0 +1,13 @@
+.section {
+  max-width: 1252px;
+  margin: 0 auto;
+  width: calc(100% - 96px);
+
+  @include breakpoint(tablet) {
+    width: calc(100% - 48px);
+  }
+
+  @include breakpoint(mobile) {
+    width: calc(100% - 24px);
+  }
+}

@@ -1,0 +1,16 @@
+.h1 {
+  font-size: 62px;
+  font-weight: 700;
+  color: $white-color;
+  width: fit-content;
+  font-family: "Agrandir-Grand", sans-serif;
+  font-weight: 900;
+
+  @include breakpoint(tablet) {
+    font-size: 52px;
+  }
+
+  @include breakpoint(mobile) {
+    font-size: 44px;
+  }
+}
