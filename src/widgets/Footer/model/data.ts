@@ -1,3 +1,5 @@
+import { internalPaths } from "@/shared/routes/paths";
+
 export const navigationData = [
   {
     title: "Product",
@@ -64,7 +66,7 @@ export const navigationData = [
       },
       {
         title: "FAQs",
-        href: "#",
+        href: internalPaths.faq,
         soon: false,
       },
     ],

@@ -3,6 +3,8 @@ import style from "./Header.module.scss";
 import { Button } from "@/shared/ui";
 import clsx from "clsx";
 import { useBodyScrollLock } from "@/shared/hooks";
+import { Link } from "react-router-dom";
+import { internalPaths } from "@/shared/routes/paths";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,9 +29,9 @@ export const Header = () => {
           >
             <span />
           </div>
-          <div className={style.logo}>
+          <Link to={internalPaths.main} className={style.logo}>
             <img src="/logo.svg" alt="" />
-          </div>
+          </Link>
         </div>
 
         <nav className={style.navigation}>

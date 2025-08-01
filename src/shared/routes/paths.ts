@@ -1,4 +1,4 @@
-export const paths = {
+export const internalPaths = {
   main: "/",
   faq: "/faq",
   letsConnect: "/lets-connect",
