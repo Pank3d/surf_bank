@@ -18,7 +18,9 @@ export const Header = () => {
           <li className={style.menu__mobile_list_item}>Card issuance</li>
           <li className={style.menu__mobile_list_item}>Processing</li>
           <li className={style.menu__mobile_list_item}>OTC deals</li>
-          <li className={style.menu__mobile_list_item}>About Us</li>
+          <li className={style.menu__mobile_list_item}>
+            <Link to={internalPaths.aboutUs}>About Us</Link>
+          </li>
         </ul>
       </nav>
       <div className={style.header__inner}>
@@ -57,9 +59,12 @@ export const Header = () => {
               </a>
             </li>
             <li>
-              <a className={style.navigation__list_item} href="#">
+              <Link
+                className={style.navigation__list_item}
+                to={internalPaths.aboutUs}
+              >
                 About Us
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>

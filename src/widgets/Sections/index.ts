@@ -20,3 +20,8 @@ export { SectionLogin } from "./Login/section-login/section-login";
 
 // AUTH
 export { SectionForgotPassword } from "./ForgotPassword/section-forgot-password/section-forgot-password";
+
+// ABOUT US
+export { SectionAbout } from "./AboutUs/section-about/section-about";
+export { SectionMore } from "./AboutUs/section-more/ui/section-more";
+export { SectionBankAction } from "./AboutUs/section-bank-action/section-bank-action";

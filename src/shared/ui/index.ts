@@ -6,3 +6,4 @@ export { Paragraph } from "./Paragraph/Paragraph";
 export { Faq } from "./Faq/Faq";
 export { Input } from "./Input/Input";
 export { Textarea } from "./Textarea/Textarea";
+export { ButtonColorize } from "./ButtonColorize/buttonColorize";

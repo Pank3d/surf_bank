@@ -1,0 +1,28 @@
+.section {
+  background-color: $black-color;
+  position: relative;
+  color: $white-color;
+  border-radius: 32px;
+  padding: 54px;
+  display: flex;
+  flex-direction: column;
+  z-index: -2;
+  overflow: hidden;
+  margin-bottom: 54px;
+
+  .title {
+    max-width: 580px;
+    margin-bottom: 32px;
+  }
+
+  .img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    max-width: 558px;
+  }
+}

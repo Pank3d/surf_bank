@@ -163,40 +163,5 @@
         font-size: 18px;
       }
     }
-
-    .button {
-      font-size: 18px;
-      font-weight: 700;
-      padding: 20px 32px;
-      position: relative;
-    }
-
-    .button::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: -1;
-      margin: -2px;
-      border-radius: 10px;
-      background: linear-gradient(90deg, #dcf353, #a4ddfc, #ab86ff);
-      background-size: 200% 200%;
-      // animation: gradientMove 3s ease infinite;
-      border-radius: 50px;
-    }
-
-    // @keyframes gradientMove {
-    //   0% {
-    //     background-position: 0% 50%;
-    //   }
-    //   50% {
-    //     background-position: 100% 50%;
-    //   }
-    //   100% {
-    //     background-position: 0% 50%;
-    //   }
-    // }
   }
 }
