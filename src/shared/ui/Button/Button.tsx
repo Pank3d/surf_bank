@@ -8,9 +8,16 @@ interface Props {
   className?: string;
   arrow?: boolean;
   href?: string;
+  onClick?: () => void;
 }
 
-export const Button = ({ children, className, arrow, href }: Props) => {
+export const Button = ({
+  children,
+  className,
+  arrow,
+  href,
+  onClick,
+}: Props) => {
   if (href) {
     return (
       <Link className={clsx(style.button, className)} to={href}>
@@ -20,7 +27,7 @@ export const Button = ({ children, className, arrow, href }: Props) => {
   }
 
   return (
-    <button className={clsx(style.button, className)}>
+    <button className={clsx(style.button, className)} onClick={onClick}>
       {children}
       {arrow && (
         <svg

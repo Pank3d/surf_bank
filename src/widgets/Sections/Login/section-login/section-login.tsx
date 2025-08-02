@@ -1,6 +1,9 @@
 import style from "./section-login.module.scss";
 import { Section, Input, Button } from "@/shared/ui";
 import img from "@/assets/images/section-login/img-1.webp";
+import img_mob from "@/assets/images/section-login/img-2.webp";
+import { Link } from "react-router-dom";
+import { internalPaths } from "@/shared/routes/paths";
 
 export const SectionLogin = () => (
   <div className={style.container}>
@@ -15,11 +18,17 @@ export const SectionLogin = () => (
           <Button arrow className={style.button}>
             Sign In
           </Button>
-          <span className={style.button__forgot}>Forgot password?</span>
+          <Link
+            to={internalPaths.forgotPassword}
+            className={style.button__forgot}
+          >
+            Forgot password?
+          </Link>
         </div>
       </form>
       <div className={style.img}>
         <img src={img} alt="img" />
+        <img src={img_mob} alt="img_mob" />
       </div>
     </Section>
   </div>

@@ -18,12 +18,12 @@ export const Footer = () => (
           <p className={style.text}>aka@surfbank.io</p>
         </div>
         <div className={style.navigation}>
-          {navigationData.map(({ title, links }) => (
-            <div className={style.navigation__list}>
+          {navigationData.map(({ title, links }, index) => (
+            <div className={style.navigation__list} key={index}>
               <h3 className={style.navigation__title}>{title}</h3>
               <ul className={style.navigation__list}>
-                {links.map((link) => (
-                  <li className={style.navigation__list_item}>
+                {links.map((link, index) => (
+                  <li className={style.navigation__list_item} key={index}>
                     <a href={link.href}>
                       {link.title}
                       {link.soon && <span className={style.soon}>soon</span>}
