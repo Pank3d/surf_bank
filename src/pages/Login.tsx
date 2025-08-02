@@ -1,1 +1,7 @@
-export const Login = () => <div>Login</div>;
+import { SectionLogin } from "@/widgets/Sections/Login/section-login/section-login";
+
+export const Login = () => (
+  <>
+    <SectionLogin />
+  </>
+);

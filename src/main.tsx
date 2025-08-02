@@ -13,6 +13,7 @@ import {
   Banking,
   ComingSoon,
   Layout,
+  ForgotPassword,
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/coming-soon",
         element: <ComingSoon />,
+      },
+      {
+        path: "/forgot-password",
+        element: <ForgotPassword />,
       },
     ],
   },
