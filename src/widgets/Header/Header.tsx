@@ -14,10 +14,16 @@ export const Header = () => {
     <div className={style.header}>
       <nav className={clsx(style.menu__mobile, !menuOpen && style.close)}>
         <ul className={style.menu__mobile_list}>
-          <li className={style.menu__mobile_list_item}>Banking</li>
+          <li className={style.menu__mobile_list_item}>
+            <Link to={internalPaths.banking}>Banking</Link>
+          </li>
           <li className={style.menu__mobile_list_item}>Card issuance</li>
-          <li className={style.menu__mobile_list_item}>Processing</li>
-          <li className={style.menu__mobile_list_item}>OTC deals</li>
+          <li className={style.menu__mobile_list_item}>
+            <Link to={internalPaths.comingSoon}>Processing</Link>
+          </li>
+          <li className={style.menu__mobile_list_item}>
+            <Link to={internalPaths.comingSoon}>OTC deals</Link>
+          </li>
           <li className={style.menu__mobile_list_item}>
             <Link to={internalPaths.aboutUs}>About Us</Link>
           </li>
@@ -39,24 +45,36 @@ export const Header = () => {
         <nav className={style.navigation}>
           <ul className={style.navigation__list}>
             <li>
-              <a className={style.navigation__list_item} href="#">
+              <Link
+                className={style.navigation__list_item}
+                to={internalPaths.banking}
+              >
                 Banking
-              </a>
+              </Link>
             </li>
             <li>
-              <a className={style.navigation__list_item} href="#">
+              <Link
+                className={style.navigation__list_item}
+                to={internalPaths.comingSoon}
+              >
                 Card issuance
-              </a>
+              </Link>
             </li>
             <li>
-              <a className={style.navigation__list_item} href="#">
+              <Link
+                className={style.navigation__list_item}
+                to={internalPaths.comingSoon}
+              >
                 Processing
-              </a>
+              </Link>
             </li>
             <li>
-              <a className={style.navigation__list_item} href="#">
+              <Link
+                className={style.navigation__list_item}
+                to={internalPaths.comingSoon}
+              >
                 OTC deals
-              </a>
+              </Link>
             </li>
             <li>
               <Link

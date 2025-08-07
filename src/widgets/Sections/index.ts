@@ -25,3 +25,7 @@ export { SectionForgotPassword } from "./ForgotPassword/section-forgot-password/
 export { SectionAbout } from "./AboutUs/section-about/section-about";
 export { SectionMore } from "./AboutUs/section-more/ui/section-more";
 export { SectionBankAction } from "./AboutUs/section-bank-action/section-bank-action";
+
+// BANKING
+export { SectionBanking } from "./Banking/section-banking/section-banking";
+export { SectionLetsConnect as SectionBankingLetsConnect } from "./Banking/section-lets-connect/section-lets-connect";

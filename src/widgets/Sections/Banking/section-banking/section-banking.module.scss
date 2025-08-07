@@ -1,5 +1,5 @@
 .section {
-  background-image: url("@/assets/images/section-our-mission/img-1.webp");
+  background-image: url("@/assets/images/section-banking/img-2.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -7,7 +7,7 @@
   .section__inner {
     max-width: 1252px;
     margin: 0 auto;
-    padding: 82px 0;
+    padding: 200px 0 50px 0;
     color: $black-color;
     display: flex;
     align-items: center;
@@ -20,7 +20,7 @@
 
     @include breakpoint(mobile) {
       width: calc(100% - 24px);
-      flex-direction: column-reverse;
+      flex-direction: column;
       gap: 60px;
     }
 
@@ -46,7 +46,6 @@
       .button {
         padding: 18px 32px;
         font-size: 16px;
-        width: fit-content;
       }
     }
 

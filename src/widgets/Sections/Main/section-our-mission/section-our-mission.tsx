@@ -1,6 +1,7 @@
 import style from "./section-our-mission.module.scss";
 import { Button, H2, Paragraph } from "@/shared/ui";
 import img_2 from "@/assets/images/section-our-mission/img-2.webp";
+import { internalPaths } from "@/shared/routes/paths";
 
 export const SectionOurMission = () => (
   <section className={style.section}>
@@ -11,7 +12,7 @@ export const SectionOurMission = () => (
           Simplify and accelerate the processing of payments and cross-border
           transfers using stablecoins and cryptocurrencies
         </Paragraph>
-        <Button className={style.button} arrow>
+        <Button href={internalPaths.aboutUs} className={style.button} arrow>
           Learn more
         </Button>
       </div>

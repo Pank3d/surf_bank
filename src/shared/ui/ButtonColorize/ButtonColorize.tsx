@@ -1,5 +1,5 @@
 import { Button } from "@/shared/ui";
-import style from "./buttonColorize.module.scss";
+import style from "./ButtonColorize.module.scss";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { type ReactNode } from "react";

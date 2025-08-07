@@ -16,12 +16,12 @@ export const navigationData = [
       },
       {
         title: "Processing",
-        href: "#",
+        href: internalPaths.comingSoon,
         soon: true,
       },
       {
         title: "OTC trading",
-        href: "#",
+        href: internalPaths.comingSoon,
         soon: true,
       },
     ],
@@ -56,7 +56,7 @@ export const navigationData = [
       },
       {
         title: "About us",
-        href: "#",
+        href: internalPaths.aboutUs,
         soon: false,
       },
       {
