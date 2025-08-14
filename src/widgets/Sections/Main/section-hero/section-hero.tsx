@@ -9,6 +9,7 @@ export const SectionHero = () => (
       autoPlay
       loop
       muted
+      playsInline
     />
     <div className={style.section__inner}>
       <h1 className={style.title}>

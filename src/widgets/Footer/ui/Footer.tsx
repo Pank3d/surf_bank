@@ -9,8 +9,8 @@ export const Footer = () => (
         <div className={style.info}>
           <img className={style.logo} src="/logo-white.svg" alt="" />
           <p className={style.text}>
-            Surf Bunk is a financial technology company, banking for hight risk
-            market, crypto projects and startups.
+            Surf Bunk is a financial technology company, <br /> banking for
+            hight risk market, crypto projects and startups.
           </p>
           <p className={style.text}>
             Support: 9:00 - 18:00 GMT +3 | Athens (Mon-Fri)

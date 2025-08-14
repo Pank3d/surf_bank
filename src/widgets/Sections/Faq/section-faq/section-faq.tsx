@@ -1,11 +1,10 @@
-import { H1, Section, Faq } from "@/shared/ui";
+import { Section, Faq } from "@/shared/ui";
 import style from "./section-faq.module.scss";
 import { faqsData } from "./model/data";
 
 export const SectionFaq = () => (
   <div className={style.container}>
     <Section className={style.section}>
-      <H1 className={style.title}>Uncover your banking freedom</H1>
       <div className={style.faqs}>
         {faqsData.map(({ question, answer }, index) => (
           <Faq key={index} question={question} answer={answer} />
