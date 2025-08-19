@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./Header.module.scss";
 import { Button } from "@/shared/ui";
 import clsx from "clsx";
 import { useBodyScrollLock } from "@/shared/hooks";
 import { Link } from "react-router-dom";
 import { internalPaths } from "@/shared/routes/paths";
+import { getHeaderData, useHeaderData } from "@/shared/api/header";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   useBodyScrollLock(menuOpen);
+
+  const { data, isLoading, error } = useHeaderData();
+
+  console.log(data, "data");
 
   return (
     <div className={style.header}>

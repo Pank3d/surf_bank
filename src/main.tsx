@@ -3,6 +3,7 @@ import "./index.scss";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
+import { TanstackQueryClientProvider } from "./shared/provider/tastack-provider";
 
 import {
   Main,
@@ -59,6 +60,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <TanstackQueryClientProvider>
+      <RouterProvider router={router} />
+    </TanstackQueryClientProvider>
   </StrictMode>
 );

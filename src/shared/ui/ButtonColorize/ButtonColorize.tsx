@@ -56,9 +56,9 @@ const ArrowColorize = () => (
         y2="11.9877"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#DCF353" />
-        <stop offset="0.5" stop-color="#A4DDFC" />
-        <stop offset="1" stop-color="#AB86FF" />
+        <stop stopColor="#DCF353" />
+        <stop offset="0.5" stopColor="#A4DDFC" />
+        <stop offset="1" stopColor="#AB86FF" />
       </linearGradient>
     </defs>
   </svg>
