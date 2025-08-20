@@ -1,14 +1,13 @@
 import { type IStrapi } from "./types";
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-
+import { strapiApi } from "./strapi";
 export interface IHeaderData extends IStrapi {
   button_link: string;
 }
 
 export const getHeaderData = async () => {
   try {
-    const { data } = await axios.get("/api/header");
+    const { data } = await strapiApi.get("/api/header");
 
     return data?.data as IHeaderData;
   } catch (error) {

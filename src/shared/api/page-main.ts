@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { type IStrapi } from "./types";
+import { strapiApi } from "./strapi";
 
 interface IMainPageData extends IStrapi {
   hero_button_link: string;
@@ -14,7 +14,7 @@ interface IMainPageData extends IStrapi {
 
 export const getPageMainData = async (): Promise<IMainPageData | null> => {
   try {
-    const { data } = await axios.get("/api/main-page");
+    const { data } = await strapiApi.get("/api/main-page");
 
     return data?.data;
   } catch (error) {

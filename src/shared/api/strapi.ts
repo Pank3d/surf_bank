@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = import.meta.env.STRAPI_API_URL!;
+const baseURL = import.meta.env.VITE_STRAPI_API_URL!;
 
 export const strapiApi = axios.create({
   baseURL,

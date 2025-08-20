@@ -1,6 +1,6 @@
 import { type IStrapi } from "./types";
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { strapiApi } from "./strapi";
 
 export interface IFooterData extends IStrapi {
   description: string;
@@ -14,7 +14,7 @@ export interface IFooterData extends IStrapi {
 
 export const getFooterData = async (): Promise<IFooterData | null> => {
   try {
-    const { data } = await axios.get("/api/Footer");
+    const { data } = await strapiApi.get("/api/Footer");
 
     return data?.data;
   } catch (error) {

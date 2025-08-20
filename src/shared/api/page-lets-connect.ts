@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { type IStrapi } from "./types";
+import { strapiApi } from "./strapi";
 
 interface ILetsConnectPageData extends IStrapi {
   description: string[];
@@ -9,7 +9,7 @@ interface ILetsConnectPageData extends IStrapi {
 export const getPageLetsConnectData =
   async (): Promise<ILetsConnectPageData | null> => {
     try {
-      const { data } = await axios.get("/api/lets-connect-page");
+      const { data } = await strapiApi.get("/api/lets-connect-page");
 
       return data?.data;
     } catch (error) {
