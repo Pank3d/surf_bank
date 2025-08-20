@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => {
       port: 3000,
       proxy: {
         "/api": {
-          target: "https://precious-ducks-46d41ceaae.strapiapp.com/api/",
+          target: strapiApiUrl || "http://localhost:1337",
           changeOrigin: true,
           secure: false,
         },
