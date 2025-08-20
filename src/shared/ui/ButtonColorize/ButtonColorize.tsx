@@ -1,6 +1,5 @@
 import { Button } from "@/shared/ui";
 import style from "./ButtonColorize.module.scss";
-import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { type ReactNode } from "react";
 
@@ -19,10 +18,10 @@ export const ButtonColorize = ({
 }: Props) => {
   if (href) {
     return (
-      <Link to={href} className={clsx(style.button, className)}>
+      <Button href={href} className={clsx(style.button, className)}>
         {children}
         <ArrowColorize />
-      </Link>
+      </Button>
     );
   }
 

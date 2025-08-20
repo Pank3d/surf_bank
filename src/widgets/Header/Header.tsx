@@ -1,19 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import style from "./Header.module.scss";
 import { Button } from "@/shared/ui";
 import clsx from "clsx";
 import { useBodyScrollLock } from "@/shared/hooks";
 import { Link } from "react-router-dom";
 import { internalPaths } from "@/shared/routes/paths";
-import { getHeaderData, useHeaderData } from "@/shared/api/header";
+import { useHeaderData } from "@/shared/api";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { data } = useHeaderData();
+
   useBodyScrollLock(menuOpen);
-
-  const { data, isLoading, error } = useHeaderData();
-
-  console.log(data, "data");
 
   return (
     <div className={style.header}>
@@ -95,7 +93,7 @@ export const Header = () => {
           <Link className={style.link} to={internalPaths.login}>
             login
           </Link>
-          <Button className={style.button} href={internalPaths.authorize}>
+          <Button className={style.button} href={data?.button_link}>
             Open account
           </Button>
         </div>

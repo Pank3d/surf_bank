@@ -10,6 +10,7 @@
   cursor: pointer;
   border: none;
   text-wrap: nowrap;
+  width: fit-content;
 
   @include breakpoint(tablet) {
     padding: 10px 12px;
