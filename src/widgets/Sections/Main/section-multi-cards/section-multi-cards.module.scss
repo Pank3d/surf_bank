@@ -1,8 +1,12 @@
 .section {
-  background-image: url("@/assets/images/section-our-mission/img-1.webp");
+  background-image: url("@/assets/images/section-multi-cards/img-1.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  @include breakpoint(tablet) {
+    background-image: url("@/assets/images/section-multi-cards/img-mobile.webp");
+  }
 
   .section__inner {
     max-width: 1252px;

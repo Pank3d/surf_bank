@@ -41,7 +41,6 @@ export const SectionSecureOurBusiness = () => {
         to move money around the world.
       </h2>
       <div className={style.img}>
-        {/* <div className={style.chip}>Visa</div> */}
         <img
           style={elementStyle}
           src={img_2}

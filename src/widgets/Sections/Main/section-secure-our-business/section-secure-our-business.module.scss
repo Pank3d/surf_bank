@@ -1,5 +1,4 @@
 .section {
-  // max-width: 1332px;
   margin: 0 auto;
   width: calc(100% - 96px);
 
@@ -48,19 +47,6 @@
         display: none;
       }
     }
-
-    // .chip {
-    //   font-size: 14px;
-    //   text-transform: uppercase;
-    //   border: 1px solid $border-color;
-    //   padding: 16px 18px;
-    //   border-radius: 10px;
-    //   line-height: 80%;
-    //   width: fit-content;
-    //   height: fit-content;
-    //   box-shadow: 0px 4px 18px rgba($black-color, 0.1);
-    //   position: absolute;
-    // }
 
     @include breakpoint(tablet) {
       max-width: 100%;
