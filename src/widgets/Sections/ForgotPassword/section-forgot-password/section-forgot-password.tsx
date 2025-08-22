@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export const SectionForgotPassword = () => {
   const [value, setValue] = useState<"email" | "password">("email");
-  console.log(value);
+
   return (
     <div className={style.container}>
       <Section className={style.section}>

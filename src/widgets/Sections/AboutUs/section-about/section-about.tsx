@@ -6,8 +6,6 @@ import { usePageAboutData } from "@/shared/api";
 export const SectionAbout = () => {
   const { data } = usePageAboutData();
 
-  console.log(data, "about data");
-
   return (
     <section className={style.section}>
       <div className={style.section__inner}>

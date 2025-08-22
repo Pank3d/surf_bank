@@ -5,8 +5,6 @@ import { usePageMainData } from "@/shared/api";
 export const SectionHero = () => {
   const { data } = usePageMainData();
 
-  console.log(data, "main page data");
-
   return (
     <section className={style.section}>
       <video

@@ -10,8 +10,6 @@ interface Props {
 export const SectionLetsConnect = ({ className }: Props) => {
   const { data } = usePageLetsConnectData();
 
-  console.log(data, "lets connect data");
-
   return (
     <div className={clsx(style.container, className)}>
       <Section className={style.section}>
