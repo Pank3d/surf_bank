@@ -15,6 +15,7 @@ import {
   ComingSoon,
   Layout,
   ForgotPassword,
+  MultiCards,
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/forgot-password",
         element: <ForgotPassword />,
+      },
+      {
+        path: "/multi-cards",
+        element: <MultiCards />,
       },
     ],
   },

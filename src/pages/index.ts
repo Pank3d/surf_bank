@@ -7,3 +7,4 @@ export { Banking } from "./Banking";
 export { ComingSoon } from "./ComingSoon";
 export { Layout } from "./Layout";
 export { ForgotPassword } from "./ForgotPassword";
+export { MultiCards } from "./MultiCards";

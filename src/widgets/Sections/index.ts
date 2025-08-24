@@ -29,3 +29,7 @@ export { SectionBankAction } from "./AboutUs/section-bank-action/section-bank-ac
 // BANKING
 export { SectionBanking } from "./Banking/section-banking/section-banking";
 export { SectionLetsConnect as SectionBankingLetsConnect } from "./Banking/section-lets-connect/section-lets-connect";
+
+// MULTICARDS
+export { SectionMultiCards as SectionMultiCardsPage } from "./Multicards/section-multi-cards/section-multi-cards";
+export { SectionLetsConnect as SectionMultiCardsLetsConnectPage } from "./Multicards/section-lets-connect/section-lets-connect";
