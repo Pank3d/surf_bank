@@ -3,7 +3,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 120px 0;
+  padding: 200px 0 120px 0;
 
   @include breakpoint(tablet) {
     background-image: url("@/assets/images/section-multi-cards/img-3-mobile.webp");
