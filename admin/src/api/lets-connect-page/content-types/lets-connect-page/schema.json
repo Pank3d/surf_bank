@@ -1,0 +1,18 @@
+{
+  "kind": "singleType",
+  "collectionName": "lets_connect_pages",
+  "info": {
+    "singularName": "lets-connect-page",
+    "pluralName": "lets-connect-pages",
+    "displayName": "Lets-Connect-Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "json"
+    }
+  }
+}

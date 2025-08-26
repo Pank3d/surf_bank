@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "main_pages",
+  "info": {
+    "singularName": "main-page",
+    "pluralName": "main-pages",
+    "displayName": "Main page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hero_button_link": {
+      "type": "string"
+    },
+    "our_mission_button_link": {
+      "type": "string"
+    },
+    "we_empower_cards_data": {
+      "type": "json"
+    },
+    "multicards_button_link": {
+      "type": "string"
+    }
+  }
+}
