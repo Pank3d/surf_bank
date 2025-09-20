@@ -5,6 +5,13 @@ import img_mob from "@/assets/images/section-login/img-2.webp";
 import { Link } from "react-router-dom";
 import { internalPaths } from "@/shared/routes/paths";
 
+const handleSignIn = () => {
+  const dashboardUrl = import.meta.env.VITE_DASHBOARD_URL;
+  if (dashboardUrl) {
+    window.location.href = dashboardUrl;
+  }
+};
+
 export const SectionLogin = () => (
   <div className={style.container}>
     <Section className={style.section}>
@@ -15,7 +22,7 @@ export const SectionLogin = () => (
           <Input placeholder="Password" />
         </div>
         <div className={style.buttons}>
-          <Button arrow className={style.button}>
+          <Button arrow className={style.button} onClick={handleSignIn}>
             Sign In
           </Button>
           <Link

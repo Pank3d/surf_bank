@@ -1,22 +1,28 @@
-import type { ReactNode } from "react";
+import type { ReactNode, ButtonHTMLAttributes } from "react";
 import style from "./Button.module.scss";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 
-interface Props {
+interface Props
+  extends Omit<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    "className" | "children" | "type"
+  > {
+  onClick: () => void;
   children: ReactNode;
   className?: string;
   arrow?: boolean;
   href?: string;
-  onClick?: () => void;
+  type?: "button" | "submit" | "reset";
 }
 
 export const Button = ({
   children,
   className,
   arrow,
-  href,
   onClick,
+  href,
+  type = "button",
 }: Props) => {
   if (href) {
     return (
@@ -42,7 +48,11 @@ export const Button = ({
   }
 
   return (
-    <button className={clsx(style.button, className)} onClick={onClick}>
+    <button
+      className={clsx(style.button, className)}
+      type={type}
+      onClick={onClick}
+    >
       {children}
       {arrow && (
         <svg

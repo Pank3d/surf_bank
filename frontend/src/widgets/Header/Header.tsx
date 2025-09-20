@@ -10,7 +10,6 @@ import { useHeaderData } from "@/shared/api";
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { data } = useHeaderData();
-  console.log(import.meta.env.VITE_STRAPI_API_URL);
 
   useBodyScrollLock(menuOpen);
 

@@ -9,6 +9,13 @@ import clsx from "clsx";
 export const MobileHeader = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
+  const handleSignOut = () => {
+    const frontendUrl = import.meta.env.VITE_FRONTEND_URL;
+    if (frontendUrl) {
+      window.location.href = frontendUrl;
+    }
+  };
+
   return (
     <header className={style.header}>
       <img src={logo} alt="" />
@@ -29,7 +36,7 @@ export const MobileHeader = () => {
             </li>
           ))}
         </ul>
-        <button className={style.button__out}>
+        <button className={style.button__out} onClick={handleSignOut}>
           <img src={sighOut} alt="" />
           <span>Sign out</span>
         </button>

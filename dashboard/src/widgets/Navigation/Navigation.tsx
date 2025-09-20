@@ -11,6 +11,13 @@ import arrow from "@/assets/arrow.svg";
 export const Navigation = () => {
   const pathname = useLocation().pathname;
 
+  const handleSignOut = () => {
+    const frontendUrl = import.meta.env.VITE_FRONTEND_URL;
+    if (frontendUrl) {
+      window.location.href = frontendUrl;
+    }
+  };
+
   return (
     <article className={style.navigation}>
       <img src={logo} alt="" />
@@ -32,7 +39,7 @@ export const Navigation = () => {
           ))}
         </ul>
       </nav>
-      <button className={style.button__out}>
+      <button className={style.button__out} onClick={handleSignOut}>
         <img src={sighOut} alt="" />
         <span>Sign out</span>
         <ArrowButton icon={arrow} />
