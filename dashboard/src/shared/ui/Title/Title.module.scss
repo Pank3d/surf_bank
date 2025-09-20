@@ -1,0 +1,11 @@
+.title {
+  font-family: "Agrandir-Grand", sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  margin-bottom: 16px;
+  text-align: center;
+
+  @include breakpoint(mobile) {
+    font-size: 20px;
+  }
+}

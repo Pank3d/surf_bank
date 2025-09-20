@@ -1,0 +1,36 @@
+.table {
+  table-layout: fixed;
+  width: 100%;
+  font-size: 12px;
+
+  @include breakpoint(mobile) {
+    display: none;
+  }
+
+  .head {
+    text-align: left;
+
+    .row {
+      .cell {
+        padding: 10px 12px;
+      }
+    }
+  }
+
+  .body {
+    text-align: left;
+  }
+}
+
+.table__mobile {
+  width: 100%;
+  display: none;
+  
+  .body {
+    width: 100%;
+  }
+
+  @include breakpoint(mobile) {
+    display: table;
+  }
+}

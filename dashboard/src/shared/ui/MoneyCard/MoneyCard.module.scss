@@ -1,0 +1,48 @@
+.card {
+  border-radius: 12px;
+  background-color: $bg-color-gray-2;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 256px;
+
+  .info {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    text-wrap: nowrap;
+
+    .text {
+      display: flex;
+      flex-direction: column;
+
+      .title {
+        font-size: 14px;
+        font-weight: 400;
+      }
+
+      .price {
+        font-size: 12px;
+        color: $gray-color;
+      }
+    }
+  }
+
+  .convert {
+    display: flex;
+    flex-direction: column;
+    text-wrap: nowrap;
+
+    .rate {
+      font-family: "Agrandir-Grand", sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+    }
+
+    .price {
+      font-size: 12px;
+      color: $gray-color;
+    }
+  }
+}

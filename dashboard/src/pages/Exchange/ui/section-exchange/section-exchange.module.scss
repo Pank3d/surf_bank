@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  .exchanges {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 32px;
+
+    .arrows {
+      background-color: transparent;
+      border: 1px solid $border-color;
+      margin-left: 0;
+      padding: 28px;
+    }
+  }
+
+  .button {
+    margin: 0 auto;
+    margin-bottom: 32px;
+    width: fit-content;
+  }
+
+  .notifications {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}

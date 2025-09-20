@@ -1,0 +1,122 @@
+.header {
+  z-index: 100;
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: $white-color;
+  padding: 20px 20px;
+  display: none;
+
+  @include breakpoint(tablet) {
+    display: flex;
+  }
+  .burger {
+    cursor: pointer;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $border-color;
+    border-radius: 50%;
+
+    &.burger__open {
+      span {
+        transform: rotate(-45deg);
+
+        &::after {
+          opacity: 0;
+        }
+
+        &::before {
+          transform: rotate(90deg);
+          bottom: 0;
+          left: 0;
+        }
+      }
+    }
+
+    span {
+      width: 16px;
+      height: 2px;
+      background-color: $black-color;
+      border-radius: 10px;
+      position: relative;
+      transition: all 0.3s ease;
+
+      &::after,
+      &::before {
+        position: absolute;
+        content: "";
+        left: 50%;
+        transform: translateX(-50%);
+        width: 16px;
+        height: 2px;
+        background-color: $black-color;
+        border-radius: 10px;
+      }
+
+      &::after {
+        top: 6px;
+      }
+      &::before {
+        bottom: 6px;
+        transition: all 0.3s ease;
+      }
+    }
+  }
+
+  .navigation {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $white-color;
+    z-index: -1;
+    display: flex;
+    align-items: flex-start;
+    padding: 0 20px;
+    justify-content: center;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+
+    &.open {
+      transform: translateX(0);
+    }
+
+    .navigation__list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      .navigation__item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        color: $black-color;
+      }
+    }
+  }
+
+  .button__out {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    align-items: center;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,47 @@
+.form {
+  .select {
+    margin-bottom: 40px;
+  }
+
+  .container {
+    margin-bottom: 40px;
+
+    .form__info {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+
+      @include breakpoint(mobile) {
+        grid-template-columns: 1fr;
+      }
+
+      .select {
+        margin-bottom: 0;
+
+        &:last-child {
+          grid-column: 1 / -1;
+        }
+      }
+    }
+
+    .address__info {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+
+      @include breakpoint(mobile) {
+        grid-template-columns: 1fr;
+      }
+
+      .input {
+        &:last-child {
+          grid-column: 1 / -1;
+        }
+      }
+    }
+  }
+
+  .button {
+    margin: 0 auto;
+  }
+}

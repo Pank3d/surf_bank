@@ -1,0 +1,29 @@
+.container {
+  margin-bottom: 40px;
+  overflow: hidden;
+
+  .steps {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .step {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 20px;
+      border: 1px solid $border-color;
+      border-radius: 100px;
+      font-size: 14px;
+      color: $black-color;
+      text-wrap: nowrap;
+
+      &.active {
+        background-color: $black-color;
+        color: $white-color;
+        border-color: $black-color;
+      }
+    }
+  }
+}

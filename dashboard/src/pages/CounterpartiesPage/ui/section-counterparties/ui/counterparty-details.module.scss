@@ -1,0 +1,15 @@
+.list {
+  column-count: 2;
+  column-gap: 150px;
+
+  .list__item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 24px;
+
+    .list__title {
+      color: $gray-color;
+    }
+  }
+}

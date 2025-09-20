@@ -1,0 +1,41 @@
+.cards {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+  margin-bottom: 40px;
+
+  @include breakpoint(mobile) {
+    flex-direction: column;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid $border-color;
+    gap: 24px;
+    position: relative;
+    max-width: 522px;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+
+    .title {
+      font-size: 20px;
+      font-family: "Agrandir-Grand", sans-serif;
+      font-weight: 900;
+      max-width: 318px;
+    }
+
+    .description {
+      font-size: 14px;
+      color: $gray-color-2;
+      max-width: 318px;
+    }
+
+    .link {
+      color: $black-color;
+    }
+  }
+}

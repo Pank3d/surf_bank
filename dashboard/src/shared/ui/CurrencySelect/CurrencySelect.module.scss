@@ -1,0 +1,39 @@
+.container {
+  max-width: 484px;
+  width: 100%;
+
+  .selector {
+    display: flex;
+    align-items: center;
+    border-radius: 100px;
+    border: 1px solid $border-color;
+    overflow: hidden;
+    width: fit-content;
+    width: 100%;
+    margin-bottom: 12px;
+
+    .select {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      max-width: 158px;
+      padding: 20px 16px 20px 20px;
+      background-color: $bg-color-gray;
+    }
+
+    .input {
+      padding: 20px 16px 20px 20px;
+      border: none;
+      text-align: right;
+      width: 100%;
+    }
+  }
+
+  .description {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 14px;
+    color: $gray-color;
+  }
+}

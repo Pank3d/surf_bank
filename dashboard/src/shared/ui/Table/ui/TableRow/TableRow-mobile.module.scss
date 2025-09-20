@@ -1,0 +1,61 @@
+.row {
+  .cell {
+    padding: 16px 0;
+
+    &:first-child {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .title {
+      font-weight: 600;
+    }
+
+    .date {
+      font-weight: 400;
+      color: $gray-color;
+      text-wrap: nowrap;
+      white-space: nowrap;
+    }
+
+    &:last-child {
+      color: $green-color;
+      width: 100%;
+
+      .cell__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 10px;
+
+        .button {
+          transition: 0.3s all ease;
+
+          &.active {
+            transform: rotate(180deg);
+          }
+
+          svg {
+            stroke: $arrow-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.row__details {
+  width: 100%;
+
+  .cell {
+    padding: 10px 0;
+
+    span {
+      display: block;
+
+      &:first-child {
+        font-weight: 600;
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background-color: $green-color;
+  border-radius: 50px;
+  color: $white-color;
+  cursor: pointer;
+
+  &.dark {
+    background-color: $black-color;
+    font-family: "Agrandir-Grand", sans-serif;
+    font-weight: 900;
+    font-size: 14px;
+    color: $white-color;
+  }
+}

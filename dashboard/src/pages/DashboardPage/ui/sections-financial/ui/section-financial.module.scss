@@ -1,0 +1,40 @@
+.container {
+  margin-bottom: 40px;
+
+  .financials {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 12px;
+
+    .buttons {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .button:last-child {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .cards {
+    width: 100%;
+    overflow: hidden;
+
+    .cards__container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .card {
+        min-height: 0;
+        flex: 0 0 auto;
+
+        @include breakpoint(tablet) {
+          width: 237px;
+        }
+      }
+    }
+  }
+}

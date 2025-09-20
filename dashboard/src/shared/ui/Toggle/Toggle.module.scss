@@ -1,0 +1,21 @@
+.container {
+  padding: 4px;
+  background-color: $bg-color-gray-2;
+  border-radius: 100px;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+
+  .button {
+    padding: 8px 16px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: $black-color;
+  }
+
+  .active {
+    background-color: $black-color;
+    color: $white-color;
+  }
+}
