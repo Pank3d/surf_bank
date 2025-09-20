@@ -1,0 +1,37 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+  width: 100%;
+}
+
+.description {
+  color: #666;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.button {
+  align-self: center;
+  margin-top: 0.5rem;
+}
