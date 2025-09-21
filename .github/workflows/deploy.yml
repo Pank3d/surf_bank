@@ -46,6 +46,7 @@ jobs:
           DOMAIN: ${{ secrets.DOMAIN }}
           PORT: ${{ secrets.PORT }}
         run: |
+          docker --context remote compose -f compose.yml pull
           docker --context remote compose -f compose.yml up -d 
 
       - name: Cleanup
