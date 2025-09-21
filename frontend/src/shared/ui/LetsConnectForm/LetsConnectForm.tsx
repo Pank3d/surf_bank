@@ -10,13 +10,17 @@ interface Props {
   onSubmit?: () => void;
 }
 
-export const LetsConnectForm = ({ className, description, onSubmit }: Props) => {
+export const LetsConnectForm = ({
+  className,
+  description,
+  onSubmit,
+}: Props) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     company: "",
     phone: "",
-    message: ""
+    message: "",
   });
 
   const sendContactEmail = useSendContactEmail();
@@ -59,7 +63,7 @@ export const LetsConnectForm = ({ className, description, onSubmit }: Props) => 
         email: formData.email.trim(),
         company: formData.company.trim(),
         phone: formData.phone.trim(),
-        message: formData.message.trim()
+        message: formData.message.trim(),
       });
 
       if (result.success) {
@@ -69,7 +73,7 @@ export const LetsConnectForm = ({ className, description, onSubmit }: Props) => 
           email: "",
           company: "",
           phone: "",
-          message: ""
+          message: "",
         });
         onSubmit?.();
       } else {
@@ -87,14 +91,18 @@ export const LetsConnectForm = ({ className, description, onSubmit }: Props) => 
         <Input
           placeholder="Name*"
           value={formData.name}
-          onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+          onChange={(e) =>
+            setFormData((prev) => ({ ...prev, name: e.target.value }))
+          }
           required
         />
         <Input
           placeholder="Email*"
           type="email"
           value={formData.email}
-          onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+          onChange={(e) =>
+            setFormData((prev) => ({ ...prev, email: e.target.value }))
+          }
           required
         />
       </div>
@@ -102,27 +110,35 @@ export const LetsConnectForm = ({ className, description, onSubmit }: Props) => 
         <Input
           placeholder="Company name*"
           value={formData.company}
-          onChange={(e) => setFormData(prev => ({ ...prev, company: e.target.value }))}
+          onChange={(e) =>
+            setFormData((prev) => ({ ...prev, company: e.target.value }))
+          }
           required
         />
         <Input
           placeholder="Telegram or Whatsapp"
           value={formData.phone}
-          onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
+          onChange={(e) =>
+            setFormData((prev) => ({ ...prev, phone: e.target.value }))
+          }
         />
       </div>
       <Textarea
         className={style.textarea}
         placeholder="Message*"
         value={formData.message}
-        onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+        onChange={(e) =>
+          setFormData((prev) => ({ ...prev, message: e.target.value }))
+        }
         required
       />
-      {description?.map((str, index) => (
-        <p className={style.description} key={index}>
-          {str}
-        </p>
-      ))}
+      <div className={style.descContrainer}>
+        {description?.map((str, index) => (
+          <p className={style.description} key={index}>
+            {str}
+          </p>
+        ))}
+      </div>
       <Button
         className={style.button}
         arrow

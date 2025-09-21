@@ -6,13 +6,40 @@
   width: 100vw;
   height: 100dvh;
 
+  @media (max-width: 1024px) {
+    .section {
+      gap: 54px;
+    }
+
+    .faqTextContainer {
+      .faqText {
+        font-size: 44px;
+      }
+    }
+  }
+
+  .faqTextContainer {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+  }
+  .faqText {
+    font-family: "Agrandir";
+    font-weight: 800;
+    font-style: "Grand Heavy";
+    font-size: 62px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+
   .section {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     padding-top: 200px;
     padding-bottom: 50px;
-    gap: 54px;
+    gap: 174px;
 
     @include breakpoint(tablet) {
       flex-direction: column;

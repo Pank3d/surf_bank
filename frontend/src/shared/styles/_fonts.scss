@@ -39,6 +39,14 @@
 }
 
 @font-face {
+  font-family: "Agrandir";
+  src: url("/fonts/Grand-Heavy.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Agrandir-Wide";
   src: url("/fonts/WideLight.woff2") format("woff2");
   font-weight: 300;
