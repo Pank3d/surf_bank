@@ -16,13 +16,13 @@ export const SectionMultiCards = () => {
             Simplify and accelerate the processing of payments and cross-border
             transfers using stablecoins and cryptocurrencies
           </Paragraph>
-          <Button
-            href={data?.multicards_button_link}
-            className={style.button}
-            arrow
-          >
-            Get the card
-          </Button>
+            <Button
+              href={data?.multicards_button_link}
+              className={style.button}
+              arrow
+            >
+              Get the card
+            </Button>
         </div>
         <div className={style.img}>
           <img src={img_1} alt="" />

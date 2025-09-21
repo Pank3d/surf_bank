@@ -1,6 +1,6 @@
 import style from "./section-banking.module.scss";
 import { H2, Paragraph, Button } from "@/shared/ui";
-import img_1 from "@/assets/images/section-banking/12.svg";
+import img_1 from "@/assets/images/section-banking/12.webp";
 
 export const SectionBanking = () => (
   <section className={style.section}>
