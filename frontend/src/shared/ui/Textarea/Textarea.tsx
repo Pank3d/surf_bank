@@ -1,6 +1,6 @@
 import style from "./Textarea.module.scss";
 import clsx from "clsx";
-import { TextareaHTMLAttributes } from "react";
+import type { TextareaHTMLAttributes } from "react";
 
 interface Props extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'className'> {
   placeholder: string;

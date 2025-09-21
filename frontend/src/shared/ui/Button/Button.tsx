@@ -8,7 +8,7 @@ interface Props
     ButtonHTMLAttributes<HTMLButtonElement>,
     "className" | "children" | "type"
   > {
-  onClick: () => void;
+  onClick?: () => void;
   children: ReactNode;
   className?: string;
   arrow?: boolean;

@@ -1,6 +1,6 @@
 import style from "./Input.module.scss";
 import clsx from "clsx";
-import { InputHTMLAttributes } from "react";
+import type { InputHTMLAttributes } from "react";
 
 interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'className'> {
   placeholder: string;
