@@ -18,28 +18,15 @@ jobs:
         service:
           - name: frontend
             context: ./frontend
-            build_args: |
-              VITE_STRAPI_API_URL=https://api.${{ secrets.DOMAIN }}
-              VITE_DASHBOARD_URL=https://dashboard.${{ secrets.DOMAIN }}
-              VITE_EMAIL_SERVICE_URL=https://email.${{ secrets.DOMAIN }}
-              VITE_CONTACT_EMAIL=${{ secrets.EMAIL }}
 
           - name: dashboard
             context: ./dashboard
-            build_args: |
-              VITE_STRAPI_API_URL=https://api.${{ secrets.DOMAIN }}
 
           - name: email-service
             context: ./email-service
-            build_args: |
-              VITE_STRAPI_API_URL=https://api.${{ secrets.DOMAIN }}
-              VITE_DASHBOARD_URL=https://dashboard.${{ secrets.DOMAIN }}
-              VITE_EMAIL_SERVICE_URL=https://email.${{ secrets.DOMAIN }}
-              VITE_CONTACT_EMAIL=${{ secrets.EMAIL }}
 
           - name: admin
             context: ./admin
-            build_args: ""
 
     steps:
       - name: Checkout code
@@ -72,7 +59,11 @@ jobs:
         with:
           context: ${{ matrix.service.context }}
           file: Dockerfile
-          build-args: ${{ matrix.service.build_args }}
+          build_args: |
+            VITE_STRAPI_API_URL=https://api.${{ secrets.DOMAIN }}
+            VITE_DASHBOARD_URL=https://dashboard.${{ secrets.DOMAIN }}
+            VITE_EMAIL_SERVICE_URL=https://email.${{ secrets.DOMAIN }}
+            VITE_CONTACT_EMAIL=${{ secrets.EMAIL }}
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.OWNER }}/${{ steps.meta.outputs.REPO_NAME }}/${{ matrix.service.name }}:latest
