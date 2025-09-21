@@ -59,7 +59,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ${{ matrix.service.context }}
-          file: Dockerfile
           build_args: |
             VITE_STRAPI_API_URL=https://api.${{ secrets.DOMAIN }}
             VITE_DASHBOARD_URL=https://dashboard.${{ secrets.DOMAIN }}
