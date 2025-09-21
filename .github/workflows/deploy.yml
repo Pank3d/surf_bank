@@ -45,6 +45,11 @@ jobs:
           EMAIL: ${{ secrets.EMAIL }}
           DOMAIN: ${{ secrets.DOMAIN }}
           PORT: ${{ secrets.PORT }}
+          SMTP_HOST: smtp.yandex.com
+          SMTP_PORT: 587
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_FROM: ${{ secrets.SMTP_USER }}
         run: |
           docker --context remote compose -f compose.yml pull
           docker --context remote compose -f compose.yml up -d 
