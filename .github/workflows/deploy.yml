@@ -1,8 +1,10 @@
 name: Deploy
 
 on:
-  push:
-    branches: [main]
+  workflow_run:
+    workflows: [Build and Push Docker Images]
+    types:
+      - completed
 
 env:
   REGISTRY: ghcr.io
