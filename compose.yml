@@ -116,7 +116,7 @@ services:
       context: ./admin
     restart: always
     volumes:
-      - /opt/database:/database
+      - /opt/database:/opt/app/database
     depends_on:
       - db
     networks:
