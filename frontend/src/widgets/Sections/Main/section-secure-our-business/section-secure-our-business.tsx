@@ -1,5 +1,5 @@
 import style from "./section-secure-our-business.module.scss";
-import img_1 from "@/assets/images/section-secure-our-business/img-1.webp";
+import img_1 from "@/assets/images/section-secure-our-business/Img-1.webp";
 import img_2 from "@/assets/images/section-secure-our-business/img-2.webp";
 import img_1_mobile from "@/assets/images/section-secure-our-business/img-1-mobile.webp";
 import { useEffect, useState } from "react";

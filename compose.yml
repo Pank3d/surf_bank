@@ -1,0 +1,155 @@
+services:
+  proxy:
+    image: traefik:v3.5.2
+    container_name: proxy
+    restart: always
+    command:
+      - "--log.level=DEBUG"
+      - "--accesslog=true"
+      - "--providers.docker=true"
+      - "--api.dashboard=false"
+      - "--api.insecure=false"
+      - "--providers.docker.network=external"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.leresolver.acme.httpchallenge=true"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entryPoints.web.http.redirections.entrypoint.scheme=https"
+      - "--certificatesresolvers.myresolver.acme.email=${EMAIL}"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entryPoints.web.http.redirections.entrypoint.scheme=https"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - dashboard
+      - frontend
+      - admin
+      - email
+    volumes:
+      - traefik:/letsencrypt
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+
+
+  email:
+    container_name: email
+    image: ghcr.io/Pank3d/surf_bank/email-service:latest
+    build:
+      context: ./email-service
+      args:
+        - VITE_STRAPI_API_URL=https://api.${DOMAIN}
+        - VITE_DASHBOARD_URL=https://dashboard.${DOMAIN}
+        - VITE_EMAIL_SERVICE_URL=https://email.${DOMAIN}
+        - VITE_CONTACT_EMAIL=${EMAIL}
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.email.rule=Host(`email.${DOMAIN}`)"
+      - "traefik.http.routers.email.entrypoints=websecure"
+      - "traefik.http.routers.email.tls.certresolver=myresolver"
+      - "traefik.http.services.email.loadbalancer.server.port=3001"
+      - "traefik.http.routers.email.service=email"
+      - "traefik.docker.network=external"
+
+
+  dashboard:
+    container_name: dashboard
+    image: ghcr.io/Pank3d/surf_bank/dashboard:latest
+    build:
+      context: ./dashboard
+      args:
+        - VITE_STRAPI_API_URL=https://api.${DOMAIN}
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashboard.rule=Host(`dashboard.${DOMAIN}`)"
+      - "traefik.http.routers.dashboard.entrypoints=websecure"
+      - "traefik.http.routers.dashboard.tls.certresolver=myresolver"
+      - "traefik.http.services.dashboard.loadbalancer.server.port=80"
+      - "traefik.http.routers.dashboard.service=dashboard"
+      - "traefik.docker.network=external"
+
+
+  frontend:
+    container_name: frontend
+    image: ghcr.io/Pank3d/surf_bank/frontend:latest
+    build:
+      context: ./frontend
+      args:
+        - VITE_STRAPI_API_URL=https://api.${DOMAIN}
+        - VITE_DASHBOARD_URL=https://dashboard.${DOMAIN}
+        - VITE_EMAIL_SERVICE_URL=https://email.${DOMAIN}
+        - VITE_CONTACT_EMAIL=${EMAIL}
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls.certresolver=myresolver"
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"
+      - "traefik.http.routers.frontend.service=frontend"
+      - "traefik.docker.network=external"
+
+
+  admin:
+    container_name: strapi
+    image: ghcr.io/Pank3d/surf_bank/admin:latest
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: db
+      DATABASE_PORT: ${DATABASE_PORT:-5432}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME:-postgres}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      APP_KEYS: ${APP_KEYS}
+      API_TOKEN_SALT: ${API_TOKEN_SALT}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      PORT: ${PORT}
+      PUBLIC_URL: https://api.${DOMAIN}
+    build:
+      context: ./admin
+    restart: always
+    depends_on:
+      - db
+    networks:
+      - default
+      - internal
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.strapi.rule=Host(`api.${DOMAIN}`)"
+      - "traefik.http.routers.strapi.entrypoints=websecure"
+      - "traefik.http.routers.strapi.tls.certresolver=myresolver"
+      - "traefik.http.services.strapi.loadbalancer.server.port=${PORT}"
+      - "traefik.http.routers.strapi.service=strapi"
+      - "traefik.docker.network=external"
+
+
+  db:
+    container_name: db
+    restart: always
+    image: postgres:16.0-alpine
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - data:/var/lib/postgresql/data/
+    networks:
+      - internal
+
+
+volumes:
+  data:
+  traefik:
+
+
+networks:
+  internal:
+    name: internal
+  default:
+    name: external
