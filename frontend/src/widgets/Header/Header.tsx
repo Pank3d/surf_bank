@@ -91,7 +91,7 @@ export const Header = () => {
         </nav>
         <div className={style.navigation__buttons}>
           <Link className={style.link} to={internalPaths.login}>
-            log in
+            Log in
           </Link>
           <Button className={style.button} href={data?.button_link}>
             Open account

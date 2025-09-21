@@ -27,7 +27,7 @@ export const SectionHero = () => {
           <span className={style.title__color}>freedom</span>
         </h1>
         <h1 className={style.title__mobile}>
-          <span className={style.title__color}>Uncover</span>
+          и<span className={style.title__color}>Uncover</span>
           <span className={style.title__color}>your</span>
           <span className={style.title__color}>banking</span>
           <span className={style.title__color}>freedom</span>
