@@ -35,7 +35,7 @@ services:
 
   email:
     container_name: email
-    image: ghcr.io/Pank3d/surf_bank/email-service:latest
+    image: ghcr.io/pank3d/surf_bank/email-service:latest
     build:
       context: ./email-service
       args:
@@ -56,7 +56,7 @@ services:
 
   dashboard:
     container_name: dashboard
-    image: ghcr.io/Pank3d/surf_bank/dashboard:latest
+    image: ghcr.io/pank3d/surf_bank/dashboard:latest
     build:
       context: ./dashboard
       args:
@@ -74,7 +74,7 @@ services:
 
   frontend:
     container_name: frontend
-    image: ghcr.io/Pank3d/surf_bank/frontend:latest
+    image: ghcr.io/pank3d/surf_bank/frontend:latest
     build:
       context: ./frontend
       args:
@@ -95,7 +95,7 @@ services:
 
   admin:
     container_name: strapi
-    image: ghcr.io/Pank3d/surf_bank/admin:latest
+    image: ghcr.io/pank3d/surf_bank/admin:latest
     environment:
       DATABASE_CLIENT: postgres
       DATABASE_HOST: db

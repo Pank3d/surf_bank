@@ -66,6 +66,6 @@ jobs:
             VITE_CONTACT_EMAIL=${{ secrets.EMAIL }}
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.USER }}/${{ matrix.service.name }}:latest
-            ${{ env.REGISTRY }}/${{ env.USER }}/${{ matrix.service.name }}:${{ steps.meta.outputs.SHORT_SHA }}
+            ${{ env.REGISTRY }}/${{ env.USER }}/${{ steps.meta.outputs.REPO_NAME }}/${{ matrix.service.name }}:latest
+            ${{ env.REGISTRY }}/${{ env.USER }}/${{ steps.meta.outputs.REPO_NAME }}/${{ matrix.service.name }}:${{ steps.meta.outputs.SHORT_SHA }}
           cache-from: type=local,src=/tmp/.buildx-cache
