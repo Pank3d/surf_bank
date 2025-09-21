@@ -111,9 +111,12 @@ services:
       ENCRYPTION_KEY: ${ENCRYPTION_KEY}
       PORT: ${PORT}
       PUBLIC_URL: https://api.${DOMAIN}
+      DATABASE_FILENAME: /database/data.db
     build:
       context: ./admin
     restart: always
+    volumes:
+      - /opt/database:/database
     depends_on:
       - db
     networks:
