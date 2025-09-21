@@ -97,7 +97,7 @@ services:
     container_name: strapi
     image: ghcr.io/pank3d/surf_bank/admin:latest
     environment:
-      DATABASE_CLIENT: postgres
+      DATABASE_CLIENT: sqlite
       DATABASE_HOST: db
       DATABASE_PORT: ${DATABASE_PORT:-5432}
       DATABASE_NAME: ${DATABASE_NAME}
@@ -111,9 +111,12 @@ services:
       ENCRYPTION_KEY: ${ENCRYPTION_KEY}
       PORT: ${PORT}
       PUBLIC_URL: https://api.${DOMAIN}
+      DATABASE_FILENAME: /tmp/data.db
     build:
       context: ./admin
     restart: always
+    volumes:
+      - ./opt/database:/tmp
     depends_on:
       - db
     networks:
