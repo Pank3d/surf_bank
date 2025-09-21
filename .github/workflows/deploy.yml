@@ -34,8 +34,8 @@ jobs:
 
       - name: Docker compose
         env:
-          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          # DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          # DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
           APP_KEYS: ${{ secrets.APP_KEYS }}
           API_TOKEN_SALT: ${{ secrets.API_TOKEN_SALT }}
           ADMIN_JWT_SECRET: ${{ secrets.ADMIN_JWT_SECRET }}
