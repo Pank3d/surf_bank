@@ -134,7 +134,8 @@
       width: 100%;
 
       .title__color {
-        background-color: rgba($green-color, 0.5);
+        background: rgba($green-color, 0.5);
+        white-space: pre-wrap;
         padding: 24px;
         border-radius: 12px;
         width: fit-content;

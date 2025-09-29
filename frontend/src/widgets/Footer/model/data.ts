@@ -6,7 +6,7 @@ export const navigationData = [
     links: [
       {
         title: "Banking",
-        href: "#",
+        href: internalPaths.banking,
         soon: false,
       },
       {
@@ -61,7 +61,7 @@ export const navigationData = [
       },
       {
         title: "Contact us",
-        href: "#",
+        href: internalPaths.letsConnect,
         soon: false,
       },
       {

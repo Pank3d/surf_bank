@@ -7,5 +7,5 @@ export const internalPaths = {
   forgotPassword: "/forgot-password",
   aboutUs: "/about-us",
   banking: "/banking",
-  comingSoon: "/coming-soon",
+  comingSoon: "/multi-cards",
 };
