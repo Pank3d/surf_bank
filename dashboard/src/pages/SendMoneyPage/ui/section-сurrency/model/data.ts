@@ -11,8 +11,8 @@ export const currency = [
   },
   {
     icon: bitcoin,
-    title: "DLT Assets",
-    description: "Perform a transaction using DLT Assets",
+    title: "Crypto",
+    description: "Perform a transaction Cryptocurrency",
     active: false,
   },
 ] as const;

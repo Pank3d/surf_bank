@@ -1,0 +1,6210 @@
+swagger: "2.0"
+info:
+  title: Partner OpenAPI Specification V2
+  version: "2.0"
+tags:
+  - name: Accounts
+  - name: Authentication
+  - name: Billing
+  - name: Counterparty
+  - name: Currency
+    description: ABitOfEverythingService description -- which should not be used in place of the documentation comment!
+  - name: Customer
+  - name: Geo
+  - name: Hooks
+  - name: Messages
+  - name: Report
+  - name: Storage
+  - name: Users
+schemes:
+  - http
+  - https
+  - wss
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /v2/account:
+    get:
+      summary: Get account list
+      operationId: Accounts_GetAccounts
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/accountAccountsResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: accountId
+          in: query
+          required: false
+          type: string
+        - name: fromCreatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: toCreatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: customerId
+          in: query
+          required: false
+          type: string
+        - name: customerName
+          in: query
+          required: false
+          type: string
+        - name: name
+          in: query
+          required: false
+          type: string
+        - name: status
+          in: query
+          required: false
+          type: string
+          enum:
+            - ACCOUNT_STATUS_NOTSET
+            - NEW
+            - PRE_MODERATION
+            - MODERATION
+            - ACCEPTED
+            - REJECTED
+            - BANNED
+            - PROCESSING
+          default: ACCOUNT_STATUS_NOTSET
+        - name: currencyCode
+          in: query
+          required: false
+          type: string
+        - name: balance
+          in: query
+          required: false
+          type: string
+          enum:
+            - NOTSET
+            - NEGATIVE
+            - POSITIVE
+            - ZERO
+          default: NOTSET
+        - name: number
+          in: query
+          required: false
+          type: string
+        - name: meta.pageSize
+          description: Set items count per page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: meta.page
+          description: Page No. Starts from 0
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: withCommission
+          in: query
+          required: false
+          type: boolean
+        - name: associateType
+          in: query
+          required: false
+          type: string
+          enum:
+            - ASSOCIATE_TYPE_NOT_SET
+            - NOT_ASSOCIATE
+            - POOL
+            - COMMISSION
+          default: ASSOCIATE_TYPE_NOT_SET
+        - name: search
+          in: query
+          required: false
+          type: string
+      tags:
+        - Accounts
+    post:
+      summary: Create account
+      operationId: Accounts_CreateAccount
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/accountAccountResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/accountCreateAccountRequest'
+      tags:
+        - Accounts
+  /v2/account/{accountId}:
+    get:
+      summary: Get account by ID
+      operationId: Accounts_GetAccount
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/accountAccountResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: accountId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+      tags:
+        - Accounts
+    patch:
+      summary: Update account
+      operationId: Accounts_UpdateAccount
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/accountAccountResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: accountId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/accountAccountsUpdateAccountBody'
+      tags:
+        - Accounts
+  /v2/auth/login:
+    post:
+      summary: Login
+      operationId: Auth_Login
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/gatewayv2authTokenRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/authLoginModel'
+      tags:
+        - Authentication
+      security:
+        - "": []
+  /v2/auth/otp/confirm:
+    post:
+      summary: Otp Confirm
+      operationId: Auth_OtpConfirm
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/authOtpRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/gatewayv2authOtpCodeRequest'
+      tags:
+        - Authentication
+  /v2/auth/otp/disable:
+    post:
+      summary: Otp Disable
+      operationId: Auth_OtpDisable
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/authOtpRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/gatewayv2authOtpCodeRequest'
+      tags:
+        - Authentication
+  /v2/auth/otp/enable:
+    post:
+      summary: Otp Enable
+      operationId: Auth_OtpEnable
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/authOtpQrRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/authOtpEnableRequest'
+      tags:
+        - Authentication
+  /v2/auth/partner:
+    get:
+      summary: Get Partner
+      operationId: Auth_Partner
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/authPartnerRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      tags:
+        - Partner
+    patch:
+      summary: Update Partner
+      operationId: Auth_UpdatePartner
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/authPartnerRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: name
+          in: query
+          required: false
+          type: string
+        - name: logo.id
+          description: '@gotags: validate:"required"'
+          in: query
+          required: false
+          type: string
+        - name: logo.name
+          description: '@gotags: validate:"required"'
+          in: query
+          required: false
+          type: string
+      tags:
+        - Partner
+  /v2/auth/profile:
+    get:
+      summary: Get Profile
+      operationId: Auth_Profile
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/authProfileRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      tags:
+        - Authentication
+  /v2/auth/recovery/confirm:
+    post:
+      summary: Recovery Confirm
+      operationId: Auth_RecoveryAccessConfirm
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/delosauthTokenRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/authConfirmRecoveryRequest'
+      tags:
+        - Authentication
+  /v2/auth/recovery/request:
+    post:
+      summary: Recovery Access
+      operationId: Auth_RecoveryAccessRequest
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/authRecoveryRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/authRecoveryRequest'
+      tags:
+        - Authentication
+  /v2/auth/refresh/{token}:
+    get:
+      summary: Refresh Access Token
+      operationId: Auth_RefreshToken
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/gatewayv2authTokenRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: token
+          in: path
+          required: true
+          type: string
+      tags:
+        - Authentication
+      security:
+        - "": []
+  /v2/billing/commission:
+    get:
+      summary: Get Commissions
+      operationId: Billing_GetCommissions
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/billingCurrencyCommissionListRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: currencyCodeFrom
+          in: query
+          required: false
+          type: string
+        - name: currencyCodeTo
+          in: query
+          required: false
+          type: string
+        - name: operationType
+          description: ' - NOTSET: service type'
+          in: query
+          required: false
+          type: string
+          enum:
+            - NOTSET
+            - DEPOSIT
+            - TRANSFER
+            - WITHDRAW
+            - COMMISSION
+            - EXCHANGE
+            - CORRECTING
+          default: NOTSET
+        - name: paymentType
+          description: ' - EMPTY: service type'
+          in: query
+          required: false
+          type: string
+          enum:
+            - PAYMENT_TYPE_NOT_SET
+            - EMPTY
+            - ACH
+            - FEDWIRE
+            - SWIFT
+            - CRYPTO
+            - EFT
+            - SEPA_CT
+            - IMPS
+          default: PAYMENT_TYPE_NOT_SET
+        - name: fromCreatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: toCreatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: fromUpdatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: toUpdatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: customerId
+          in: query
+          required: false
+          type: string
+        - name: customerName
+          in: query
+          required: false
+          type: string
+        - name: withAllCustomers
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Commissions
+    post:
+      summary: Set Commission
+      operationId: Billing_SetCommission
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/billingSetCommissionRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v2billingSetCommissionRequest'
+      tags:
+        - Commissions
+  /v2/billing/commission/account:
+    get:
+      summary: List Commission Accounts
+      operationId: Billing_GetCommissionAccounts
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/billingCommissionAccountListRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      tags:
+        - Commissions
+  /v2/billing/limits:
+    get:
+      summary: List Limits
+      operationId: Billing_ListLimits
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/billingLimitsListRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: meta.pageSize
+          description: Set items count per page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: meta.page
+          description: Page No. Starts from 0
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: currencyCodeFrom
+          in: query
+          required: false
+          type: string
+        - name: currencyCodeTo
+          in: query
+          required: false
+          type: string
+        - name: operationType
+          description: ' - NOTSET: service type'
+          in: query
+          required: false
+          type: string
+          enum:
+            - NOTSET
+            - DEPOSIT
+            - TRANSFER
+            - WITHDRAW
+            - COMMISSION
+            - EXCHANGE
+            - CORRECTING
+          default: NOTSET
+        - name: paymentType
+          description: ' - EMPTY: service type'
+          in: query
+          required: false
+          type: string
+          enum:
+            - PAYMENT_TYPE_NOT_SET
+            - EMPTY
+            - ACH
+            - FEDWIRE
+            - SWIFT
+            - CRYPTO
+            - EFT
+            - SEPA_CT
+            - IMPS
+          default: PAYMENT_TYPE_NOT_SET
+        - name: customerId
+          in: query
+          required: false
+          type: string
+        - name: fromCreatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: toCreatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: fromUpdatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: toUpdatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: withAllCustomers
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Limits
+    post:
+      summary: Set Limit
+      operationId: Billing_SetLimit
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/billingSetLimitRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/billingSetLimitRequest'
+      tags:
+        - Limits
+  /v2/billing/operation:
+    get:
+      summary: List Operations
+      operationId: Billing_List
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/billingListOperationRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: meta.pageSize
+          description: Set items count per page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: meta.page
+          description: Page No. Starts from 0
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: fromCreatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: toCreatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: fromUpdatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: toUpdatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: customerId
+          in: query
+          required: false
+          type: string
+        - name: customerName
+          in: query
+          required: false
+          type: string
+        - name: operationId
+          in: query
+          required: false
+          type: string
+        - name: source
+          in: query
+          required: false
+          type: string
+        - name: destination
+          in: query
+          required: false
+          type: string
+        - name: status
+          description: |2-
+             - NEW: Create by user or modrator
+             - PENDING: Move by moderator to this status if operation ok
+             - WORKING: Move by network for work
+             - SUCCESS: Result status
+             - FAIL: Result status
+             - CANCELED: Result status
+          in: query
+          required: false
+          type: string
+          enum:
+            - NOT_SET
+            - NEW
+            - PENDING
+            - WORKING
+            - SUCCESS
+            - FAIL
+            - CANCELED
+          default: NOT_SET
+        - name: type
+          description: ' - NOTSET: service type'
+          in: query
+          required: false
+          type: string
+          enum:
+            - NOTSET
+            - DEPOSIT
+            - TRANSFER
+            - WITHDRAW
+            - COMMISSION
+            - EXCHANGE
+          default: NOTSET
+        - name: counterpartyAccountId
+          in: query
+          required: false
+          type: string
+        - name: account
+          in: query
+          required: false
+          type: string
+        - name: senderId
+          in: query
+          required: false
+          type: string
+        - name: senderName
+          in: query
+          required: false
+          type: string
+        - name: recipientId
+          in: query
+          required: false
+          type: string
+        - name: recipientName
+          in: query
+          required: false
+          type: string
+      tags:
+        - Operations
+    post:
+      summary: Add Client Operation
+      operationId: Billing_Add
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/billingOperationRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/billingCreateOperationRequest'
+      tags:
+        - Operations
+  /v2/billing/operation/prepare:
+    post:
+      summary: Prepare Client Operation
+      operationId: Billing_Prepare
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/billingOperationRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/billingCreateOperationRequest'
+      tags:
+        - Operations
+  /v2/billing/operation/{id}:
+    get:
+      summary: Get Operation
+      operationId: Billing_GetOperation
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/billingOperationRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: id
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+      tags:
+        - Operations
+  /v2/billing/operation/{id}/document:
+    post:
+      summary: Add document
+      operationId: Billing_AddDocument
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/billingOperationRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: id
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/BillingAddDocumentBody'
+      tags:
+        - Operations
+  /v2/billing/operation/{id}/document/{documentId}:
+    delete:
+      summary: Remove Document
+      operationId: Billing_RemoveDocument
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/billingOperationRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: id
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+        - name: documentId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+      tags:
+        - Operations
+  /v2/billing/operation/{id}/tree:
+    get:
+      summary: Get Operation Tree
+      operationId: Billing_GetTree
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/billingOperationTreeRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: id
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+      tags:
+        - Operations
+  /v2/counterparty:
+    get:
+      summary: Get counterparty list
+      operationId: Counterparties_GetList
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/counterpartyListCounterpartiesRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: meta.pageSize
+          description: Set items count per page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: meta.page
+          description: Page No. Starts from 0
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: customerId
+          in: query
+          required: false
+          type: string
+        - name: fromCreatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: toCreatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: customerName
+          in: query
+          required: false
+          type: string
+        - name: counterpartyId
+          in: query
+          required: false
+          type: string
+        - name: counterpartyName
+          in: query
+          required: false
+          type: string
+      tags:
+        - Counterparty
+    post:
+      summary: Create counterparty
+      operationId: Counterparties_Create
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/counterpartyCounterpartyResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/counterpartyCreateCounterpartyRequest'
+      tags:
+        - Counterparty
+  /v2/counterparty/account:
+    get:
+      summary: Get Account List
+      operationId: Counterparties_GetAccountList
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/counterpartyCounterpartyAccountsResponseV2'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: fromCreatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: toCreatedAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: customerId
+          in: query
+          required: false
+          type: string
+        - name: customerName
+          in: query
+          required: false
+          type: string
+        - name: counterpartyId
+          in: query
+          required: false
+          type: string
+        - name: counterpartyName
+          in: query
+          required: false
+          type: string
+        - name: accountId
+          in: query
+          required: false
+          type: string
+        - name: name
+          in: query
+          required: false
+          type: string
+        - name: number
+          in: query
+          required: false
+          type: string
+        - name: status
+          in: query
+          required: false
+          type: string
+          enum:
+            - NEW
+            - AWAIT
+            - MODERATION
+            - ACCEPT
+            - REJECT
+            - BANNED
+            - VERIFICATION
+          default: NEW
+        - name: currencyCode
+          in: query
+          required: false
+          type: string
+        - name: meta.pageSize
+          description: Set items count per page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: meta.page
+          description: Page No. Starts from 0
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: search
+          in: query
+          required: false
+          type: string
+      tags:
+        - Counterparty
+  /v2/counterparty/account/{accountId}:
+    get:
+      summary: Get Account
+      operationId: Counterparties_GetAccount
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/counterpartyCounterpartyAccountResponseV2'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: accountId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+      tags:
+        - Counterparty
+  /v2/counterparty/{counterpartyId}:
+    get:
+      summary: Get counterparty
+      operationId: Counterparties_Get
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/counterpartyCounterpartyRespondV2'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: counterpartyId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+      tags:
+        - Counterparty
+    patch:
+      summary: Update counterparty
+      operationId: Counterparties_Update
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/counterpartyCounterpartyResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: counterpartyId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/counterpartyCounterpartiesUpdateBody'
+      tags:
+        - Counterparty
+  /v2/counterparty/{counterpartyId}/account:
+    post:
+      summary: Create counterparty account
+      operationId: Counterparties_CreateAccount
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/counterpartyCounterpartyAccountResponseV2'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: counterpartyId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/counterpartyCounterpartiesCreateAccountBody'
+      tags:
+        - Counterparty
+  /v2/counterparty/{counterpartyId}/account/{accountId}:
+    patch:
+      summary: Update counterparty account
+      operationId: Counterparties_UpdateAccount
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/counterpartyCounterpartyAccountResponseV2'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: counterpartyId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+        - name: accountId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/counterpartyCounterpartiesUpdateAccountBody'
+      tags:
+        - Counterparty
+  /v2/currency:
+    get:
+      summary: List Currencies
+      operationId: Currency_List
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/currencyCurrencyList'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      tags:
+        - Currency
+    post:
+      summary: Convert
+      operationId: Currency_Convert
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/currencyConvertResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/currencyConvertRequest'
+      tags:
+        - Currency
+  /v2/currency/{code}:
+    get:
+      summary: Get Currency
+      operationId: Currency_Get
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/currencyCurrencyModel'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: code
+          in: path
+          required: true
+          type: string
+      tags:
+        - Currency
+  /v2/customer:
+    get:
+      summary: List Customers
+      operationId: Customer_List
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/customerListCustomerRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: meta.pageSize
+          description: Set items count per page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: meta.page
+          description: Page No. Starts from 0
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: type
+          in: query
+          required: false
+          type: string
+          enum:
+            - TYPE_NOT_SET
+            - CORPORATE
+            - INDIVIDUAL
+          default: TYPE_NOT_SET
+        - name: fromCreateAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: toCreateAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: status
+          description: |2-
+             - NEW: Registered user
+             - MODERATED: Send to moderator
+             - VERIFY: In verify state (working status)
+          in: query
+          required: false
+          type: string
+          enum:
+            - STATUS_NOT_SET
+            - NEW
+            - READY_FOR_MODERATION
+            - MODERATED
+            - VERIFY
+            - ACCEPT
+            - REJECT
+            - BANNED
+          default: STATUS_NOT_SET
+        - name: customerId
+          in: query
+          required: false
+          type: string
+        - name: customerName
+          in: query
+          required: false
+          type: string
+        - name: userId
+          in: query
+          required: false
+          type: string
+      tags:
+        - Customer
+    post:
+      summary: Add Customer
+      operationId: Customer_Add
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/customerCustomerRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/customerCreateCustomerRequest'
+      tags:
+        - Customer
+  /v2/customer/file:
+    post:
+      summary: Upload Document
+      description: Upload document request.<br> Use POST ```multipart/form-data``` content type for send this form
+      operationId: Customer_UploadFileDummy
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/customerDocumentRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/customerDocumentUpload'
+      tags:
+        - Documents
+  /v2/customer/{customerId}:
+    get:
+      summary: Get Customer
+      operationId: Customer_Get
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/customerCustomerRespondDetail'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: customerId
+          description: Customer ID
+          in: path
+          required: true
+          type: string
+      tags:
+        - Customer
+    patch:
+      summary: Update Customer
+      operationId: Customer_Update
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/customerCustomerRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: customerId
+          description: Customer ID
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/customerCustomerUpdateBody'
+      tags:
+        - Customer
+  /v2/customer/{customerId}/application:
+    get:
+      summary: Get Customer Application
+      description: Get Customer Application.<br>Return ```individual``` or ```corporate``` Application.
+      operationId: Customer_GetApplication
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/customerGetApplicationRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: customerId
+          description: Customer ID
+          in: path
+          required: true
+          type: string
+      tags:
+        - Application
+    post:
+      summary: Set Customer Application
+      description: Setup Customer Application.<br>Set oneof parameter ```individual``` or ```corporate```, not both
+      operationId: Customer_SetApplication
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/customerSetApplicationRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/CustomerSetApplicationBody'
+      tags:
+        - Application
+  /v2/customer/{customerId}/file:
+    get:
+      summary: List Documents
+      operationId: Customer_ListDocuments
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v2customerDocumentListRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: customerId
+          description: Customer ID
+          in: path
+          required: true
+          type: string
+        - name: meta.pageSize
+          description: Set items count per page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: meta.page
+          description: Page No. Starts from 0
+          in: query
+          required: false
+          type: integer
+          format: int32
+      tags:
+        - Documents
+  /v2/customer/{customerId}/file/{id}:
+    get:
+      summary: Download Document
+      description: Download document.<br> Return raw file content with mimetype header of document
+      operationId: Customer_DocumentDownload
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiHttpBody'
+          examples:
+            application/text: Raw body bytes
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: customerId
+          description: Customer ID
+          in: path
+          required: true
+          type: string
+        - name: id
+          description: Document unique ID
+          in: path
+          required: true
+          type: string
+      tags:
+        - Documents
+    delete:
+      summary: Delete Document
+      description: Remove document.
+      operationId: Customer_DocumentDelete
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v2RespondStatus'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: customerId
+          description: Customer ID
+          in: path
+          required: true
+          type: string
+        - name: id
+          description: Document unique ID
+          in: path
+          required: true
+          type: string
+      tags:
+        - Documents
+    post:
+      summary: Document update
+      description: Update document.
+      operationId: Customer_DocumentUpdate
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/customerDocumentRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: customerId
+          description: Customer ID
+          in: path
+          required: true
+          type: string
+        - name: id
+          description: Document unique ID
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/CustomerDocumentUpdateBody'
+      tags:
+        - Documents
+  /v2/customer/{customerId}/file/{id}/info:
+    get:
+      summary: Get Document Information
+      description: Get document info.
+      operationId: Customer_GetDocumentInfo
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/customerDocumentRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: customerId
+          description: Customer ID
+          in: path
+          required: true
+          type: string
+        - name: id
+          description: Document unique ID
+          in: path
+          required: true
+          type: string
+      tags:
+        - Documents
+  /v2/geo/country/get:
+    get:
+      summary: Country List
+      operationId: Geo_List
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1CountryList'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      tags:
+        - Geo
+  /v2/geo/state:
+    get:
+      summary: States List
+      operationId: Geo_StatesList
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/geoStates'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: meta.pageSize
+          description: Set items count per page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: meta.page
+          description: Page No. Starts from 0
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: filter
+          description: Optional filter
+          in: query
+          required: false
+          type: string
+      tags:
+        - Geo
+  /v2/hook/get:
+    get:
+      summary: Get Hook Parameters
+      operationId: Hook_GetParameters
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/hooksv1PartnerParameters'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      tags:
+        - Hooks
+      security:
+        - "": []
+  /v2/hook/set:
+    post:
+      summary: Set Hook Parameters
+      operationId: Hook_SetParameters
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/hooksv1PartnerParameters'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/v2hookPartnerUpdateRequest'
+      tags:
+        - Hooks
+      security:
+        - "": []
+  /v2/messages/events:
+    get:
+      summary: Event list
+      operationId: Messages_GetEvents
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v2messageEventsResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: meta.pageSize
+          description: Set items count per page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: meta.page
+          description: Page No. Starts from 0
+          in: query
+          required: false
+          type: integer
+          format: int32
+      tags:
+        - Messages
+  /v2/messages/settings:
+    get:
+      summary: Get Settings
+      operationId: Messages_GetSettings
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/messageSettingResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      tags:
+        - Messages
+    post:
+      summary: Update Settings
+      operationId: Messages_UpdateSettings
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/messageSettingResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/messageSettingUpdateRequest'
+      tags:
+        - Messages
+  /v2/messages/templates:
+    get:
+      summary: Get templates list
+      operationId: Messages_GetTemplates
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/messageGetTemplatesResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: meta.pageSize
+          description: Set items count per page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: meta.page
+          description: Page No. Starts from 0
+          in: query
+          required: false
+          type: integer
+          format: int32
+      tags:
+        - Messages
+    post:
+      summary: Create template account
+      operationId: Messages_CreateTemplate
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/messageGetTemplateResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/messageCreateTemplateRequest'
+      tags:
+        - Messages
+  /v2/messages/templates/{id}:
+    get:
+      summary: Get template by ID
+      operationId: Messages_GetTemplate
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/messageGetTemplateResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: id
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+      tags:
+        - Messages
+    delete:
+      summary: Delete template by ID
+      operationId: Messages_DeleteTemplate
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/messagesv1SuccessResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: id
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+      tags:
+        - Messages
+    post:
+      summary: Update template account
+      operationId: Messages_UpdateTemplate
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/messageGetTemplateResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: id
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/MessagesUpdateTemplateBody'
+      tags:
+        - Messages
+  /v2/messages/types:
+    get:
+      summary: Type list
+      operationId: Messages_GetNotificationTypes
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v2messageNotificationTypesResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: meta.pageSize
+          description: Set items count per page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: meta.page
+          description: Page No. Starts from 0
+          in: query
+          required: false
+          type: integer
+          format: int32
+      tags:
+        - Messages
+  /v2/report/account/{accountId}:
+    get:
+      summary: Account requisites
+      operationId: Report_AccountRequisites
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ExportResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
+        - name: option.format
+          in: query
+          required: false
+          type: string
+          enum:
+            - Unknown
+            - PDF
+            - XLSX
+          default: Unknown
+      tags:
+        - Report
+  /v2/report/counterparty/account/{accountId}:
+    get:
+      summary: Counterparty account requisites
+      operationId: Report_CounterpartyAccountRequisites
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ExportResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: string
+        - name: option.format
+          in: query
+          required: false
+          type: string
+          enum:
+            - Unknown
+            - PDF
+            - XLSX
+          default: Unknown
+      tags:
+        - Report
+  /v2/report/operations:
+    get:
+      summary: Operations list
+      operationId: Report_OperationList
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ExportResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: pageSize
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: sortAttribute
+          in: query
+          required: false
+          type: string
+        - name: sort
+          in: query
+          required: false
+          type: string
+          enum:
+            - ASC
+            - DESC
+          default: ASC
+        - name: select
+          in: query
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      tags:
+        - Report
+  /v2/report/operations/{customerId}/{operationId}:
+    get:
+      summary: Operation detail
+      operationId: Report_OperationDetail
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ExportResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: customerId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+        - name: operationId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+      tags:
+        - Report
+  /v2/report/statement:
+    get:
+      summary: Account statements
+      operationId: Report_AccountStatement
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v1ExportResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: accountId
+          description: '@gotags: validate:"required"'
+          in: query
+          required: false
+          type: string
+        - name: period.from
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: period.to
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: option.format
+          in: query
+          required: false
+          type: string
+          enum:
+            - Unknown
+            - PDF
+            - XLSX
+          default: Unknown
+      tags:
+        - Report
+  /v2/storage:
+    post:
+      summary: Upload File
+      description: Upload document request.<br> Use POST ```multipart/form-data``` content type for send this form
+      operationId: Storage_UploadDummy
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/userUploadResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/userFileUpload'
+      tags:
+        - Files
+  /v2/storage/file:
+    get:
+      summary: List Files
+      operationId: Storage_List
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/userFileListRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: customerId
+          description: Customer ID
+          in: query
+          required: false
+          type: string
+        - name: meta.pageSize
+          description: Set items count per page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: meta.page
+          description: Page No. Starts from 0
+          in: query
+          required: false
+          type: integer
+          format: int32
+      tags:
+        - Files
+  /v2/storage/file/{id}:
+    get:
+      summary: Download File
+      description: Download document.<br> Return raw file content with mimetype header of document
+      operationId: Storage_Download
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/apiHttpBody'
+          examples:
+            application/text: Raw body bytes
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: id
+          description: File unique ID
+          in: path
+          required: true
+          type: string
+        - name: customerId
+          description: Customer ID
+          in: query
+          required: false
+          type: string
+      tags:
+        - Files
+    delete:
+      summary: Delete File
+      description: Remove document.
+      operationId: Storage_Delete
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v2RespondStatus'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: id
+          description: File unique ID
+          in: path
+          required: true
+          type: string
+        - name: customerId
+          description: Customer ID
+          in: query
+          required: false
+          type: string
+      tags:
+        - Files
+  /v2/user:
+    get:
+      summary: List Users
+      operationId: Users_List
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/userListUserRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: userId
+          in: query
+          required: false
+          type: string
+        - name: name
+          in: query
+          required: false
+          type: string
+        - name: fromCreateAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: toCreateAt
+          in: query
+          required: false
+          type: string
+          format: date-time
+        - name: customerId
+          in: query
+          required: false
+          type: string
+        - name: customerName
+          in: query
+          required: false
+          type: string
+        - name: email
+          in: query
+          required: false
+          type: string
+        - name: phone
+          in: query
+          required: false
+          type: string
+        - name: status
+          description: |2-
+             - NEW: Registered user
+             - MODERATED: Send to moderator
+             - VERIFY: Send to moderator
+          in: query
+          required: false
+          type: string
+          enum:
+            - NOT_SET
+            - NEW
+            - READY_FOR_MODERATION
+            - MODERATED
+            - VERIFY
+            - ACCEPT
+            - REJECT
+            - BANNED
+          default: NOT_SET
+        - name: meta.pageSize
+          description: Set items count per page
+          in: query
+          required: false
+          type: integer
+          format: int32
+        - name: meta.page
+          description: Page No. Starts from 0
+          in: query
+          required: false
+          type: integer
+          format: int32
+      tags:
+        - Users
+    post:
+      summary: Add User
+      operationId: Users_Add
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/userUserRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/userCreateUserRequest'
+      tags:
+        - Users
+  /v2/user/{userId}:
+    get:
+      summary: Get User
+      operationId: Users_Get
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/userGetUserRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: userId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+      tags:
+        - Users
+    delete:
+      summary: Delete User
+      operationId: Users_Delete
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/v2RespondStatus'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: userId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+        - name: customerId
+          in: query
+          required: false
+          type: string
+      tags:
+        - Users
+    put:
+      summary: Update User
+      operationId: Users_Update
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/userUserRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: userId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/userUsersUpdateBody'
+      tags:
+        - Users
+  /v2/user/{userId}/relate-customer:
+    put:
+      summary: Bind Client
+      operationId: Users_AddRelationClient
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/userUserRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: userId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/UsersAddRelationClientBody'
+      tags:
+        - Users
+  /v2/user/{userId}/relate-customer/{customerId}:
+    delete:
+      summary: Remove Bind Client
+      operationId: Users_RemoveRelationClient
+      responses:
+        "200":
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/userUserRespond'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/googlerpcStatus'
+      parameters:
+        - name: userId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+        - name: customerId
+          description: '@gotags: validate:"required"'
+          in: path
+          required: true
+          type: string
+        - name: isOwner
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Users
+definitions:
+  AccountsRequestAssociateType:
+    type: string
+    enum:
+      - ASSOCIATE_TYPE_NOT_SET
+      - NOT_ASSOCIATE
+      - POOL
+      - COMMISSION
+    default: ASSOCIATE_TYPE_NOT_SET
+  BillingAddDocumentBody:
+    type: object
+    properties:
+      documentId:
+        type: string
+        title: '@gotags: validate:"required"'
+      name:
+        type: string
+        title: '@gotags: validate:"required"'
+  CounterpartyProfileAdditionalInfo:
+    type: object
+    properties:
+      type:
+        $ref: '#/definitions/counterpartyCP_ProfileType'
+      businessLine:
+        $ref: '#/definitions/counterpartyCP_LineOfBusiness'
+      relationship:
+        $ref: '#/definitions/counterpartyCP_RelationshipToCustomer'
+  CustomerDocumentUpdateBody:
+    type: object
+    properties:
+      docType:
+        $ref: '#/definitions/applicationDocumentType'
+        description: Document Type
+      info:
+        type: string
+        description: Document Description
+    required:
+      - guid
+  CustomerSetApplicationBody:
+    type: object
+    properties:
+      individual:
+        $ref: '#/definitions/customerIndividualApplication'
+      corporate:
+        $ref: '#/definitions/customerCorporateApplication'
+    title: SetApplication
+  FilterCondition:
+    type: string
+    enum:
+      - LIKE
+      - LIKEG
+      - LIKEL
+      - EQUAL
+      - GREAT
+      - LESS
+      - GREAT_EQUAL
+      - LESS_EQUAL
+      - IN
+      - NOTEQUAL
+      - BETWEEN
+      - IS
+      - ISNOT
+      - JSON_CONTAINS
+      - JSON_EXTRACT
+    default: LIKE
+  FilterOperator:
+    type: string
+    enum:
+      - O_AND
+      - O_OR
+    default: O_AND
+  MessagesUpdateTemplateBody:
+    type: object
+    properties:
+      typeId:
+        type: integer
+        format: int64
+        title: |-
+          string partner_id = 3;
+          @gotags: validate:"required"
+      subject:
+        type: string
+        title: '@gotags: validate:"required"'
+      title:
+        type: string
+        title: '@gotags: validate:"required"'
+      content:
+        type: string
+      button:
+        type: string
+      link:
+        type: string
+      delay:
+        type: string
+      isActive:
+        type: boolean
+      showTime:
+        type: string
+      triggers:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Trigger'
+    title: Update template request
+    required:
+      - typeId
+      - subject
+      - title
+  SearchRequestSort:
+    type: string
+    enum:
+      - ASC
+      - DESC
+    default: ASC
+  UpdatePartnerRequestLogo:
+    type: object
+    properties:
+      id:
+        type: string
+        title: '@gotags: validate:"required"'
+      name:
+        type: string
+        title: '@gotags: validate:"required"'
+  UsersAddRelationClientBody:
+    type: object
+    properties:
+      customerId:
+        type: string
+        title: '@gotags: validate:"required"'
+      isOwner:
+        type: boolean
+  accountAccountBalance:
+    type: object
+    properties:
+      balance:
+        $ref: '#/definitions/accountsv1Balance'
+      hold:
+        $ref: '#/definitions/accountsv1Balance'
+  accountAccountCustomer:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      email:
+        type: string
+      phone:
+        type: string
+      status:
+        $ref: '#/definitions/usersClientStatus'
+    title: Account customer entity v2
+  accountAccountResponse:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/v2accountAccount'
+    title: Account response
+  accountAccountsRequestBalance:
+    type: string
+    enum:
+      - NOTSET
+      - NEGATIVE
+      - POSITIVE
+      - ZERO
+    default: NOTSET
+  accountAccountsRequestStatus:
+    type: string
+    enum:
+      - ACCOUNT_STATUS_NOTSET
+      - NEW
+      - PRE_MODERATION
+      - MODERATION
+      - ACCEPTED
+      - REJECTED
+      - BANNED
+      - PROCESSING
+    default: ACCOUNT_STATUS_NOTSET
+  accountAccountsResponse:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v2accountAccount'
+      meta:
+        $ref: '#/definitions/v2ListMeta'
+    title: Accounts response
+  accountAccountsUpdateAccountBody:
+    type: object
+    properties:
+      customerId:
+        type: string
+        readOnly: true
+      name:
+        type: string
+      currencyCode:
+        type: string
+      isDefault:
+        type: boolean
+      status:
+        $ref: '#/definitions/delosaccountsv1AccountStatus'
+    title: Account update request
+    required:
+      - customerId
+  accountCreateAccountRequest:
+    type: object
+    properties:
+      customerId:
+        type: string
+        title: '@gotags: validate:"required"'
+      name:
+        type: string
+      currencyCode:
+        type: string
+        title: '@gotags: validate:"required"'
+    title: Account create request
+    required:
+      - currencyCode
+  accountsv1Balance:
+    type: object
+    properties:
+      money:
+        $ref: '#/definitions/typeMoney'
+      default:
+        $ref: '#/definitions/typeMoney'
+        title: convert to default currency
+  apiHttpBody:
+    type: object
+    properties:
+      contentType:
+        type: string
+        description: The HTTP Content-Type header value specifying the content type of the body.
+      data:
+        type: string
+        format: byte
+        description: The HTTP request/response body as raw binary.
+      extensions:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protobufAny'
+        description: |-
+          Application specific response metadata. Must be set in the first response
+          for streaming APIs.
+    description: |-
+      Message that represents an arbitrary HTTP body. It should only be used for
+      payload formats that can't be represented as JSON, such as raw binary or
+      an HTML page.
+
+
+      This message can be used both in streaming and non-streaming API methods in
+      the request as well as the response.
+
+      It can be used as a top-level request field, which is convenient if one
+      wants to extract parameters from either the URL or HTTP template into the
+      request fields and also want access to the raw HTTP body.
+
+      Example:
+
+          message GetResourceRequest {
+            // A unique request id.
+            string request_id = 1;
+
+            // The raw HTTP body is bound to this field.
+            google.api.HttpBody http_body = 2;
+          }
+
+          service ResourceService {
+            rpc GetResource(GetResourceRequest) returns (google.api.HttpBody);
+            rpc UpdateResource(google.api.HttpBody) returns
+            (google.protobuf.Empty);
+          }
+
+      Example with streaming methods:
+
+          service CaldavService {
+            rpc GetCalendar(stream google.api.HttpBody)
+              returns (stream google.api.HttpBody);
+            rpc UpdateCalendar(stream google.api.HttpBody)
+              returns (stream google.api.HttpBody);
+          }
+
+      Use of this type only changes how the request and response bodies are
+      handled, all other features will continue to work unchanged.
+  applicationActivities:
+    type: string
+    enum:
+      - ACT_NONE
+      - ACT_ADULT_ENTERTAINMENT
+      - ACT_DRUGS
+      - ACT_FIREARMS
+      - ACT_GAMBLING
+      - ACT_MARIJUANA
+      - ACT_TUMBLING
+    default: ACT_NONE
+  applicationBusiness:
+    type: string
+    enum:
+      - BSN_SOFTWARE
+      - BSN_ATM
+      - BSN_BROKER
+      - BSN_CHARITY
+      - BSN_COMMODITIES
+      - BSN_DEFI_EXCHANGE
+      - BSN_GOVERNMENT_FOREIGN
+      - BSN_GOVERNMENT_US
+      - BSN_HNWI
+      - BSN_INSURANCE
+      - BSN_ADVISOR
+      - BSN_LOAN
+      - BSN_MINER
+      - BSN_NFT
+      - BSN_NON_BANK_CUSTODIAN
+      - BSN_PENSION
+      - BSN_WHV
+      - BSN_POOLED_INVESTMENT
+      - BSN_PROP_TRADING
+      - BSN_PUBLIC
+      - BSN_SPV
+      - BSN_STATE_FOREIGN
+      - BSN_STATE_US
+      - BSN_SUPRANATIONAL_BODY
+      - BSN_PAYMENT_PROCESSOR
+      - BSN_TOKEN_PROJECT
+      - BSN_TRUST_PERSONAL
+      - BSN_TRUST_CORP
+      - BSN_BANK_US
+      - BSN_BANK_FOREIGN
+      - BSN_CRYPTO_MSB_US
+      - BSN_CRYPTO_MSB_FOREIGN
+      - BSN_NON_CRYPTO_MSB_US
+      - BSN_NON_CRYPTO_MSB_FOREIGN
+      - BSN_OTHER
+    default: BSN_SOFTWARE
+  applicationControlExemption:
+    type: string
+    enum:
+      - CRL_REGULATED
+      - CRL_PUBLICLY_TRADED
+      - CRL_PUBLIC_SUBSIDIARY
+      - CRL_PUBLIC_ACCOUNTING
+      - CRL_INSURANCE
+      - CRL_GOVERNMENT_AGENCY
+      - CRL_BANK_HOLDING
+      - CRL_SAVINGS_LOAN
+      - CRL_FMU
+      - CRL_FOREIGN_PRIVATE_BANK
+      - CRL_FOREIGN_INSTITUTION
+      - CRL_ISSUER
+      - CRL_INVESTMENT
+      - CRL_COMMODITIES
+      - CRL_POOLED_INVESTMENT
+      - CRL_NON_GOVERNMENT_SUBDIVISION
+      - CRL_NON_ENTITY
+      - CRL_NONE
+    default: CRL_REGULATED
+  applicationCorporateInvestment:
+    type: object
+    properties:
+      primarySourceOfFunds:
+        $ref: '#/definitions/applicationSourceFunds'
+      totalInvestableAssets:
+        $ref: '#/definitions/applicationValueLimits'
+      totalAssets:
+        $ref: '#/definitions/applicationValueLimits'
+      assetAllocationToCrypto:
+        $ref: '#/definitions/applicationValueLimits'
+      investmentExperienceCrypto:
+        $ref: '#/definitions/applicationInvestmentExperience'
+      investmentStrategyCrypto:
+        $ref: '#/definitions/applicationInvestmentStrategy'
+      initialDepositSource:
+        $ref: '#/definitions/applicationDeposits'
+      initialDepositSourceCryptoDetails:
+        type: string
+      initialDepositSourceFiatDetails:
+        type: string
+      ongoingDepositSource:
+        $ref: '#/definitions/applicationDeposits'
+      frequencyOfCryptoTransactions:
+        $ref: '#/definitions/applicationFrequency'
+      cryptoInvestmentPlans:
+        $ref: '#/definitions/applicationInvestmentPlan'
+      investmentProceedsUse:
+        type: string
+      expectedCryptoAssets:
+        type: string
+      performTransfersWithUnhostedWallets:
+        type: boolean
+      knownUnhostedWalletAddresses:
+        type: string
+      tradesPerMonth:
+        $ref: '#/definitions/applicationTradeLimits'
+      usdValueOfCrypto:
+        $ref: '#/definitions/applicationValueLimits'
+      frequencyOfTransactions:
+        $ref: '#/definitions/applicationFrequency'
+      monthlyCryptoInvestmentDeposit:
+        $ref: '#/definitions/applicationInvestmentValueLimits'
+      monthlyInvestmentDeposit:
+        $ref: '#/definitions/applicationInvestmentValueLimits'
+      monthlyCryptoDeposits:
+        $ref: '#/definitions/applicationCountLimits'
+      monthlyDeposits:
+        $ref: '#/definitions/applicationCountLimits'
+      monthlyCryptoInvestmentWithdrawal:
+        $ref: '#/definitions/applicationInvestmentValueLimits'
+      monthlyInvestmentWithdrawal:
+        $ref: '#/definitions/applicationInvestmentValueLimits'
+      monthlyCryptoWithdrawals:
+        $ref: '#/definitions/applicationCountLimits'
+      monthlyWithdrawals:
+        $ref: '#/definitions/applicationCountLimits'
+      tradeInternationally:
+        type: boolean
+      tradeJurisdictions:
+        type: array
+        items:
+          type: string
+        title: To which jurisdictions will the company trade with (2 Digit ISO31661-Alpha2 Format - https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+      primarySourceOfFundsDescription:
+        type: string
+      usdValueOfFiat:
+        $ref: '#/definitions/applicationValueLimits'
+  applicationCorporateKyc:
+    type: object
+    properties:
+      primaryBusiness:
+        $ref: '#/definitions/applicationBusiness'
+      descriptionOfBusinessNature:
+        type: string
+      isCharitable:
+        type: boolean
+      businessJurisdictions:
+        type: array
+        items:
+          type: string
+        title: In what countries the corporation does business in (2 Digit ISO31661-Alpha2 Format - https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+      fundsSendReceiveJurisdictions:
+        type: array
+        items:
+          type: string
+      newYorkOffice:
+        type: boolean
+      engageInActivities:
+        type: array
+        items:
+          $ref: '#/definitions/applicationActivities'
+      regulatedStatus:
+        $ref: '#/definitions/applicationRegulatedStatus'
+      regulationAgency:
+        type: string
+      regulationAgencyRegulationNumber:
+        type: string
+      controlExemptionReason:
+        $ref: '#/definitions/applicationControlExemption'
+      numberOfOperation:
+        $ref: '#/definitions/applicationCountLimits'
+        title: What is the number of inbound and outbound transactions you plan to make in any given month?
+      aggregateUsdVolume1stMonth:
+        $ref: '#/definitions/applicationValueLimits'
+        title: 'What would be the aggregate USD equivalent volume of inbound and outbound payments during the 1st month of operating the account for your:'
+      aggregateUsdVolume3stMonth:
+        $ref: '#/definitions/applicationValueLimits'
+        title: 'What would be the aggregate USD equivalent volume of inbound and outbound payments during the 3rd month of operating the account for your:'
+      aggregateUsdVolume6stMonth:
+        $ref: '#/definitions/applicationValueLimits'
+        title: 'What would be the aggregate USD equivalent volume of inbound and outbound payments during the 6th month of operating the account for your:'
+      regulatedNoLicenseExplain:
+        type: string
+        title: If you are operating in a regulated field but are not licensed or regulated , provide the reason why?
+      requireClientAccount:
+        type: boolean
+        title: Do you require a client money segregated account?
+      vendorsAndCounterparties:
+        type: array
+        items:
+          $ref: '#/definitions/applicationVendors'
+  applicationCorporateReasons:
+    type: object
+    properties:
+      bankStatementMissing:
+        type: string
+        title: '@gotags: validate:"cleaner=trim multiSpaces allowedChars"'
+  applicationCountLimits:
+    type: string
+    enum:
+      - CLM_UPTO_5
+      - CLM_FIVE_TO_10
+      - CLM_TEN_TO_25
+      - CLM_MORE_THAN_25
+    default: CLM_UPTO_5
+  applicationDeposits:
+    type: string
+    enum:
+      - DEP_DEPOSIT
+      - DEP_WIRE
+    default: DEP_DEPOSIT
+  applicationDocumentStatus:
+    type: string
+    enum:
+      - DST_APPROVED
+      - DST_CHANGES_REQUESTED
+      - DST_MISSING
+      - DST_REJECTED
+      - DST_SUBMITTED
+    default: DST_APPROVED
+  applicationDocumentType:
+    type: string
+    enum:
+      - UNSET
+      - INCORPORATION_DOCUMENTS
+      - BENEFICIAL_CERTIFICATE
+      - DIRECTORSHIP_CONFIRMATION
+      - DRIVERS_LICENCE_FRONT
+      - DRIVERS_LICENCE_BACK
+      - PASSPORT
+      - GOVERNMENT_ID_FRONT
+      - GOVERNMENT_ID_BACK
+      - UTILITY_BILL
+      - FINANCIAL_STATEMENT
+      - LEASE_AGREEMENT
+      - SOCIAL_SECURITY_CARD
+      - POWER_OF_ATTORNEY
+      - ANNUAL_REPORT
+      - PARTNERSHIP_AGREEMENT
+      - LLC_AGREEMENT
+      - ARTICLES_OF_INCORPORATION
+      - LAYER2_ACCOUNT_AGREEMENT
+      - ACCOUNT_AGREEMENT
+      - IDENTITY_CARD_BACK
+      - IDENTITY_CARD_FRONT
+      - PAYSLIP
+      - BANK_STATEMENT
+      - OTHER_1
+      - OTHER_2
+      - OTHER_3
+      - OPERATION_DOCUMENT
+    default: UNSET
+    title: |-
+      - UNSET: custom
+       - INCORPORATION_DOCUMENTS: Certificate of Incorporation or/and Registry Excerpt or equivalent
+       - DIRECTORSHIP_CONFIRMATION: custom
+  applicationEmploymentStatus:
+    type: string
+    enum:
+      - EMP_EMPLOYEE
+      - EMP_SELF_EMPLOYED
+      - EMP_RETIRED
+      - EMP_UNEMPLOYED
+      - EMP_OTHER
+    default: EMP_EMPLOYEE
+  applicationEntityType:
+    type: string
+    enum:
+      - ETT_C_CORP_PRIVATE
+      - ETT_C_CORP_PUBLIC
+      - ETT_HNWI
+      - ETT_LLC
+      - ETT_LLP
+      - ETT_LP
+      - ETT_S_CORP
+      - ETT_SOLE_PROP
+      - ETT_TRUST
+      - ETT_NON_PROFIT
+      - ETT_OTHER
+    default: ETT_C_CORP_PRIVATE
+  applicationFrequency:
+    type: string
+    enum:
+      - FRQ_DAILY
+      - FRQ_WEEKLY
+      - FRQ_BIWEEKLY
+      - FRQ_MONTHLY
+      - FRQ_QUARTERLY
+      - FRQ_SEMI_ANNUALLY
+    default: FRQ_DAILY
+  applicationIndividualInvestment:
+    type: object
+    properties:
+      primarySourceOfFunds:
+        $ref: '#/definitions/applicationSourceFunds'
+      primarySourceOfFundsDescription:
+        type: string
+      totalAssets:
+        $ref: '#/definitions/applicationValueLimits'
+      usdValueOfFiat:
+        $ref: '#/definitions/applicationValueLimits'
+      monthlyDeposits:
+        $ref: '#/definitions/applicationCountLimits'
+      monthlyWithdrawals:
+        $ref: '#/definitions/applicationCountLimits'
+      monthlyInvestmentDeposit:
+        $ref: '#/definitions/applicationInvestmentValueLimits'
+      monthlyInvestmentWithdrawal:
+        $ref: '#/definitions/applicationInvestmentValueLimits'
+      usdValueOfCrypto:
+        $ref: '#/definitions/applicationValueLimits'
+      monthlyCryptoDeposits:
+        $ref: '#/definitions/applicationCountLimits'
+      monthlyCryptoWithdrawals:
+        $ref: '#/definitions/applicationCountLimits'
+      monthlyCryptoInvestmentDeposit:
+        $ref: '#/definitions/applicationInvestmentValueLimits'
+      monthlyCryptoInvestmentWithdrawal:
+        $ref: '#/definitions/applicationInvestmentValueLimits'
+  applicationIndividualKyc:
+    type: object
+    properties:
+      fundsSendReceiveJurisdictions:
+        type: array
+        items:
+          type: string
+      engageInActivities:
+        type: array
+        items:
+          $ref: '#/definitions/applicationActivities'
+        title: 'Items Enum: "NONE" "ADULT_ENTERTAINMENT" "DRUGS" "FIREARMS" "GAMBLING" "MARIJUANA" "TUMBLING"'
+      numberOfOperation:
+        $ref: '#/definitions/applicationCountLimits'
+        title: What is the number of inbound and outbound transactions you plan to make in any given month?
+      aggregateUsdVolume1stMonth:
+        $ref: '#/definitions/applicationValueLimits'
+        title: 'What would be the aggregate USD equivalent volume of inbound and outbound payments during the 1st month of operating the account for your:'
+      aggregateUsdVolume3stMonth:
+        $ref: '#/definitions/applicationValueLimits'
+        title: 'What would be the aggregate USD equivalent volume of inbound and outbound payments during the 3rd month of operating the account for your:'
+      aggregateUsdVolume6stMonth:
+        $ref: '#/definitions/applicationValueLimits'
+        title: 'What would be the aggregate USD equivalent volume of inbound and outbound payments during the 6th month of operating the account for your:'
+      regulatedNoLicenseExplain:
+        type: string
+        title: If you are operating in a regulated field but are not licensed or regulated , provide the reason why?
+      requireClientAccount:
+        type: boolean
+        title: Do you require a client money segregated account?
+      vendorsAndCounterparties:
+        type: array
+        items:
+          $ref: '#/definitions/applicationVendors'
+  applicationIndividuals:
+    type: string
+    enum:
+      - IND_INDIVIDUAL
+      - IND_OFFICER
+      - IND_BENEFICIAL_OWNER
+      - IND_CONTROL_PERSON
+      - IND_AUTHORIZED_PERSON
+    default: IND_INDIVIDUAL
+  applicationInvestmentExperience:
+    type: string
+    enum:
+      - INE_LITTLE
+      - INE_MODERATE
+      - INE_SIGNIFICANT
+    default: INE_LITTLE
+  applicationInvestmentPlan:
+    type: string
+    enum:
+      - INP_CUSTODY
+      - INP_STAKING
+      - INP_TRADING
+      - INP_LENDING
+      - INP_BORROWING
+    default: INP_CUSTODY
+  applicationInvestmentStrategy:
+    type: string
+    enum:
+      - INS_LOW_RISK
+      - INS_MEDIUM_RISK
+      - INS_HIGH_RISK
+      - INS_OTHER
+    default: INS_LOW_RISK
+  applicationInvestmentValueLimits:
+    type: string
+    enum:
+      - ILM_UPTO_1K
+      - ILM_ONE_TO_100K
+      - ILM_ONEHUNDREDK_TO_1M
+      - ILM_MILLION_TO_5M
+      - ILM_MORE_THAN_5M
+    default: ILM_UPTO_1K
+  applicationRegulatedStatus:
+    type: string
+    enum:
+      - RGS_REGULATED
+      - RGS_REGISTERED
+      - RGS_LICENSED
+      - RGS_NONE
+      - RGS_NOT_REQUIRED
+    default: RGS_REGULATED
+  applicationSourceFunds:
+    type: string
+    enum:
+      - SFD_EMPLOYMENT
+      - SFD_SAVINGS
+      - SFD_WINNINGS
+      - SFD_MARITAL
+      - SFD_REAL_ESTATE
+      - SFD_TRUST
+      - SFD_INVESTMENT
+      - SFD_COMPANY
+      - SFD_COMPANY_CAPITAL
+      - SFD_LOAN
+      - SFD_PRIVATE_CAPITAL
+      - SFD_GRANT
+      - SFD_OTHER
+    default: SFD_EMPLOYMENT
+  applicationTradeLimits:
+    type: string
+    enum:
+      - TRL_UPTO_20
+      - TRL_TWENTYONE_TO_30
+      - TRL_THIRTYONE_TO_100
+      - TRL_ONEHUNDREDANDONE_TO_200
+      - TRL_TWOHUNDREDANDONE_TO_400
+      - TRL_MORE_THAN_400
+    default: TRL_UPTO_20
+  applicationUsResident:
+    type: string
+    enum:
+      - RES_US_CITIZEN
+      - RES_RESIDENT_ALIEN
+      - RES_NON_RESIDENT_ALIEN
+    default: RES_US_CITIZEN
+  applicationValueLimits:
+    type: string
+    enum:
+      - VLM_UPTO_10K
+      - VLM_TEN_TO_100K
+      - VLM_ONEHUNDREDK_TO_1M
+      - VLM_ONE_TO_10M
+      - VLM_TEN_TO_50M
+      - VLM_FIFTY_TO_250M
+      - VLM_MORE_THAN_250M
+    default: VLM_UPTO_10K
+  applicationVendors:
+    type: string
+    enum:
+      - VND_SELF
+      - VND_MERCHANTS_SUPPLIERS
+      - VND_CUSTOMERS
+      - VND_EMPLOYEES
+      - VND_CONTRACTORS
+      - VND_FRIENDS
+      - VND_FAMILY
+    default: VND_SELF
+  authConfirmRecoveryRequest:
+    type: object
+    properties:
+      code:
+        type: string
+      token:
+        type: string
+      password:
+        type: string
+      repeatPassword:
+        type: string
+    required:
+      - code
+      - token
+      - password
+      - repeatPassword
+  authLoginModel:
+    type: object
+    properties:
+      login:
+        type: string
+      password:
+        type: string
+      code:
+        type: string
+    required:
+      - login
+      - password
+  authOtpEnableRequest:
+    type: object
+  authOtpQrRespond:
+    type: object
+    properties:
+      qr:
+        type: string
+      secret:
+        type: string
+  authOtpRespond:
+    type: object
+    properties:
+      success:
+        type: boolean
+  authPartnerRespond:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/v2authPartner'
+  authProfilePartner:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      email:
+        type: string
+      phone:
+        type: string
+  authProfileRespond:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/v2authProfile'
+  authProfileUser:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      email:
+        type: string
+      phone:
+        type: string
+      is2FA:
+        type: boolean
+  authRecoveryRequest:
+    type: object
+    properties:
+      login:
+        type: string
+    required:
+      - login
+  authRecoveryRespond:
+    type: object
+    properties:
+      token:
+        type: string
+  billingAmount:
+    type: object
+    properties:
+      units:
+        type: string
+        format: int64
+        title: Units
+      nanos:
+        type: integer
+        format: int32
+        title: Nanos
+  billingCommissionAccountListRespond:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v2billingCommissionAccount'
+      meta:
+        $ref: '#/definitions/v2ListMeta'
+  billingCreateOperationRequest:
+    type: object
+    properties:
+      customerId:
+        type: string
+        title: '@gotags: validate:"required"'
+      paymentType:
+        $ref: '#/definitions/billingv1PaymentType'
+      type:
+        $ref: '#/definitions/billingv1OperationType'
+        title: '@gotags: validate:"required"'
+      sourceRequisit:
+        $ref: '#/definitions/v2billingRequisit'
+        title: '@gotags: validate:"required"'
+      destinationRequisit:
+        $ref: '#/definitions/v2billingRequisit'
+        title: '@gotags: validate:"required"'
+      amount:
+        $ref: '#/definitions/billingAmount'
+        title: '@gotags: validate:"required"'
+      comment:
+        type: string
+      reference:
+        type: string
+      documents:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/billingOperationDocumentUpload'
+    required:
+      - customerId
+      - type
+      - source
+      - destination
+      - amount
+  billingCurrencyCommissionCommission:
+    type: object
+    properties:
+      partner:
+        $ref: '#/definitions/billingv1Commission'
+      default:
+        $ref: '#/definitions/billingv1Commission'
+  billingCurrencyCommissionListRespond:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v2billingCurrencyCommission'
+  billingGetCommissionRequestPaymentType:
+    type: string
+    enum:
+      - PAYMENT_TYPE_NOT_SET
+      - EMPTY
+      - ACH
+      - FEDWIRE
+      - SWIFT
+      - CRYPTO
+      - EFT
+      - SEPA_CT
+      - IMPS
+    default: PAYMENT_TYPE_NOT_SET
+    title: '- EMPTY: service type'
+  billingLimitsListRespond:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v2billingLimit'
+      meta:
+        $ref: '#/definitions/v2ListMeta'
+  billingListLimitsRequestPaymentType:
+    type: string
+    enum:
+      - PAYMENT_TYPE_NOT_SET
+      - EMPTY
+      - ACH
+      - FEDWIRE
+      - SWIFT
+      - CRYPTO
+      - EFT
+      - SEPA_CT
+      - IMPS
+    default: PAYMENT_TYPE_NOT_SET
+    title: '- EMPTY: service type'
+  billingListOperationRequestOperationType:
+    type: string
+    enum:
+      - NOTSET
+      - DEPOSIT
+      - TRANSFER
+      - WITHDRAW
+      - COMMISSION
+      - EXCHANGE
+    default: NOTSET
+    title: '- NOTSET: service type'
+  billingListOperationRequestStatus:
+    type: string
+    enum:
+      - NOT_SET
+      - NEW
+      - PENDING
+      - WORKING
+      - SUCCESS
+      - FAIL
+      - CANCELED
+    default: NOT_SET
+    title: |-
+      - NEW: Create by user or modrator
+       - PENDING: Move by moderator to this status if operation ok
+       - WORKING: Move by network for work
+       - SUCCESS: Result status
+       - FAIL: Result status
+       - CANCELED: Result status
+  billingListOperationRespond:
+    type: object
+    properties:
+      meta:
+        $ref: '#/definitions/v2ListMeta'
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/billingOperationModelList'
+  billingOperationDocumentUpload:
+    type: object
+    properties:
+      id:
+        type: string
+        title: Fle ID from storage
+      name:
+        type: string
+  billingOperationModel:
+    type: object
+    properties:
+      operationId:
+        type: string
+      isVisible:
+        type: boolean
+      status:
+        $ref: '#/definitions/v1OperationStatus'
+      type:
+        $ref: '#/definitions/billingv1OperationType'
+      paymentType:
+        $ref: '#/definitions/billingv1PaymentType'
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
+      source:
+        $ref: '#/definitions/billingv1Requisit'
+      destination:
+        $ref: '#/definitions/billingv1Requisit'
+      sourceAmount:
+        $ref: '#/definitions/v1Ammount'
+      destinationAmount:
+        $ref: '#/definitions/v1Ammount'
+      commissionAmount:
+        $ref: '#/definitions/v1Ammount'
+      currentBalanceAmount:
+        $ref: '#/definitions/v1Ammount'
+      comment:
+        type: string
+      reference:
+        type: string
+      isParent:
+        type: boolean
+      customer:
+        $ref: '#/definitions/billingOperationModelCustomer'
+      documents:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/gatewayv2Document'
+  billingOperationModelCustomer:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+  billingOperationModelDetail:
+    type: object
+    properties:
+      operationId:
+        type: string
+      isVisible:
+        type: boolean
+      status:
+        $ref: '#/definitions/v1OperationStatus'
+      type:
+        $ref: '#/definitions/billingv1OperationType'
+      paymentType:
+        $ref: '#/definitions/billingv1PaymentType'
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
+      source:
+        $ref: '#/definitions/billingOperationModelDetailRequisit'
+      destination:
+        $ref: '#/definitions/billingOperationModelDetailRequisit'
+      sourceAmount:
+        $ref: '#/definitions/v1Ammount'
+      destinationAmount:
+        $ref: '#/definitions/v1Ammount'
+      commissionAmount:
+        $ref: '#/definitions/v1Ammount'
+      currentBalanceAmount:
+        $ref: '#/definitions/v1Ammount'
+      comment:
+        type: string
+      isParent:
+        type: boolean
+      reference:
+        type: string
+      customer:
+        $ref: '#/definitions/billingOperationModelDetailCustomer'
+      documents:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/gatewayv2Document'
+  billingOperationModelDetailAccount:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      number:
+        type: string
+      customer:
+        $ref: '#/definitions/billingOperationModelDetailCustomer'
+  billingOperationModelDetailCounterparty:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      bankName:
+        type: string
+      bankAddress:
+        $ref: '#/definitions/delosbeneficiaryv1Address'
+  billingOperationModelDetailCounterpartyAccount:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      number:
+        type: string
+      counterparty:
+        $ref: '#/definitions/billingOperationModelDetailCounterparty'
+        title: '@gotags: json:",omitempty"'
+      customer:
+        $ref: '#/definitions/billingOperationModelDetailCustomer'
+  billingOperationModelDetailCustomer:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+  billingOperationModelDetailRequisit:
+    type: object
+    properties:
+      account:
+        $ref: '#/definitions/billingOperationModelDetailAccount'
+      counterpartyAccount:
+        $ref: '#/definitions/billingOperationModelDetailCounterpartyAccount'
+  billingOperationModelList:
+    type: object
+    properties:
+      operationId:
+        type: string
+      isVisible:
+        type: boolean
+      status:
+        $ref: '#/definitions/v1OperationStatus'
+      type:
+        $ref: '#/definitions/billingv1OperationType'
+      paymentType:
+        $ref: '#/definitions/billingv1PaymentType'
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
+      source:
+        $ref: '#/definitions/billingOperationModelListRequisit'
+      destination:
+        $ref: '#/definitions/billingOperationModelListRequisit'
+      sourceAmount:
+        $ref: '#/definitions/v1Ammount'
+      destinationAmount:
+        $ref: '#/definitions/v1Ammount'
+      commissionAmount:
+        $ref: '#/definitions/v1Ammount'
+      comment:
+        type: string
+      reference:
+        type: string
+      isParent:
+        type: boolean
+      customer:
+        $ref: '#/definitions/billingOperationModelListCustomer'
+      documents:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/gatewayv2Document'
+  billingOperationModelListAccount:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      number:
+        type: string
+      customer:
+        $ref: '#/definitions/billingOperationModelListCustomer'
+  billingOperationModelListCounterparty:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      bankName:
+        type: string
+      bankAddress:
+        $ref: '#/definitions/delosbeneficiaryv1Address'
+  billingOperationModelListCounterpartyAccount:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      number:
+        type: string
+      counterparty:
+        $ref: '#/definitions/billingOperationModelListCounterparty'
+        title: '@gotags: json:",omitempty"'
+      customer:
+        $ref: '#/definitions/billingOperationModelListCustomer'
+  billingOperationModelListCustomer:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      type:
+        $ref: '#/definitions/usersClientType'
+  billingOperationModelListRequisit:
+    type: object
+    properties:
+      account:
+        $ref: '#/definitions/billingOperationModelListAccount'
+      counterpartyAccount:
+        $ref: '#/definitions/billingOperationModelListCounterpartyAccount'
+  billingOperationRespond:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/billingOperationModelDetail'
+    title: UserRespond
+  billingOperationTreeRespond:
+    type: object
+    properties:
+      general:
+        $ref: '#/definitions/billingOperationModel'
+      childs:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/billingOperationModel'
+  billingSetCommissionRespond:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/v2billingCurrencyCommission'
+  billingSetLimitRequest:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      customerId:
+        type: string
+      currencyCodeFrom:
+        type: string
+        title: '@gotags: validate:"cleaner=trim,required,is-currency"'
+      currencyCodeTo:
+        type: string
+        title: '@gotags: validate:"cleaner=trim,required,is-currency"'
+      operationType:
+        $ref: '#/definitions/billingv1OperationType'
+        title: '@gotags: validate:"required"'
+      paymentType:
+        $ref: '#/definitions/billingSetLimitRequestPaymentType'
+        title: '@gotags: validate:"required"'
+      min:
+        type: number
+        format: float
+      max:
+        type: number
+        format: float
+  billingSetLimitRequestPaymentType:
+    type: string
+    enum:
+      - NOT_SET
+      - EMPTY
+      - ACH
+      - FEDWIRE
+      - SWIFT
+      - CRYPTO
+      - EFT
+      - SEPA_CT
+      - IMPS
+    default: NOT_SET
+    title: '- EMPTY: service type'
+  billingSetLimitRespond:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/v2billingLimit'
+  billingv1Commission:
+    type: object
+    properties:
+      percent:
+        type: number
+        format: float
+        title: 'percent must by a float, like: 1.2 = 20%'
+      fixed:
+        type: number
+        format: float
+        title: fixed must be like 10 or 15.5 e.t.c
+  billingv1OperationType:
+    type: string
+    enum:
+      - NOTSET
+      - DEPOSIT
+      - TRANSFER
+      - WITHDRAW
+      - COMMISSION
+      - EXCHANGE
+      - CORRECTING
+    default: NOTSET
+    title: '- NOTSET: service type'
+  billingv1PaymentType:
+    type: string
+    enum:
+      - EMPTY
+      - ACH
+      - FEDWIRE
+      - SWIFT
+      - CRYPTO
+      - EFT
+      - SEPA_CT
+      - IMPS
+    default: EMPTY
+    title: '- EMPTY: service type'
+  billingv1Requisit:
+    type: object
+    properties:
+      account:
+        type: string
+      beneficiar:
+        type: string
+      accountProvider:
+        $ref: '#/definitions/integrationFinanceProvider'
+      beneficiarProvider:
+        $ref: '#/definitions/integrationFinanceProvider'
+      cuid:
+        type: string
+        title: Requisit owner
+  commonsearchFilter:
+    type: object
+    properties:
+      attribute:
+        type: string
+      operator:
+        $ref: '#/definitions/FilterOperator'
+      condition:
+        $ref: '#/definitions/FilterCondition'
+        title: LIKE, LIKEG, LIKEL, BETWEEN, <, >, !=
+      values:
+        type: array
+        items:
+          type: string
+      groupConditions:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/commonsearchFilter'
+  counterpartyCP_AccountType:
+    type: string
+    enum:
+      - CHECKING
+      - SAVING
+    default: CHECKING
+  counterpartyCP_LineOfBusiness:
+    type: string
+    enum:
+      - PLB_ARTS_AND_ANTIQUES
+      - PLB_AGRICULTURE
+      - PLB_AUDIT_VIDEO
+      - PLB_AUTOMOTIVE
+      - PLB_BANK_CREDIT_UNION
+      - PLB_BIOTECH_PHARMACEUTICAL
+      - PLB_BOOKSELLER
+      - PLB_CONSTRUCTION
+      - PLB_CASINOS_GAMBLING
+      - PLB_CLOTHING
+      - PLB_CONSULTING_PROFESSIONAL_SERVICES
+      - PLB_CRYPTOCURRENCY
+      - PLB_ECIGARETTES_TOBACCO
+      - PLB_ENERGY_CHEMICAL_FUEL
+      - PLB_ENGINEERING
+      - PLB_ADULT_ENTERTAINMENT
+      - PLB_FINANCIAL_AND_CORPORATE_SERVICES
+      - PLB_FOOD_AND_BEVERAGE
+      - PLB_FREIGHT_MARINE_SHIPPING_SERVICES
+      - PLB_GIFTWARE_SEASONAL
+      - PLB_GOVERNMENT_PUBLIC_SERVICES
+      - PLB_HIGH_TECH_SOFTWARE_TELECOMS
+      - PLB_HOSPITALITY
+      - PLB_HOUSEHOLD_GOOD_FURNITURE
+      - PLB_HUMAN_RESOURCE_SERVICES
+      - PLB_INDUSTRIAL_EQUIPMENT
+      - PLB_INFORMATION_TECHNOLOGY
+      - PLB_INSURANCE
+      - PLB_JEWELLERY_OPTICAL
+      - PLB_LAW
+      - PLB_MANUFACTURING
+      - PLB_MARKETING
+      - PLB_MEDIA_PUBLISHING
+      - PLB_MEDICAL_HEALTHCARE
+      - PLB_MEDICAL_TOURISM
+      - PLB_MINING
+      - PLB_MONEY_SERVICE_BUSINESS
+      - PLB_NON_PROFIT_CHARITY
+      - PLB_ONLINE_RETAIL
+      - PLB_PAYROLL
+      - PLB_PENSION
+      - PLB_PERSONAL_CARE_PRODUCTS
+      - PLB_PHOTOGRAPHY
+      - PLB_REAL_ESTATE
+      - PLB_RECREATIONAL_ACTIVITIES
+      - PLB_RELIGIOUS_ORGANISATION
+      - PLB_RETAIL
+      - PLB_SECURITY
+      - PLB_SPORTING_RECREATIONAL_PRODUCTS
+      - PLB_TRANSPORT
+      - PLB_UNIVERSITY_EDUCATION
+      - PLB_UTILITIES
+      - PLB_WASTE_MANAGEMENT
+      - PLB_WINE_LIQUOR
+      - PLB_TECHNICAL_SUPPORT
+      - PLB_OTHER
+    default: PLB_ARTS_AND_ANTIQUES
+  counterpartyCP_ProfileType:
+    type: string
+    enum:
+      - INDIVIDUAL
+      - CORPORATION
+    default: INDIVIDUAL
+  counterpartyCP_Rails:
+    type: string
+    enum:
+      - ACH
+      - CRYPTO
+      - IMPS
+      - NFT
+      - UP
+      - SWIFT
+      - FPS
+      - SEPA_CT
+      - EFT
+      - FEDWIRE
+    default: ACH
+  counterpartyCP_RelationshipToCustomer:
+    type: string
+    enum:
+      - PRC_SPOUSE
+      - PRC_EX_SPOUSE
+      - PRC_CHILDREN
+      - PRC_PARENT
+      - PRC_SIBLING
+      - PRC_RELATIVE
+      - PRC_SELF
+      - PRC_FRIEND
+      - PRC_BUSINESS_PARTNER
+      - PRC_CUSTOMER
+      - PRC_EMPLOYEE
+      - PRC_BRANCH_OFFICE
+      - PRC_SUBSIDIARY_COMPANY
+      - PRC_HOLDING_COMPANY
+      - PRC_SUPPLIER
+      - PRC_CREDITOR
+      - PRC_DEBTOR
+      - PRC_FRANCHISEE
+      - PRC_NOT_RELATED
+    default: PRC_SPOUSE
+  counterpartyCP_Type:
+    type: string
+    enum:
+      - TYPE_CRYPTO
+      - TYPE_FIAT_IN
+      - TYPE_FIAT_GB
+      - TYPE_FIAT_EU
+      - TYPE_FIAT_BS
+      - TYPE_FIAT_CA
+      - TYPE_FIAT_PA
+      - TYPE_FIAT_MY
+      - TYPE_FIAT_JP
+      - TYPE_FIAT_SG
+      - TYPE_FIAT_HK
+      - TYPE_FIAT_CN
+      - TYPE_FIAT_US
+    default: TYPE_CRYPTO
+  counterpartyCP_WalletType:
+    type: string
+    enum:
+      - CPW_INSTITUTION
+      - CPW_OTHER
+      - CPW_UNKNOWN
+    default: CPW_INSTITUTION
+  counterpartyCounterpartiesCreateAccountBody:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/v2counterpartyCounterpartyAccount'
+        title: '@gotags: validate:"required"'
+    title: Counterparty account create request
+    required:
+      - currency_code
+  counterpartyCounterpartiesUpdateAccountBody:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/v2counterpartyCounterpartyAccount'
+        title: '@gotags: validate:"required"'
+    title: Counterparty update create request
+    required:
+      - currency_code
+  counterpartyCounterpartiesUpdateBody:
+    type: object
+    properties:
+      customerId:
+        type: string
+        readOnly: true
+      description:
+        type: string
+      profile:
+        $ref: '#/definitions/counterpartyUpdateCounterpartyRequestProfile'
+      accounts:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/counterpartyUpdateCounterpartyRequestAccount'
+    title: Counterparty update request
+  counterpartyCounterpartyAccountFullV2:
+    type: object
+    properties:
+      accountId:
+        type: string
+        readOnly: true
+      currencyCode:
+        type: string
+      status:
+        $ref: '#/definitions/delosbeneficiaryv1AccountStatus'
+        readOnly: true
+      bank:
+        $ref: '#/definitions/delosbeneficiaryv1BankInfo'
+      name:
+        type: string
+      number:
+        type: string
+      type:
+        type: string
+      crypto:
+        $ref: '#/definitions/v1AccountCrypto'
+      fiat:
+        $ref: '#/definitions/v1AccountFiat'
+      counterparty:
+        $ref: '#/definitions/counterpartyCounterpartyV2'
+      customer:
+        $ref: '#/definitions/counterpartyCustomerV2'
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
+    title: Counterparty full account entity v2
+  counterpartyCounterpartyAccountResponseV2:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/counterpartyCounterpartyAccountFullV2'
+  counterpartyCounterpartyAccountV2:
+    type: object
+    properties:
+      accountId:
+        type: string
+      name:
+        type: string
+      number:
+        type: string
+      currencyCode:
+        type: string
+      type:
+        type: string
+      counterparty:
+        $ref: '#/definitions/counterpartyCounterpartyV2'
+      customer:
+        $ref: '#/definitions/counterpartyCustomerV2'
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
+      status:
+        $ref: '#/definitions/delosbeneficiaryv1AccountStatus'
+      bankName:
+        type: string
+      bankAddress:
+        $ref: '#/definitions/delosbeneficiaryv1Address'
+      supportedRails:
+        type: array
+        items:
+          $ref: '#/definitions/counterpartyCP_Rails'
+    title: Counterparty account entity
+  counterpartyCounterpartyAccountsResponseV2:
+    type: object
+    properties:
+      meta:
+        $ref: '#/definitions/v2ListMeta'
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/counterpartyCounterpartyAccountV2'
+  counterpartyCounterpartyDetail:
+    type: object
+    properties:
+      counterpartyId:
+        type: string
+        readOnly: true
+      customerId:
+        type: string
+        readOnly: true
+      description:
+        type: string
+      profile:
+        $ref: '#/definitions/v2counterpartyCounterpartyProfile'
+      accounts:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v2counterpartyCounterpartyAccount'
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
+      customerName:
+        type: string
+    title: Counterparty entity
+  counterpartyCounterpartyDetailV2:
+    type: object
+    properties:
+      counterpartyId:
+        type: string
+        readOnly: true
+      description:
+        type: string
+      profile:
+        $ref: '#/definitions/v2counterpartyCounterpartyProfile'
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
+      customer:
+        $ref: '#/definitions/v2counterpartyCustomer'
+    title: Counterparty entity
+  counterpartyCounterpartyRespondV2:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/counterpartyCounterpartyDetailV2'
+      accounts:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/counterpartyCounterpartyRespondV2Account'
+    title: CounterpartyRespond
+  counterpartyCounterpartyRespondV2Account:
+    type: object
+    properties:
+      accountId:
+        type: string
+        readOnly: true
+      currencyCode:
+        type: string
+      status:
+        $ref: '#/definitions/delosbeneficiaryv1AccountStatus'
+        readOnly: true
+      bank:
+        $ref: '#/definitions/delosbeneficiaryv1BankInfo'
+      name:
+        type: string
+      number:
+        type: string
+      type:
+        type: string
+      crypto:
+        $ref: '#/definitions/v1AccountCrypto'
+      fiat:
+        $ref: '#/definitions/v1AccountFiat'
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
+    title: Counterparty full account entity v2
+  counterpartyCounterpartyResponse:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/counterpartyCounterpartyDetail'
+  counterpartyCounterpartyV2:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      email:
+        type: string
+    title: Counterparty entity
+  counterpartyCreateCounterpartyRequest:
+    type: object
+    properties:
+      customerId:
+        type: string
+        title: '@gotags: validate:"required"'
+      description:
+        type: string
+      profile:
+        $ref: '#/definitions/counterpartyCreateCounterpartyRequestProfile'
+      accounts:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/counterpartyCreateCounterpartyRequestAccount'
+    title: Counterparty create request
+    required:
+      - item
+      - customerId
+      - profile
+  counterpartyCreateCounterpartyRequestAccount:
+    type: object
+    properties:
+      currencyCode:
+        type: string
+        title: '@gotags: validate:"required"'
+      bank:
+        $ref: '#/definitions/delosbeneficiaryv1BankInfo'
+      crypto:
+        $ref: '#/definitions/v1AccountCrypto'
+      fiat:
+        $ref: '#/definitions/v1AccountFiat'
+    title: Counterparty account create request
+    required:
+      - currencyCode
+  counterpartyCreateCounterpartyRequestProfile:
+    type: object
+    properties:
+      name:
+        type: string
+        title: '@gotags: validate:"required"'
+      email:
+        type: string
+      phoneNumber:
+        type: string
+      taxNumber:
+        type: string
+      dateOfBirth:
+        type: string
+        format: date-time
+      address:
+        $ref: '#/definitions/delosbeneficiaryv1Address'
+        title: '@gotags: validate:"required"'
+      website:
+        type: string
+      additionalInfo:
+        $ref: '#/definitions/CounterpartyProfileAdditionalInfo'
+      lastname:
+        type: string
+    title: Counterparty profile request
+    required:
+      - name
+      - address
+  counterpartyCustomerV2:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      email:
+        type: string
+      status:
+        $ref: '#/definitions/usersClientStatus'
+    title: Counterparty customer entity
+  counterpartyListCounterpartiesRespond:
+    type: object
+    properties:
+      meta:
+        $ref: '#/definitions/v2ListMeta'
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v2counterpartyCounterparty'
+  counterpartyUpdateCounterpartyRequestAccount:
+    type: object
+    properties:
+      accountId:
+        type: string
+        title: '@gotags: validate:"required"'
+      currencyCode:
+        type: string
+        title: '@gotags: validate:"required"'
+      bank:
+        $ref: '#/definitions/delosbeneficiaryv1BankInfo'
+      crypto:
+        $ref: '#/definitions/v1AccountCrypto'
+      fiat:
+        $ref: '#/definitions/v1AccountFiat'
+    title: Counterparty update create request
+    required:
+      - accountId
+      - currencyCode
+  counterpartyUpdateCounterpartyRequestProfile:
+    type: object
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+      phoneNumber:
+        type: string
+      taxNumber:
+        type: string
+      dateOfBirth:
+        type: string
+        format: date-time
+      address:
+        $ref: '#/definitions/delosbeneficiaryv1Address'
+      website:
+        type: string
+      additionalInfo:
+        $ref: '#/definitions/CounterpartyProfileAdditionalInfo'
+      lastname:
+        type: string
+    title: Counterparty profile request
+  currencyConvertRequest:
+    type: object
+    properties:
+      amount:
+        $ref: '#/definitions/typeMoney'
+      currencyCodeTo:
+        type: string
+    title: ConvertRequest
+    required:
+      - amount
+      - currencyCodeTo
+  currencyConvertResponse:
+    type: object
+    properties:
+      sourceAmount:
+        $ref: '#/definitions/typeMoney'
+      convertedAmount:
+        $ref: '#/definitions/typeMoney'
+  currencyCurrencyList:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/currencyCurrencyModel'
+  currencyCurrencyModel:
+    type: object
+    properties:
+      code:
+        type: string
+      name:
+        type: string
+      isCrypto:
+        type: boolean
+      isDefault:
+        type: boolean
+      rate:
+        type: number
+        format: float
+    title: Currency
+  customerCorporateApplication:
+    type: object
+    properties:
+      application:
+        $ref: '#/definitions/v2customerCorporateCustomer'
+      individuals:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v2customerIndividualProfile'
+  customerCreateCustomerRequest:
+    type: object
+    properties:
+      name:
+        type: string
+        title: '@gotags: validate:"cleaner=trim,required"'
+      lastname:
+        type: string
+      comment:
+        type: string
+      company:
+        type: string
+      type:
+        $ref: '#/definitions/usersClientType'
+    title: CreateCustomer
+    required:
+      - name
+  customerCustomerModel:
+    type: object
+    properties:
+      customerId:
+        type: string
+      partnerId:
+        type: string
+      status:
+        $ref: '#/definitions/usersClientStatus'
+      createAt:
+        type: string
+        format: date-time
+      updateAt:
+        type: string
+        format: date-time
+      name:
+        type: string
+      lastname:
+        type: string
+      comment:
+        type: string
+      company:
+        type: string
+      type:
+        $ref: '#/definitions/usersClientType'
+      balance:
+        $ref: '#/definitions/typeMoney'
+      balanceHold:
+        $ref: '#/definitions/typeMoney'
+    title: Customer
+  customerCustomerModelDetail:
+    type: object
+    properties:
+      customerId:
+        type: string
+      partnerId:
+        type: string
+      status:
+        $ref: '#/definitions/usersClientStatus'
+      createAt:
+        type: string
+        format: date-time
+      updateAt:
+        type: string
+        format: date-time
+      name:
+        type: string
+      lastname:
+        type: string
+      comment:
+        type: string
+      company:
+        type: string
+      type:
+        $ref: '#/definitions/usersClientType'
+      balance:
+        $ref: '#/definitions/typeMoney'
+      balanceHold:
+        $ref: '#/definitions/typeMoney'
+      phone:
+        type: string
+      email:
+        type: string
+    title: Customer
+  customerCustomerRespond:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/customerCustomerModel'
+    title: CustomerRespond
+  customerCustomerRespondDetail:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/customerCustomerModelDetail'
+    title: CustomerRespond
+  customerCustomerUpdateBody:
+    type: object
+    properties:
+      name:
+        type: string
+        title: '@gotags: validate:"required"'
+      lastname:
+        type: string
+      comment:
+        type: string
+      company:
+        type: string
+      status:
+        $ref: '#/definitions/usersClientStatus'
+      type:
+        $ref: '#/definitions/usersClientType'
+    title: UpdateCustomer
+    required:
+      - name
+  customerDocumentRespond:
+    type: object
+    properties:
+      document:
+        $ref: '#/definitions/gatewayv2Document'
+  customerDocumentStreamRespond:
+    type: object
+    properties:
+      document:
+        $ref: '#/definitions/delosstorageDocument'
+      chunk:
+        type: string
+        format: byte
+  customerDocumentUpload:
+    type: object
+    properties:
+      customerId:
+        type: string
+        description: Customer ID
+        title: |-
+          Attached file for upload
+          @gotags: validate:"required"
+      attach:
+        type: string
+        description: Attached file for upload
+      info:
+        type: string
+        description: Optional short info about file. Optional
+        title: Document Information
+      type:
+        $ref: '#/definitions/applicationDocumentType'
+        description: Document identificator
+        title: Document Application type
+    title: DocumentUpload
+    required:
+      - customerId
+      - attach
+  customerGetApplicationRespond:
+    type: object
+    properties:
+      individual:
+        $ref: '#/definitions/customerIndividualApplication'
+      corporate:
+        $ref: '#/definitions/customerCorporateApplication'
+  customerIndividualApplication:
+    type: object
+    properties:
+      application:
+        $ref: '#/definitions/v2customerIndividualCustomer'
+  customerListCustomerRespond:
+    type: object
+    properties:
+      meta:
+        $ref: '#/definitions/v2ListMeta'
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/customerCustomerModel'
+    title: ListCustomerRespond
+  customerSetApplicationRespond:
+    type: object
+    properties:
+      individual:
+        $ref: '#/definitions/customerSetIndividualApplication'
+      corporate:
+        $ref: '#/definitions/customerSetCorporateApplication'
+  customerSetCorporateApplication:
+    type: object
+    properties:
+      application:
+        $ref: '#/definitions/integrationapplicationCorporateCustomer'
+      individuals:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/integrationapplicationIndividualProfile'
+  customerSetIndividualApplication:
+    type: object
+    properties:
+      application:
+        $ref: '#/definitions/integrationapplicationIndividualCustomer'
+  delosaccountsv1AccountStatus:
+    type: string
+    enum:
+      - NEW
+      - PRE_MODERATION
+      - MODERATION
+      - ACCEPTED
+      - REJECTED
+      - BANNED
+      - PROCESSING
+    default: NEW
+  delosauthTokenRespond:
+    type: object
+    properties:
+      accessToken:
+        type: string
+      refreshToken:
+        type: string
+      guid:
+        type: string
+  delosbeneficiaryv1AccountStatus:
+    type: string
+    enum:
+      - NEW
+      - AWAIT
+      - MODERATION
+      - ACCEPT
+      - REJECT
+      - BANNED
+      - VERIFICATION
+    default: NEW
+  delosbeneficiaryv1Address:
+    type: object
+    properties:
+      addressLine1:
+        type: string
+      addressLine2:
+        type: string
+      addressLine3:
+        type: string
+      city:
+        type: string
+      stateIso:
+        type: string
+      countryIso:
+        type: string
+      postalCode:
+        type: string
+      unitNumber:
+        type: string
+  delosbeneficiaryv1BankInfo:
+    type: object
+    properties:
+      name:
+        type: string
+      number:
+        type: string
+        title: swift bic
+      address:
+        $ref: '#/definitions/delosbeneficiaryv1Address'
+      routingNumber:
+        type: string
+  delosstorageDocument:
+    type: object
+    properties:
+      guid:
+        type: string
+      cuid:
+        type: string
+      fileName:
+        type: string
+      size:
+        type: integer
+        format: int64
+      mime:
+        type: string
+      docType:
+        $ref: '#/definitions/applicationDocumentType'
+      info:
+        type: string
+      isLock:
+        type: boolean
+      createAt:
+        type: string
+        format: date-time
+      deletedAt:
+        type: string
+        format: date-time
+  delosusersFile:
+    type: object
+    properties:
+      id:
+        type: string
+        title: '@gotags: validate:"required"'
+      name:
+        type: string
+        title: '@gotags: validate:"required"'
+      type:
+        $ref: '#/definitions/usersFileType'
+        title: '@gotags: validate:"required"'
+  gatewayv2Document:
+    type: object
+    properties:
+      id:
+        type: string
+        title: '@gotags: validate:"required"'
+      customerId:
+        type: string
+        title: '@gotags: validate:"required"'
+      fileName:
+        type: string
+      size:
+        type: integer
+        format: int64
+      mime:
+        type: string
+      docType:
+        $ref: '#/definitions/applicationDocumentType'
+      info:
+        type: string
+      isLock:
+        type: boolean
+      createAt:
+        type: string
+        format: date-time
+      status:
+        $ref: '#/definitions/applicationDocumentStatus'
+  gatewayv2authOtpCodeRequest:
+    type: object
+    properties:
+      code:
+        type: string
+    title: OtpCodeRequest
+    required:
+      - code
+  gatewayv2authTokenRespond:
+    type: object
+    properties:
+      accessToken:
+        type: string
+      refreshToken:
+        type: string
+      userId:
+        type: string
+      accessTtl:
+        type: integer
+        format: int32
+      refreshTtl:
+        type: integer
+        format: int32
+  gatewayv2authValidateRespond:
+    type: object
+    properties:
+      userId:
+        type: string
+      valid:
+        type: boolean
+      expired:
+        type: integer
+        format: int32
+  geoState:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      iso:
+        type: string
+      code:
+        type: string
+      name:
+        type: string
+  geoStates:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/geoState'
+      meta:
+        $ref: '#/definitions/v2ListMeta'
+  googlerpcStatus:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      details:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protobufAny'
+  hooksv1PartnerParameters:
+    type: object
+    properties:
+      enabled:
+        type: boolean
+      hookUrl:
+        type: string
+      jwtSecret:
+        type: string
+      hookCustomer:
+        type: boolean
+      hookOperation:
+        type: boolean
+      hookDepositAccount:
+        type: boolean
+      hookCounterparty:
+        type: boolean
+  integrationFinanceProvider:
+    type: string
+    enum:
+      - UNSET
+      - LAYER2
+    default: UNSET
+  integrationapplicationAddress:
+    type: object
+    properties:
+      unitNumber:
+        type: string
+      addressLine1:
+        type: string
+        title: '@gotags: validate:"cleaner=trim multiSpaces allowedChars"'
+      addressLine2:
+        type: string
+        title: '@gotags: validate:"cleaner=trim multiSpaces allowedChars"'
+      addressLine3:
+        type: string
+        title: '@gotags: validate:"cleaner=trim multiSpaces allowedChars"'
+      city:
+        type: string
+        title: '@gotags: validate:"cleaner=trim multiSpaces allowedChars"'
+      stateIso:
+        type: string
+        title: https://en.wikipedia.org/wiki/ISO_3166-2
+      postalCode:
+        type: string
+      countryIso:
+        type: string
+  integrationapplicationCorporateCustomer:
+    type: object
+    properties:
+      registeredName:
+        type: string
+        title: |-
+          Corporate entity registered (legal) name
+          @gotags: validate:"cleaner=trim multiSpaces allowedChars"
+      tradingName:
+        type: string
+        title: |-
+          Trading/'Doing Business As' name (if different to registered name)
+          @gotags: validate:"cleaner=trim multiSpaces allowedChars"
+      registeredNumber:
+        type: string
+        title: |-
+          Government registered number of the corporate entity
+          (Business EIN, Business Number, FEIN, Taxpayer ID etc)
+      registeredAddress:
+        $ref: '#/definitions/integrationapplicationAddress'
+        title: Registered / head office address
+      physicalAddress:
+        $ref: '#/definitions/integrationapplicationAddress'
+        title: Physical Address if different to registered address
+      telephoneNumber:
+        type: string
+        title: |-
+          Telephone Number in E.164 format
+          @gotags: validate:"phoneClean"
+      websiteAddress:
+        type: string
+        title: Website URL
+      stateOfIncorporation:
+        type: string
+        title: State / Province / Riding of Incorporation (2 digit code)
+      countryOfIncorporation:
+        type: string
+        title: Country of incorporation (2 Digit ISO31661-Alpha2 Format - https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+      corporateEntityType:
+        $ref: '#/definitions/applicationEntityType'
+        title: Type of corporate entity
+      corporateEntityTypeDescription:
+        type: string
+        title: Description of legal structure where entity type is OTHER
+      emailAddress:
+        type: string
+        title: |-
+          Business Email Address (for example support@acme.inc)
+          @gotags: validate:"cleaner=trim,email"
+      establishedOn:
+        type: string
+        format: date-time
+        title: Date the business was established
+      naics:
+        type: string
+        title: NAICS Code
+      naicsDescription:
+        type: string
+        title: NAICS Description
+      investmentProfile:
+        $ref: '#/definitions/applicationCorporateInvestment'
+        title: Investment Profile of the corporation
+      kycProfile:
+        $ref: '#/definitions/applicationCorporateKyc'
+        title: KYC Profile of the corporation
+      guid:
+        type: string
+      taxReferenceNumber:
+        type: string
+        title: '@gotags: validate:"cleaner=trim"'
+      reasons:
+        $ref: '#/definitions/applicationCorporateReasons'
+      documents:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/integrationapplicationDocument'
+      informationAttested:
+        type: boolean
+      legalStructureDescription:
+        type: string
+        title: '@gotags: validate:"cleaner=trim multiSpaces allowedChars"'
+  integrationapplicationDocument:
+    type: object
+    properties:
+      guid:
+        type: string
+      status:
+        $ref: '#/definitions/applicationDocumentStatus'
+      type:
+        $ref: '#/definitions/applicationDocumentType'
+  integrationapplicationIndividualCustomer:
+    type: object
+    properties:
+      firstName:
+        type: string
+      middleName:
+        type: string
+      lastName:
+        type: string
+      emailAddress:
+        type: string
+        title: '@gotags: validate:"cleaner=trim,email"'
+      mailingAddress:
+        $ref: '#/definitions/integrationapplicationAddress'
+      telephoneNumber:
+        type: string
+        title: '@gotags: validate:"phoneClean"'
+      taxReferenceNumber:
+        type: string
+      passportNumber:
+        type: string
+      nationality:
+        type: string
+      dateOfBirth:
+        type: string
+        format: date-time
+      usResidencyStatus:
+        $ref: '#/definitions/applicationUsResident'
+      employmentStatus:
+        $ref: '#/definitions/applicationEmploymentStatus'
+      employmentDescription:
+        type: string
+        title: '@gotags: validate:"cleaner=trim multiSpaces allowedChars"'
+      employerName:
+        type: string
+        title: '@gotags: validate:"cleaner=trim multiSpaces allowedChars"'
+      occupation:
+        type: string
+      investmentProfile:
+        $ref: '#/definitions/applicationIndividualInvestment'
+      kycProfile:
+        $ref: '#/definitions/applicationIndividualKyc'
+      guid:
+        type: string
+      documents:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/integrationapplicationDocument'
+      informationAttested:
+        type: boolean
+  integrationapplicationIndividualProfile:
+    type: object
+    properties:
+      individualType:
+        type: array
+        items:
+          $ref: '#/definitions/applicationIndividuals'
+      firstName:
+        type: string
+        title: '@gotags: validate:"cleaner=trim multiSpaces allowedChars"'
+      middleName:
+        type: string
+        title: '@gotags: validate:"cleaner=trim multiSpaces allowedChars"'
+      lastName:
+        type: string
+        title: '@gotags: validate:"cleaner=trim multiSpaces allowedChars"'
+      emailAddress:
+        type: string
+        title: '@gotags: validate:"cleaner=trim,email"'
+      mailingAddress:
+        $ref: '#/definitions/integrationapplicationAddress'
+      telephoneNumber:
+        type: string
+        title: '@gotags: validate:"phoneClean"'
+      taxReferenceNumber:
+        type: string
+        title: '@gotags: validate:"cleaner=trim"'
+      passportNumber:
+        type: string
+      nationality:
+        type: string
+        title: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+      dateOfBirth:
+        type: string
+        format: date-time
+      percentageOwnership:
+        type: integer
+        format: int64
+      title:
+        type: string
+        title: '@gotags: validate:"cleaner=trim multiSpaces allowedChars"'
+      usResidencyStatus:
+        $ref: '#/definitions/applicationUsResident'
+      guid:
+        type: string
+        title: unique individual ID
+      documents:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/integrationapplicationDocument'
+  messageCreateTemplateRequest:
+    type: object
+    properties:
+      typeId:
+        type: integer
+        format: int64
+        title: |-
+          string partner_id = 3;
+          @gotags: validate:"required"
+      subject:
+        type: string
+        title: '@gotags: validate:"required"'
+      title:
+        type: string
+        title: '@gotags: validate:"required"'
+      content:
+        type: string
+      button:
+        type: string
+      link:
+        type: string
+      delay:
+        type: string
+      showTime:
+        type: string
+      triggers:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Trigger'
+    title: Create template request
+    required:
+      - typeId
+      - subject
+      - title
+  messageGetTemplateResponse:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/v2messageTemplate'
+    title: Template response
+  messageGetTemplatesResponse:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v2messageTemplate'
+      meta:
+        $ref: '#/definitions/v2ListMeta'
+    title: Template list response
+  messageSettingResponse:
+    type: object
+    properties:
+      settings:
+        $ref: '#/definitions/messageSettings'
+  messageSettingUpdateRequest:
+    type: object
+    properties:
+      settings:
+        $ref: '#/definitions/messageSettings'
+        title: '@gotags: validate:"required"'
+  messageSettings:
+    type: object
+    properties:
+      common:
+        $ref: '#/definitions/v1CommonSetting'
+        title: '@gotags: validate:"required"'
+      email:
+        $ref: '#/definitions/v1EmailSetting'
+        title: '@gotags: validate:"required"'
+  messagesv1SuccessResponse:
+    type: object
+    properties:
+      success:
+        type: boolean
+  protobufAny:
+    type: object
+    properties:
+      '@type':
+        type: string
+        description: |-
+          A URL/resource name that uniquely identifies the type of the serialized
+          protocol buffer message. This string must contain at least
+          one "/" character. The last segment of the URL's path must represent
+          the fully qualified name of the type (as in
+          `path/google.protobuf.Duration`). The name should be in a canonical form
+          (e.g., leading "." is not accepted).
+
+          In practice, teams usually precompile into the binary all types that they
+          expect it to use in the context of Any. However, for URLs which use the
+          scheme `http`, `https`, or no scheme, one can optionally set up a type
+          server that maps type URLs to message definitions as follows:
+
+          * If no scheme is provided, `https` is assumed.
+          * An HTTP GET on the URL must yield a [google.protobuf.Type][]
+            value in binary format, or produce an error.
+          * Applications are allowed to cache lookup results based on the
+            URL, or have them precompiled into a binary to avoid any
+            lookup. Therefore, binary compatibility needs to be preserved
+            on changes to types. (Use versioned type names to manage
+            breaking changes.)
+
+          Note: this functionality is not currently available in the official
+          protobuf release, and it is not used for type URLs beginning with
+          type.googleapis.com. As of May 2023, there are no widely used type server
+          implementations and no plans to implement one.
+
+          Schemes other than `http`, `https` (or the empty scheme) might be
+          used with implementation specific semantics.
+    additionalProperties: {}
+    description: |-
+      `Any` contains an arbitrary serialized protocol buffer message along with a
+      URL that describes the type of the serialized message.
+
+      Protobuf library provides support to pack/unpack Any values in the form
+      of utility functions or additional generated methods of the Any type.
+
+      Example 1: Pack and unpack a message in C++.
+
+          Foo foo = ...;
+          Any any;
+          any.PackFrom(foo);
+          ...
+          if (any.UnpackTo(&foo)) {
+            ...
+          }
+
+      Example 2: Pack and unpack a message in Java.
+
+          Foo foo = ...;
+          Any any = Any.pack(foo);
+          ...
+          if (any.is(Foo.class)) {
+            foo = any.unpack(Foo.class);
+          }
+          // or ...
+          if (any.isSameTypeAs(Foo.getDefaultInstance())) {
+            foo = any.unpack(Foo.getDefaultInstance());
+          }
+
+       Example 3: Pack and unpack a message in Python.
+
+          foo = Foo(...)
+          any = Any()
+          any.Pack(foo)
+          ...
+          if any.Is(Foo.DESCRIPTOR):
+            any.Unpack(foo)
+            ...
+
+       Example 4: Pack and unpack a message in Go
+
+           foo := &pb.Foo{...}
+           any, err := anypb.New(foo)
+           if err != nil {
+             ...
+           }
+           ...
+           foo := &pb.Foo{}
+           if err := any.UnmarshalTo(foo); err != nil {
+             ...
+           }
+
+      The pack methods provided by protobuf library will by default use
+      'type.googleapis.com/full.type.name' as the type URL and the unpack
+      methods only use the fully qualified type name after the last '/'
+      in the type URL, for example "foo.bar.com/x/y.z" will yield type
+      name "y.z".
+
+      JSON
+      ====
+      The JSON representation of an `Any` value uses the regular
+      representation of the deserialized, embedded message, with an
+      additional field `@type` which contains the type URL. Example:
+
+          package google.profile;
+          message Person {
+            string first_name = 1;
+            string last_name = 2;
+          }
+
+          {
+            "@type": "type.googleapis.com/google.profile.Person",
+            "firstName": <string>,
+            "lastName": <string>
+          }
+
+      If the embedded message type is well-known and has a custom JSON
+      representation, that representation will be embedded adding a field
+      `value` which holds the custom JSON in addition to the `@type`
+      field. Example (for message [google.protobuf.Duration][]):
+
+          {
+            "@type": "type.googleapis.com/google.protobuf.Duration",
+            "value": "1.212s"
+          }
+  searchSearchResponse:
+    type: object
+    properties:
+      allCount:
+        type: string
+        format: int64
+  typeExportOption:
+    type: object
+    properties:
+      format:
+        $ref: '#/definitions/typeExportOptionFormat'
+  typeExportOptionFormat:
+    type: string
+    enum:
+      - Unknown
+      - PDF
+      - XLSX
+    default: Unknown
+  typeMoney:
+    type: object
+    properties:
+      currencyCode:
+        type: string
+        description: The three-letter currency code defined in ISO 4217.
+      units:
+        type: string
+        format: int64
+        description: |-
+          The whole units of the amount.
+          For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
+      nanos:
+        type: integer
+        format: int32
+        description: |-
+          Number of nano (10^-9) units of the amount.
+          The value must be between -999,999,999 and +999,999,999 inclusive.
+          If `units` is positive, `nanos` must be positive or zero.
+          If `units` is zero, `nanos` can be positive, zero, or negative.
+          If `units` is negative, `nanos` must be negative or zero.
+          For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
+    description: Represents an amount of money with its currency type.
+  userCreateUserRequest:
+    type: object
+    properties:
+      customerId:
+        type: string
+        title: '@gotags: validate:"required"'
+      username:
+        type: string
+        title: '@gotags: validate:"required"'
+      password:
+        type: string
+        title: '@gotags: validate:"required"'
+      name:
+        type: string
+      lastname:
+        type: string
+      comment:
+        type: string
+    title: CreateUser
+    required:
+      - username
+      - password
+  userFileListRespond:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v2userFile'
+      meta:
+        $ref: '#/definitions/v2ListMeta'
+  userFileUpload:
+    type: object
+    properties:
+      customerId:
+        type: string
+        description: Customer ID
+      attach:
+        type: string
+        description: Attached file for upload
+        title: Attached file for upload
+    title: FileUpload
+    required:
+      - attach
+  userGetUserRespond:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/userUserDetail'
+    title: UserRespond
+  userListUserRespond:
+    type: object
+    properties:
+      meta:
+        $ref: '#/definitions/v2ListMeta'
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v2userUser'
+    title: ListUserRespond
+  userUploadResponse:
+    type: object
+    properties:
+      file:
+        $ref: '#/definitions/v2userFile'
+  userUserDetail:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      userId:
+        type: string
+      username:
+        type: string
+      status:
+        $ref: '#/definitions/usersUserStatus'
+      is2fa:
+        type: boolean
+      isDeleted:
+        type: boolean
+      partnerId:
+        type: string
+      createAt:
+        type: string
+        format: date-time
+      updateAt:
+        type: string
+        format: date-time
+      name:
+        type: string
+      lastname:
+        type: string
+      comment:
+        type: string
+      parameters:
+        $ref: '#/definitions/usersUserParameters'
+      customers:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v2userRelationClient'
+  userUserRespond:
+    type: object
+    properties:
+      item:
+        $ref: '#/definitions/v2userUser'
+    title: UserRespond
+  userUserStatus:
+    type: string
+    enum:
+      - NOT_SET
+      - NEW
+      - READY_FOR_MODERATION
+      - MODERATED
+      - VERIFY
+      - ACCEPT
+      - REJECT
+      - BANNED
+    default: NOT_SET
+    title: |-
+      - NEW: Registered user
+       - MODERATED: Send to moderator
+       - VERIFY: Send to moderator
+  userUsersUpdateBody:
+    type: object
+    properties:
+      customerId:
+        type: string
+      password:
+        type: string
+      status:
+        $ref: '#/definitions/usersUserStatus'
+      is2fa:
+        type: boolean
+      name:
+        type: string
+      lastname:
+        type: string
+      comment:
+        type: string
+    title: CreateUser
+    required:
+      - username
+  usersClientStatus:
+    type: string
+    enum:
+      - NEW
+      - READY_FOR_MODERATION
+      - MODERATED
+      - VERIFY
+      - ACCEPT
+      - REJECT
+      - BANNED
+    default: NEW
+    title: |-
+      - NEW: Registered user
+       - MODERATED: Send to moderator
+       - VERIFY: In verify state (working status)
+  usersClientType:
+    type: string
+    enum:
+      - CORPORATE
+      - INDIVIDUAL
+    default: CORPORATE
+  usersFileType:
+    type: string
+    enum:
+      - UNSET
+      - LOGO
+    default: UNSET
+  usersMfaSettings:
+    type: object
+    properties:
+      requireOtp:
+        type: boolean
+      requirePass:
+        type: boolean
+      requireEmail:
+        type: boolean
+      requireSms:
+        type: boolean
+  usersPartnerStatus:
+    type: string
+    enum:
+      - NEW
+      - READY_FOR_MODERATION
+      - MODERATED
+      - VERIFY
+      - ACCEPT
+      - REJECT
+      - BANNED
+    default: NEW
+    title: |-
+      - NEW: Registered user
+       - MODERATED: Send to moderator
+       - VERIFY: Send to moderator
+  usersUserParameters:
+    type: object
+    properties:
+      mfa:
+        $ref: '#/definitions/usersMfaSettings'
+      profile:
+        $ref: '#/definitions/usersUserProfile'
+  usersUserProfile:
+    type: object
+    properties:
+      phone:
+        type: string
+      email:
+        type: string
+        title: '@gotags: validate:"omitempty,email"'
+      dob:
+        type: string
+        format: date-time
+      country:
+        type: string
+        title: '@gotags: validate:"omitempty,iso3166_1_alpha2"'
+      city:
+        type: string
+      postcode:
+        type: string
+  usersUserStatus:
+    type: string
+    enum:
+      - NEW
+      - READY_FOR_MODERATION
+      - MODERATED
+      - VERIFY
+      - ACCEPT
+      - REJECT
+      - BANNED
+    default: NEW
+    title: |-
+      - NEW: Registered user
+       - MODERATED: Send to moderator
+       - VERIFY: Send to moderator
+  v1AccountCrypto:
+    type: object
+    properties:
+      address:
+        type: string
+      additionalInformation:
+        $ref: '#/definitions/v1CryptoAdditionalInformation'
+  v1AccountFiat:
+    type: object
+    properties:
+      number:
+        type: string
+      ifsc:
+        type: string
+      swift:
+        type: string
+      sortCode:
+        type: string
+      name:
+        type: string
+      transitNumber:
+        type: string
+      routingNumber:
+        type: string
+      additionalInformation:
+        $ref: '#/definitions/v1FiatAdditionalInformation'
+  v1AccountRequisitesItem:
+    type: object
+    properties:
+      id:
+        type: string
+      requisiteId:
+        type: integer
+        format: int32
+      key:
+        type: string
+      value:
+        type: string
+      order:
+        type: integer
+        format: int32
+  v1Ammount:
+    type: object
+    properties:
+      sum:
+        $ref: '#/definitions/typeMoney'
+      default:
+        $ref: '#/definitions/typeMoney'
+  v1CommonSetting:
+    type: object
+    properties:
+      enabled:
+        type: boolean
+      appHostname:
+        type: string
+      frontHostname:
+        type: string
+      frontName:
+        type: string
+      companyName:
+        type: string
+      companyPhone:
+        type: string
+  v1Country:
+    type: object
+    properties:
+      iso:
+        type: string
+      name:
+        type: string
+        title: |-
+          bool is_enabled = 12;
+            bool is_deleted = 13;
+  v1CountryList:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Country'
+  v1CryptoAdditionalInformation:
+    type: object
+    properties:
+      walletType:
+        $ref: '#/definitions/counterpartyCP_WalletType'
+      type:
+        $ref: '#/definitions/counterpartyCP_Type'
+      supportedRails:
+        type: array
+        items:
+          $ref: '#/definitions/counterpartyCP_Rails'
+  v1DateRange:
+    type: object
+    properties:
+      from:
+        type: string
+        format: date-time
+      to:
+        type: string
+        format: date-time
+  v1EmailSetting:
+    type: object
+    properties:
+      enabled:
+        type: boolean
+      emailAccount:
+        type: string
+      emailPassword:
+        type: string
+      smtpHost:
+        type: string
+      smtpPort:
+        type: integer
+        format: int32
+  v1Event:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      Name:
+        type: string
+      variables:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1EventVariable'
+  v1EventVariable:
+    type: object
+    properties:
+      name:
+        type: string
+  v1ExportResponse:
+    type: object
+    properties:
+      data:
+        type: string
+        format: byte
+      name:
+        type: string
+  v1FiatAdditionalInformation:
+    type: object
+    properties:
+      type:
+        $ref: '#/definitions/counterpartyCP_Type'
+      supportedRails:
+        type: array
+        items:
+          $ref: '#/definitions/counterpartyCP_Rails'
+      intermediary:
+        $ref: '#/definitions/v1Intermediary'
+      accountType:
+        $ref: '#/definitions/counterpartyCP_AccountType'
+  v1Intermediary:
+    type: object
+    properties:
+      type:
+        $ref: '#/definitions/counterpartyCP_Type'
+      bank:
+        $ref: '#/definitions/delosbeneficiaryv1BankInfo'
+  v1NotificationType:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      isAllowed:
+        type: boolean
+  v1OperationStatus:
+    type: string
+    enum:
+      - NEW
+      - PENDING
+      - WORKING
+      - SUCCESS
+      - FAIL
+      - CANCELED
+    default: NEW
+    title: |-
+      - NEW: Create by user or modrator
+       - PENDING: Move by moderator to this status if operation ok
+       - WORKING: Move by network for work
+       - SUCCESS: Result status
+       - FAIL: Result status
+       - CANCELED: Result status
+  v1Trigger:
+    type: object
+    properties:
+      eventId:
+        type: integer
+        format: int32
+      templateId:
+        type: integer
+        format: int64
+      event:
+        $ref: '#/definitions/v1Event'
+  v2ListMeta:
+    type: object
+    properties:
+      pageSize:
+        type: integer
+        format: int32
+        title: Set items count per page
+      page:
+        type: integer
+        format: int32
+        title: Page No. Starts from 0
+      total:
+        type: string
+        format: int64
+        title: Total counts not paged result items
+    title: ListMetaData
+  v2QueryMeta:
+    type: object
+    properties:
+      pageSize:
+        type: integer
+        format: int32
+        title: Set items count per page
+      page:
+        type: integer
+        format: int32
+        title: Page No. Starts from 0
+    title: QueryMetaData
+  v2RespondStatus:
+    type: object
+    properties:
+      success:
+        type: boolean
+        title: Request status
+      message:
+        type: string
+        title: Optional message of status description
+    title: RespondStatus
+  v2accountAccount:
+    type: object
+    properties:
+      accountId:
+        type: string
+      customer:
+        $ref: '#/definitions/accountAccountCustomer'
+      isDefault:
+        type: boolean
+      name:
+        type: string
+      status:
+        $ref: '#/definitions/delosaccountsv1AccountStatus'
+      balance:
+        $ref: '#/definitions/accountAccountBalance'
+      currencyCode:
+        type: string
+      requisites:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v2accountAccountRequisites'
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
+    title: Account entity v2
+  v2accountAccountRequisites:
+    type: object
+    properties:
+      title:
+        type: string
+      id:
+        type: integer
+        format: int32
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1AccountRequisitesItem'
+  v2authPartner:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      status:
+        $ref: '#/definitions/usersPartnerStatus'
+      logo:
+        $ref: '#/definitions/delosusersFile'
+  v2authProfile:
+    type: object
+    properties:
+      partner:
+        $ref: '#/definitions/authProfilePartner'
+      user:
+        $ref: '#/definitions/authProfileUser'
+  v2billingCommissionAccount:
+    type: object
+    properties:
+      currencyCode:
+        type: string
+      poolAccountId:
+        type: string
+      commissionAccountId:
+        type: string
+  v2billingCurrencyCommission:
+    type: object
+    properties:
+      currencyCodeFrom:
+        type: string
+      currencyCodeTo:
+        type: string
+      operationType:
+        $ref: '#/definitions/billingv1OperationType'
+      paymentType:
+        $ref: '#/definitions/billingv1PaymentType'
+      commission:
+        $ref: '#/definitions/billingCurrencyCommissionCommission'
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
+      customerId:
+        type: string
+      customerName:
+        type: string
+  v2billingLimit:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+      owner:
+        type: integer
+        format: int32
+      currencyCodeFrom:
+        type: string
+      currencyCodeTo:
+        type: string
+      operationType:
+        $ref: '#/definitions/billingv1OperationType'
+      paymentType:
+        $ref: '#/definitions/billingv1PaymentType'
+      min:
+        type: number
+        format: float
+      max:
+        type: number
+        format: float
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
+      customerName:
+        type: string
+      customerId:
+        type: string
+  v2billingRequisit:
+    type: object
+    properties:
+      account:
+        type: string
+        description: Deposit Account unique id.
+      beneficiar:
+        type: string
+        description: Beneficiar (counterparty) Account unique id.
+    description: |-
+      Set oneof: Deposit Account ID or Beneficiar (counterparty) Account ID.
+      <br>For Source:
+      <br>- Must be set Deposit Account ID.
+      <br>For Destination, one of:
+      <br>- Deposit Account ID if operation is EXCHANGE, TRANSFER, DEPOSIT.
+      <br>- Beneficiar (counterparty) Account ID if operation is WITHDRAW.
+  v2billingSetCommissionRequest:
+    type: object
+    properties:
+      customerId:
+        type: string
+      currencyCodeFrom:
+        type: string
+        title: '@gotags: validate:"cleaner=trim,required,is-currency"'
+      currencyCodeTo:
+        type: string
+        title: '@gotags: validate:"cleaner=trim,required,is-currency"'
+      operationType:
+        $ref: '#/definitions/billingv1OperationType'
+      paymentType:
+        $ref: '#/definitions/billingv1PaymentType'
+      percent:
+        type: number
+        format: float
+        title: '@gotags: validate:"required"'
+      fixed:
+        type: number
+        format: float
+        title: '@gotags: validate:"required"'
+  v2counterpartyCounterparty:
+    type: object
+    properties:
+      counterpartyId:
+        type: string
+      customer:
+        $ref: '#/definitions/counterpartyCustomerV2'
+      description:
+        type: string
+      profile:
+        $ref: '#/definitions/v2counterpartyCounterpartyProfile'
+      createdAt:
+        type: string
+        format: date-time
+      updatedAt:
+        type: string
+        format: date-time
+    title: Counterparty entity
+  v2counterpartyCounterpartyAccount:
+    type: object
+    properties:
+      accountId:
+        type: string
+        readOnly: true
+      currencyCode:
+        type: string
+      status:
+        $ref: '#/definitions/delosbeneficiaryv1AccountStatus'
+        readOnly: true
+      bank:
+        $ref: '#/definitions/delosbeneficiaryv1BankInfo'
+      crypto:
+        $ref: '#/definitions/v1AccountCrypto'
+      fiat:
+        $ref: '#/definitions/v1AccountFiat'
+    title: Counterparty account entity
+  v2counterpartyCounterpartyProfile:
+    type: object
+    properties:
+      name:
+        type: string
+        title: '@gotags: validate:"required"'
+      email:
+        type: string
+      phoneNumber:
+        type: string
+      taxNumber:
+        type: string
+      dateOfBirth:
+        type: string
+        format: date-time
+      address:
+        $ref: '#/definitions/delosbeneficiaryv1Address'
+        title: '@gotags: validate:"required"'
+      website:
+        type: string
+      additionalInfo:
+        $ref: '#/definitions/CounterpartyProfileAdditionalInfo'
+      lastname:
+        type: string
+    title: Counterparty profile entity
+    required:
+      - name
+      - address
+  v2counterpartyCustomer:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      email:
+        type: string
+      phone:
+        type: string
+      status:
+        $ref: '#/definitions/usersClientStatus'
+    title: Account customer entity v2
+  v2customerCorporateCustomer:
+    type: object
+    properties:
+      registeredName:
+        type: string
+        title: Corporate entity registered (legal) name
+      tradingName:
+        type: string
+        title: Trading/'Doing Business As' name (if different to registered name)
+      registeredNumber:
+        type: string
+        title: |-
+          Government registered number of the corporate entity
+          (Business EIN, Business Number, FEIN, Taxpayer ID etc)
+      registeredAddress:
+        $ref: '#/definitions/integrationapplicationAddress'
+        title: Registered / head office address
+      physicalAddress:
+        $ref: '#/definitions/integrationapplicationAddress'
+        title: Physical Address if different to registered address
+      telephoneNumber:
+        type: string
+        title: Telephone Number in E.164 format
+      websiteAddress:
+        type: string
+        title: Website URL
+      stateOfIncorporation:
+        type: string
+        title: State / Province / Riding of Incorporation (2 digit code)
+      countryOfIncorporation:
+        type: string
+        title: Country of incorporation (2 Digit ISO31661-Alpha2 Format - https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+      corporateEntityType:
+        $ref: '#/definitions/applicationEntityType'
+        title: Type of corporate entity
+      corporateEntityTypeDescription:
+        type: string
+        title: Description of legal structure where entity type is OTHER
+      emailAddress:
+        type: string
+        title: Business Email Address (for example support@acme.inc)
+      establishedOn:
+        type: string
+        format: date-time
+        title: Date the business was established
+      naics:
+        type: string
+        title: NAICS Code
+      naicsDescription:
+        type: string
+        title: NAICS Description
+      investmentProfile:
+        $ref: '#/definitions/applicationCorporateInvestment'
+        title: Investment Profile of the corporation
+      kycProfile:
+        $ref: '#/definitions/applicationCorporateKyc'
+        title: KYC Profile of the corporation
+      guid:
+        type: string
+      taxReferenceNumber:
+        type: string
+        title: '@gotags: validate:"cleaner=trim"'
+      reasons:
+        $ref: '#/definitions/applicationCorporateReasons'
+      documents:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/gatewayv2Document'
+      informationAttested:
+        type: boolean
+      legalStructureDescription:
+        type: string
+        title: '@gotags: validate:"cleaner=trim multiSpaces allowedChars"'
+  v2customerDocumentListRespond:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/gatewayv2Document'
+      meta:
+        $ref: '#/definitions/v2ListMeta'
+  v2customerIndividualCustomer:
+    type: object
+    properties:
+      firstName:
+        type: string
+      middleName:
+        type: string
+      lastName:
+        type: string
+      emailAddress:
+        type: string
+      mailingAddress:
+        $ref: '#/definitions/integrationapplicationAddress'
+      telephoneNumber:
+        type: string
+      taxReferenceNumber:
+        type: string
+      passportNumber:
+        type: string
+      nationality:
+        type: string
+      dateOfBirth:
+        type: string
+        format: date-time
+      usResidencyStatus:
+        $ref: '#/definitions/applicationUsResident'
+      employmentStatus:
+        $ref: '#/definitions/applicationEmploymentStatus'
+      employmentDescription:
+        type: string
+      employerName:
+        type: string
+      occupation:
+        type: string
+      investmentProfile:
+        $ref: '#/definitions/applicationIndividualInvestment'
+      kycProfile:
+        $ref: '#/definitions/applicationIndividualKyc'
+      guid:
+        type: string
+      documents:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/gatewayv2Document'
+      informationAttested:
+        type: boolean
+  v2customerIndividualProfile:
+    type: object
+    properties:
+      individualType:
+        type: array
+        items:
+          $ref: '#/definitions/applicationIndividuals'
+      firstName:
+        type: string
+      middleName:
+        type: string
+      lastName:
+        type: string
+      emailAddress:
+        type: string
+      mailingAddress:
+        $ref: '#/definitions/integrationapplicationAddress'
+      telephoneNumber:
+        type: string
+      taxReferenceNumber:
+        type: string
+      passportNumber:
+        type: string
+      nationality:
+        type: string
+        title: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+      dateOfBirth:
+        type: string
+        format: date-time
+      percentageOwnership:
+        type: integer
+        format: int64
+      title:
+        type: string
+      usResidencyStatus:
+        $ref: '#/definitions/applicationUsResident'
+      guid:
+        type: string
+        title: unique individual ID
+      documents:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/gatewayv2Document'
+  v2customerStatus:
+    type: string
+    enum:
+      - STATUS_NOT_SET
+      - NEW
+      - READY_FOR_MODERATION
+      - MODERATED
+      - VERIFY
+      - ACCEPT
+      - REJECT
+      - BANNED
+    default: STATUS_NOT_SET
+    title: |-
+      - NEW: Registered user
+       - MODERATED: Send to moderator
+       - VERIFY: In verify state (working status)
+  v2customerType:
+    type: string
+    enum:
+      - TYPE_NOT_SET
+      - CORPORATE
+      - INDIVIDUAL
+    default: TYPE_NOT_SET
+  v2hookPartnerUpdateRequest:
+    type: object
+    properties:
+      parameters:
+        $ref: '#/definitions/hooksv1PartnerParameters'
+        title: '@gotags: validate:"required"'
+  v2messageEventsResponse:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Event'
+      meta:
+        $ref: '#/definitions/v2ListMeta'
+  v2messageNotificationTypesResponse:
+    type: object
+    properties:
+      items:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1NotificationType'
+      meta:
+        $ref: '#/definitions/v2ListMeta'
+  v2messageTemplate:
+    type: object
+    properties:
+      id:
+        type: string
+      partnerId:
+        type: string
+      typeId:
+        type: integer
+        format: int64
+      subject:
+        type: string
+      title:
+        type: string
+      content:
+        type: string
+      button:
+        type: string
+      link:
+        type: string
+      updatedAt:
+        type: string
+        format: date-time
+      createdAt:
+        type: string
+        format: date-time
+      deletedAt:
+        type: string
+        format: date-time
+      delay:
+        type: string
+      isActive:
+        type: boolean
+      showTime:
+        type: string
+      triggers:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/v1Trigger'
+  v2userFile:
+    type: object
+    properties:
+      partnerId:
+        type: string
+        title: '@gotags: validate:"required"'
+      customerId:
+        type: string
+        title: '@gotags: validate:"required"'
+      id:
+        type: string
+        title: '@gotags: validate:"required"'
+      name:
+        type: string
+      size:
+        type: integer
+        format: int64
+      mime:
+        type: string
+      isLock:
+        type: boolean
+      createAt:
+        type: string
+        format: date-time
+      deletedAt:
+        type: string
+        format: date-time
+  v2userRelationClient:
+    type: object
+    properties:
+      customerId:
+        type: string
+      isOwner:
+        type: boolean
+  v2userUser:
+    type: object
+    properties:
+      userId:
+        type: string
+      username:
+        type: string
+      status:
+        $ref: '#/definitions/usersUserStatus'
+      is2fa:
+        type: boolean
+      createAt:
+        type: string
+        format: date-time
+      updateAt:
+        type: string
+        format: date-time
+      name:
+        type: string
+      comment:
+        type: string
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+  - ApiKeyAuth: []

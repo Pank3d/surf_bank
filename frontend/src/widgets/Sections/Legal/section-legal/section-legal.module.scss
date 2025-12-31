@@ -1,0 +1,241 @@
+.legalPage {
+	padding: 120px 0 80px;
+	min-height: 100vh;
+	background-color: #fff;
+
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 24px;
+	}
+
+	.header {
+		margin-bottom: 48px;
+
+		.title {
+			font-family: 'Agrandir', sans-serif;
+			font-weight: 800;
+			font-style: normal;
+			font-size: 40px;
+			line-height: 100%;
+			letter-spacing: 0%;
+			color: #000000;
+			margin-bottom: 16px;
+
+			@media (max-width: 768px) {
+				font-size: 36px;
+			}
+
+			@media (max-width: 480px) {
+				font-size: 32px;
+			}
+		}
+
+		.date {
+			font-family: 'Agrandir', sans-serif;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 14px;
+			color: #000000;
+		}
+	}
+
+	.contentWrapper {
+		display: flex;
+		gap: 64px;
+
+		@media (max-width: 1024px) {
+			flex-direction: column;
+			gap: 32px;
+		}
+	}
+
+	.sidebar {
+		flex: 0 0 280px;
+		position: sticky;
+		top: 120px;
+		height: fit-content;
+
+		@media (max-width: 768px) {
+			display: none; // Навигация пропадает на мобилках
+		}
+
+		@media (max-width: 1024px) and (min-width: 769px) {
+			position: static;
+			flex: none;
+			width: 100%;
+		}
+
+		.sidebarList {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		.sidebarItem {
+			margin-bottom: 12px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		.sidebarLink {
+			display: block;
+			width: 100%;
+			text-align: left;
+			padding: 12px 16px;
+			border: none;
+			background: transparent;
+			font-family: 'Agrandir', sans-serif;
+			font-weight: 400;
+			font-size: 14px;
+			color: #7c7b85; // Серый цвет для навигации
+			cursor: pointer;
+			border-radius: 8px;
+			transition: all 0.2s ease;
+			border-left: 3px solid transparent;
+
+			&:hover {
+				color: #71ef00;
+				background-color: #f5f5f5;
+			}
+
+			&.active {
+				color: #71ef00; // Зеленый цвет при активном состоянии
+				background-color: #f5f5f5;
+				border-left-color: #71ef00;
+				font-weight: 400;
+			}
+		}
+	}
+
+	.content {
+		flex: 1;
+		width: 100%; // На мобилках занимает всю ширину
+
+		@media (max-width: 768px) {
+			flex: 1 0 100%;
+		}
+
+		.markdownContent {
+			font-family: 'Agrandir', sans-serif;
+			font-weight: 400;
+			font-style: normal;
+			font-size: 14px;
+			line-height: 125%; // 14px * 1.25 = 17.5px
+			letter-spacing: 0%;
+			color: #7c7b85; // Серый цвет для основного текста
+
+			h1,
+			h2,
+			h3,
+			h4 {
+				color: #000000;
+				margin-top: 40px;
+				margin-bottom: 16px;
+				font-weight: 800;
+				font-family: 'Agrandir', sans-serif;
+			}
+
+			h2 {
+				font-size: 28px;
+				padding-top: 80px; // Для корректного скролла к якорям
+				margin-top: -60px;
+				line-height: 100%;
+
+				@media (max-width: 768px) {
+					font-size: 24px;
+					padding-top: 60px;
+					margin-top: -40px;
+				}
+			}
+
+			h3 {
+				font-size: 22px;
+				line-height: 100%;
+
+				@media (max-width: 768px) {
+					font-size: 20px;
+				}
+			}
+
+			h4 {
+				font-size: 18px;
+				line-height: 100%;
+			}
+
+			p {
+				margin-bottom: 24px;
+			}
+
+			ul,
+			ol {
+				margin-bottom: 24px;
+				padding-left: 24px;
+			}
+
+			li {
+				margin-bottom: 8px;
+			}
+
+			strong,
+			b {
+				font-weight: 800;
+				color: #000000;
+			}
+
+			a {
+				color: #0066cc;
+				text-decoration: none;
+				font-weight: 400;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+
+			hr {
+				border: none;
+				border-top: 1px solid #e0e0e0;
+				margin: 32px 0;
+			}
+
+			// Дополнительные стили для маркдаун контента
+			code {
+				font-family: 'Courier New', monospace;
+				background-color: #f5f5f5;
+				padding: 2px 4px;
+				border-radius: 4px;
+				font-size: 13px;
+			}
+
+			blockquote {
+				border-left: 4px solid #71ef00;
+				padding-left: 16px;
+				margin: 24px 0;
+				color: #666666;
+				font-style: italic;
+			}
+
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin: 24px 0;
+
+				th,
+				td {
+					border: 1px solid #e0e0e0;
+					padding: 12px;
+					text-align: left;
+				}
+
+				th {
+					background-color: #f5f5f5;
+					font-weight: 800;
+					color: #000000;
+				}
+			}
+		}
+	}
+}
