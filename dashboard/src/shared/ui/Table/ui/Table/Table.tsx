@@ -11,10 +11,10 @@ import type {
 } from '@/pages/DashboardPage/ui/section-table/types';
 
 interface Props {
-	currencyType: 'crypto' | 'fiat';
+	currencyType?: 'crypto' | 'fiat';
 }
 
-export const Table = ({ currencyType }: Props) => {
+export const Table = ({ currencyType = 'crypto' }: Props) => {
 	const isFiat = currencyType === 'fiat';
 	const tableData = isFiat ? fiatTableData : cryptoTableData;
 
