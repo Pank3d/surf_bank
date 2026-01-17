@@ -1,0 +1,219 @@
+.modalOverlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		opacity 0.3s,
+		visibility 0.3s;
+
+	&.open {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+.modalContent {
+	background: white;
+	border-radius: 16px;
+	padding: 24px;
+	width: 90%;
+	max-width: 400px;
+	max-height: 90vh;
+	overflow-y: auto;
+	position: relative;
+}
+
+.modalHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.modalTitle {
+	font-size: 18px;
+	font-weight: 600;
+	margin: 0;
+}
+
+.closeButton {
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&:hover {
+		opacity: 0.7;
+	}
+
+	img {
+		width: 20px;
+		height: 20px;
+	}
+}
+
+.cryptoSection {
+	margin-bottom: 24px;
+}
+
+.cryptoHeaderWrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: 16px;
+}
+
+.cryptoHeader {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.cryptoIcon {
+	width: 40px;
+	height: 40px;
+}
+
+.cryptoInfo {
+	display: flex;
+	flex-direction: column;
+}
+
+.cryptoName {
+	font-size: 16px;
+	font-weight: 600;
+	margin: 0 0 4px 0;
+}
+
+.ethereumId {
+	font-size: 12px;
+	color: #666;
+	margin: 0;
+}
+
+.actionButtons {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+.actionButton {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	border: none;
+	background: #f3f4f6;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	padding: 8px;
+
+	&:hover {
+		background: #e5e7eb;
+		transform: translateY(-2px);
+	}
+
+	&:active {
+		transform: translateY(0);
+	}
+
+	img {
+		width: 18px;
+		height: 18px;
+		object-fit: contain;
+	}
+}
+
+.balanceInfo {
+	text-align: center;
+}
+
+.balanceAmount {
+	font-size: 32px;
+	font-weight: 700;
+	margin: 0 0 8px 0;
+}
+
+.priceInfo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 8px;
+}
+
+.price {
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.rate {
+	font-size: 14px;
+	padding: 2px 6px;
+	border-radius: 4px;
+
+	&.positive {
+		color: #10b981;
+		background: rgba(16, 185, 129, 0.1);
+	}
+
+	&.negative {
+		color: #ef4444;
+		background: rgba(239, 68, 68, 0.1);
+	}
+}
+
+.convertedPrice {
+	font-size: 14px;
+	color: #666;
+	margin: 0;
+}
+
+.bankDetails {
+	border-top: 1px solid #e5e7eb;
+	border-bottom: 1px solid #e5e7eb;
+	padding: 16px 0;
+	margin-bottom: 24px;
+}
+
+.bankDetailsTitle {
+	font-size: 16px;
+	font-weight: 600;
+	margin: 0 0 12px 0;
+}
+
+.bankInfo {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.bankRow {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.bankLabel {
+	font-size: 14px;
+	color: #666;
+}
+
+.bankValue {
+	font-size: 14px;
+	font-weight: 600;
+}

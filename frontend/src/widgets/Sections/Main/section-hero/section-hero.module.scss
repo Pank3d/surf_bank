@@ -13,25 +13,25 @@
 	}
 
 	.section__inner {
-		position: relative;
+		position: absolute;
 		z-index: 10;
 		max-width: 1252px;
 		margin: 0 auto;
 		width: calc(100% - 96px);
-		padding-top: 150px;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		// padding-top: 150px;
 		@include breakpoint(desktop) {
 			width: calc(100% - 48px);
-			padding-top: 450px;
 		}
 
 		@include breakpoint(tablet) {
 			width: calc(100% - 48px);
-			padding-top: 150px;
 		}
 
 		@include breakpoint(mobile) {
 			width: calc(100% - 24px);
-			padding-top: 150px;
 		}
 
 		.title {

@@ -1,13 +1,13 @@
-import style from "./section-multi-cards.module.scss";
-import { Button } from "@/shared/ui";
-import img_1 from "@/assets/images/section-multi-cards/img-2.webp";
-import { H2, Paragraph } from "@/shared/ui";
-import { usePageMainData } from "@/shared/api";
+import style from './section-multi-cards.module.scss';
+import { Button } from '@/shared/ui';
+import img_1 from '@/assets/images/section-multi-cards/img-2.webp';
+import { H2, Paragraph } from '@/shared/ui';
+import { usePageMainData } from '@/shared/api';
 
 export const SectionMultiCards = () => {
-  const { data } = usePageMainData();
+	const { data } = usePageMainData();
 
-  return (
+	return (
 		<section className={style.section}>
 			<div className={style.section__inner}>
 				<div className={style.info}>
@@ -23,7 +23,7 @@ export const SectionMultiCards = () => {
 					>
 						Get the card
 					</Button> */}
-					<H2 className={style.title}>Banking</H2>
+					<H2 className={style.title}>Our products</H2>
 					<Paragraph className={style.description}>
 						Open multi-currency fiat accounts with built-in digital asset
 						custody, proprietary on-ramp/off-ramp solution and b2b corporate

@@ -1,61 +1,80 @@
 .row {
-  .cell {
-    padding: 16px 0;
+	.cell {
+		padding: 16px 0;
 
-    &:first-child {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .title {
-      font-weight: 600;
-    }
+		&:first-child {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			flex: 1;
+		}
 
-    .date {
-      font-weight: 400;
-      color: $gray-color;
-      text-wrap: nowrap;
-      white-space: nowrap;
-    }
+		&.statusCell {
+			color: $green-color;
+			width: 100%;
+			text-align: right;
 
-    &:last-child {
-      color: $green-color;
-      width: 100%;
+			.cell__inner {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding-left: 10px;
 
-      .cell__inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-left: 10px;
+				.button {
+					transition: 0.3s all ease;
+					background: none;
+					border: none;
+					padding: 5px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
 
-        .button {
-          transition: 0.3s all ease;
+					&.active {
+						transform: rotate(180deg);
+					}
 
-          &.active {
-            transform: rotate(180deg);
-          }
+					svg {
+						stroke: $arrow-color;
+					}
+				}
+			}
+		}
 
-          svg {
-            stroke: $arrow-color;
-          }
-        }
-      }
-    }
-  }
+		.title {
+			font-weight: 600;
+			display: block;
+		}
+
+		.date {
+			font-weight: 400;
+			color: $gray-color;
+			text-wrap: nowrap;
+			white-space: nowrap;
+			display: block;
+		}
+	}
 }
 
 .row__details {
-  width: 100%;
+	width: 100%;
 
-  .cell {
-    padding: 10px 0;
+	.cell {
+		padding: 10px 0;
 
-    span {
-      display: block;
+		span {
+			display: block;
 
-      &:first-child {
-        font-weight: 600;
-      }
-    }
-  }
+			&:first-child {
+				font-weight: 600;
+				color: $gray-color;
+				font-size: 12px;
+				margin-bottom: 4px;
+			}
+
+			&:last-child {
+				font-weight: 500;
+				color: $black-color;
+			}
+		}
+	}
 }

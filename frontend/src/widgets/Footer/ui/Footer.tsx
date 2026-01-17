@@ -1,5 +1,5 @@
 import style from './Footer.module.scss';
-import { navigationData } from '../model/data';
+import { footerDescription, navigationData } from '../model/data';
 import { Link } from 'react-router-dom';
 import { useFooterData } from '@/shared/api';
 import { Fragment } from 'react/jsx-runtime';
@@ -35,7 +35,8 @@ export const Footer = () => {
 						))}
 					</div>
 				</div>
-				<p className={style.description}>{data?.description}</p>
+				<p className={style.description}>{footerDescription}</p>
+				{/* <p className={style.description}>{data?.description}</p> */}
 				<div className={style.bottom}>
 					<p className={style.bottom__description}>
 						All rights reserved @ 2025 surfbank.io

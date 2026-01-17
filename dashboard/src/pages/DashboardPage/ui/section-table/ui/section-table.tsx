@@ -1,10 +1,14 @@
-import style from "./section-table.module.scss";
-import { Table } from "@/shared/ui";
-import { Title } from "@/shared/ui";
+import style from './section-table.module.scss';
+import { Table } from '@/shared/ui';
+import { Title } from '@/shared/ui';
 
-export const SectionTable = () => (
-  <div className={style.container}>
-    <Title>History</Title>
-    <Table />
-  </div>
+interface Props {
+	currencyType: 'crypto' | 'fiat';
+}
+
+export const SectionTable = ({ currencyType }: Props) => (
+	<div className={style.container}>
+		<Title>History</Title>
+		<Table currencyType={currencyType} />
+	</div>
 );

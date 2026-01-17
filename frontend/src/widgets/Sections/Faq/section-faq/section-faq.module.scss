@@ -1,70 +1,71 @@
 .container {
-  background-image: url("@/assets/images/section-faq/bg.webp");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100vw;
-  height: 100dvh;
+	background-image: url('@/assets/images/section-faq/bg.webp');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 100vw;
+	height: 85dvh;
 
-  @media (max-width: 1024px) {
-    .section {
-      gap: 54px;
-    }
+	@media (max-width: 1024px) {
+		.section {
+			gap: 54px;
+		}
 
-    .faqTextContainer {
-      .faqText {
-        font-size: 44px;
-      }
-    }
-  }
+		.faqTextContainer {
+			.faqText {
+				font-size: 44px;
+			}
+		}
+	}
 
-  .faqTextContainer {
-    display: flex;
-    align-items: center;
-    flex: 1;
-    height: 100%;
-  }
-  .faqText {
-    font-family: "Agrandir";
-    font-weight: 800;
-    font-style: "Grand Heavy";
-    font-size: 62px;
-    line-height: 100%;
-    letter-spacing: 0%;
-  }
+	.faqTextContainer {
+		display: flex;
+		align-items: center;
+		flex: 1;
+		height: 100%;
+	}
+	.faqText {
+		font-family: 'Agrandir';
+		font-weight: 800;
+		font-style: 'Grand Heavy';
+		font-size: 62px;
+		line-height: 100%;
+		letter-spacing: 0%;
+	}
 
-  .section {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    padding-top: 200px;
-    padding-bottom: 50px;
-    gap: 174px;
+	.section {
+		display: flex;
+		justify-content: center;
+		align-items: stretch;
+		padding-top: 200px;
+		padding-bottom: 50px;
+		gap: 174px;
 
-    @include breakpoint(tablet) {
-      flex-direction: column;
-      align-items: center;
-      padding-top: 160px;
-    }
+		@include breakpoint(tablet) {
+			flex-direction: column;
+			align-items: center;
+			padding-top: 160px;
+			gap: 54px;
+		}
 
-    @include breakpoint(mobile) {
-      padding-top: 120px;
-    }
+		@include breakpoint(mobile) {
+			padding-top: 120px;
+		}
 
-    .title {
-      color: $black-color;
-      max-width: 490px;
+		.title {
+			color: $black-color;
+			max-width: 490px;
 
-      @include breakpoint(tablet) {
-        max-width: 100%;
-        text-align: center;
-      }
-    }
+			@include breakpoint(tablet) {
+				max-width: 100%;
+				text-align: center;
+			}
+		}
 
-    .faqs {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-  }
+		.faqs {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+		}
+	}
 }
