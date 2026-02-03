@@ -26,16 +26,16 @@ export const navigationData = [
 		title: 'Resources',
 		links: [
 			{
-				title: 'Documentation',
-				href: '#',
+				title: 'Risk Summary',
+				href: internalPaths.riskAppetite,
 			},
 			{
-				title: 'Knowledge  base',
-				href: '#',
+				title: 'Privacy Policy',
+				href: internalPaths.cookiesPolicy,
 			},
 			{
-				title: 'Risk Appetite',
-				href: '#',
+				title: 'Terms of Service',
+				href: internalPaths.termsOfService,
 			},
 		],
 	},
@@ -57,27 +57,6 @@ export const navigationData = [
 			{
 				title: 'FAQs',
 				href: internalPaths.faq,
-			},
-		],
-	},
-	{
-		title: 'Legal',
-		links: [
-			{
-				title: 'Risk Summary',
-				href: internalPaths.riskAppetite,
-			},
-			{
-				title: 'Knowledge Base',
-				href: internalPaths.cookiesPolicy,
-			},
-			{
-				title: 'Terms of Service',
-				href: internalPaths.termsOfService,
-			},
-			{
-				title: 'Privacy Policy',
-				href: internalPaths.privacyPolicy,
 			},
 		],
 	},

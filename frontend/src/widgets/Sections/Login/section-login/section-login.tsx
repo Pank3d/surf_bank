@@ -5,7 +5,7 @@ import img from '@/assets/images/section-login/img-1.webp';
 import img_mob from '@/assets/images/section-login/img-2.webp';
 import { Link } from 'react-router-dom';
 import { internalPaths } from '@/shared/routes/paths';
-import { useAuthLogin } from '@/api/generated'; // 👈 хук из orval
+// import { useAuthLogin } from '@/api/generated'; // 👈 хук из orval
 import type { AuthLoginModel } from '@/api/generated'; // 👈 тип модели логина
 
 export const SectionLogin = () => {
@@ -15,7 +15,7 @@ export const SectionLogin = () => {
 		code: '',
 	});
 
-	const loginMutation = useAuthLogin();
+	// const loginMutation = useAuthLogin();
 
 	const handleChange =
 		(field: keyof AuthLoginModel) =>
@@ -23,26 +23,36 @@ export const SectionLogin = () => {
 			setForm(prev => ({ ...prev, [field]: e.target.value }));
 		};
 
+	// const handleSignIn = (e: React.FormEvent) => {
+	// 	e.preventDefault();
+
+	// 	loginMutation.mutate(
+	// 		{ data: form },
+	// 		{
+	// 			onSuccess: response => {
+	// 				const { accessToken, refreshToken, userId } = response;
+	// 				localStorage.setItem('auth_token', accessToken || '');
+	// 				localStorage.setItem('refresh_token', refreshToken || '');
+	// 				localStorage.setItem('user_id', userId || '');
+	// 				const dashboardUrl = import.meta.env.VITE_DASHBOARD_URL;
+	// 				if (dashboardUrl) window.location.href = dashboardUrl;
+	// 			},
+	// 			onError: error => {
+	// 				console.error(error);
+	// 				alert('Ошибка авторизации');
+	// 			},
+	// 		}
+	// 	);
+	// };
+
 	const handleSignIn = (e: React.FormEvent) => {
 		e.preventDefault();
 
-		loginMutation.mutate(
-			{ data: form },
-			{
-				onSuccess: response => {
-					const { accessToken, refreshToken, userId } = response;
-					localStorage.setItem('auth_token', accessToken || '');
-					localStorage.setItem('refresh_token', refreshToken || '');
-					localStorage.setItem('user_id', userId || '');
-					const dashboardUrl = import.meta.env.VITE_DASHBOARD_URL;
-					if (dashboardUrl) window.location.href = dashboardUrl;
-				},
-				onError: error => {
-					console.error(error);
-					alert('Ошибка авторизации');
-				},
-			}
-		);
+		// Пропускаем запрос на сервер, сразу редиректим
+		const dashboardUrl = import.meta.env.VITE_DASHBOARD_URL;
+		if (dashboardUrl) {
+			window.location.href = dashboardUrl;
+		}
 	};
 
 	return (

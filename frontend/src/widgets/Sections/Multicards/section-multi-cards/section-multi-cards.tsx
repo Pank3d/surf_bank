@@ -11,7 +11,7 @@ export const SectionMultiCards = () => {
 		<section className={style.section}>
 			<div className={style.section__inner}>
 				<div className={style.info}>
-					{/* <H2 className={style.title}>Multi Cards</H2>
+					<H2 className={style.title}>Multi Cards</H2>
 					<Paragraph className={style.description}>
 						Simplify and accelerate the processing of payments and cross-border
 						transfers using stablecoins and cryptocurrencies
@@ -22,8 +22,8 @@ export const SectionMultiCards = () => {
 						arrow
 					>
 						Get the card
-					</Button> */}
-					<H2 className={style.title}>Banking</H2>
+					</Button>
+					{/* <H2 className={style.title}>Banking</H2>
 					<Paragraph className={style.description}>
 						Open multi-currency fiat accounts with built-in digital asset
 						custody, proprietary on-ramp/off-ramp solution and b2b corporate
@@ -35,7 +35,7 @@ export const SectionMultiCards = () => {
 						arrow
 					>
 						Book a demo
-					</Button>
+					</Button> */}
 				</div>
 				<div className={style.img}>
 					<img src={img_1} alt='' />

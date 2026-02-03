@@ -61,10 +61,6 @@ const router = createBrowserRouter([
 				element: <MultiCards />,
 			},
 			{
-				path: '/privacy-policy',
-				element: <Legal />,
-			},
-			{
 				path: '/terms-of-service',
 				element: <Legal />,
 			},
