@@ -4,7 +4,7 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	width: 100vw;
-	height: 85dvh;
+	min-height: 85dvh;
 
 	@media (max-width: 1024px) {
 		.section {

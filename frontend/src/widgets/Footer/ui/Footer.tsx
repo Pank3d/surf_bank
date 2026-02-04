@@ -17,7 +17,7 @@ export const Footer = () => {
 							Surf Bunk is a financial technology company, <br /> banking for
 							hight risk market, crypto projects and startups.
 						</p>
-						<p className={style.text}>
+						<p className={style.text}>	
 							{data?.support_time ||
 								'Support: 9:00 - 18:00 GMT +3 | Athens (Mon-Fri)'}
 						</p>

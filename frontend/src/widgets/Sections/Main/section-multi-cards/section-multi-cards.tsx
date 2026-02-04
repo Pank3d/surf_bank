@@ -1,6 +1,6 @@
 import style from './section-multi-cards.module.scss';
 import { Button } from '@/shared/ui';
-import img_1 from '@/assets/images/section-multi-cards/img-2.webp';
+import img_1 from '@/assets/images/section-banking/12.webp';
 import { H2, Paragraph } from '@/shared/ui';
 import { usePageMainData } from '@/shared/api';
 
