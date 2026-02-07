@@ -32,6 +32,17 @@ jobs:
           username: ${{ env.OWNER }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Deploy database to server
+        run: |
+          # Create database directory on server if it doesn't exist
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p /opt/database"
+
+          # Copy database only if it doesn't exist on server (to avoid overwriting existing data)
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "test -f /opt/database/data.db" || \
+            scp admin/deployment/data.db ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/opt/database/data.db
+
+          echo "Database deployment check completed"
+
       - name: Docker compose
         env:
           # DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
