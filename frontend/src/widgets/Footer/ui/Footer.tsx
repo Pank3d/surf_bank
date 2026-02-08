@@ -17,11 +17,13 @@ export const Footer = () => {
 							Surf Bunk is a financial technology company, <br /> banking for
 							hight risk market, crypto projects and startups.
 						</p>
-						<p className={style.text}>	
+						<p className={style.text}>
 							{data?.support_time ||
 								'Support: 9:00 - 18:00 GMT +3 | Athens (Mon-Fri)'}
 						</p>
-						<p className={style.text}>aka@surfbank.io</p>
+						<p className={style.text}>
+							{data?.email || 'support@surfbank.co'}
+						</p>
 					</div>
 					<div className={style.navigation}>
 						{navigationData.map(({ title, links }, index) => (
@@ -42,7 +44,7 @@ export const Footer = () => {
 				{/* <p className={style.description}>{data?.description}</p> */}
 				<div className={style.bottom}>
 					<p className={style.bottom__description}>
-						All rights reserved @ 2025 surfbank.io
+						All rights reserved @ 2025 surfbank.co
 					</p>
 					<div className={style.bottom__links}>
 						{data?.terms_privacy.map(({ title, link }, index) => (

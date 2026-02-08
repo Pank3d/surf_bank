@@ -17,6 +17,7 @@ import {
 	ForgotPassword,
 	MultiCards,
 	Legal,
+	FindOutMore,
 } from './pages';
 
 const router = createBrowserRouter([
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
 				path: '/risk-appetite',
 				element: <Legal />,
 			},
+			{
+				path: '/find-out-more',
+				element: <FindOutMore />,
+			},
 		],
 	},
 ]);
@@ -81,5 +86,5 @@ createRoot(document.getElementById('root')!).render(
 		<TanstackQueryClientProvider>
 			<RouterProvider router={router} />
 		</TanstackQueryClientProvider>
-	</StrictMode>
+	</StrictMode>,
 );

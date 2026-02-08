@@ -11,4 +11,5 @@ export const internalPaths = {
 	riskAppetite: '/risk-appetite',
 	termsOfService: '/terms-of-service',
 	comingSoon: '/multi-cards',
+	findOutMore: '/find-out-more',
 };

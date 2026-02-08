@@ -35,3 +35,5 @@ export { SectionMultiCards as SectionMultiCardsPage } from './Multicards/section
 export { SectionLetsConnect as SectionMultiCardsLetsConnectPage } from './Multicards/section-lets-connect/section-lets-connect';
 // LEGAL
 export { SectionLegal } from './Legal/section-legal/section-legal';
+// FIND OUT MORE
+export { SectionFindOutMore } from './FindOutMore/section-find-out-more/section-find-out-more';
