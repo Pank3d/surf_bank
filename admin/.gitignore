@@ -71,6 +71,9 @@ $RECYCLE.BIN/
 *.sqlite
 *.sqlite3
 
+# Allow deployment database
+!deployment/*.db
+
 
 ############################
 # Misc.
