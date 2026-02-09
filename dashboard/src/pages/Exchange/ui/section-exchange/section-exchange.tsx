@@ -42,12 +42,6 @@ export const SectionExchange = ({ onClick }: Props) => (
  processing"
         color="orange"
       />
-      <Notification
-        description="Please note that currency exchange rates may fluctuate, and the final
- amount may vary based on the current market rates at the time of
- processing"
-        color="orange"
-      />
     </div>
   </div>
 );

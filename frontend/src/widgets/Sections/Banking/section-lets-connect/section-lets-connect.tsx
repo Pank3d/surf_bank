@@ -7,7 +7,7 @@ interface Props {
 }
 
 const description = [
-	'Surf Bank - collects and processes your personal data (names. email address and other data, depending on the information entered). provided through this form to manage your request.',
+	'Surf Bank - collects and processes your personal data (names. email address and other data, depending on the information entered) provided through this form to manage your request.',
 ];
 
 export const SectionLetsConnect = ({ className }: Props) => (

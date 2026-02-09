@@ -9,11 +9,11 @@ export const SectionNotifications = () => (
   account you will need to enter a 6-digit code."
       buttonText="Enable"
     />
-    <Notification
+    {/* <Notification
       description="Please complete the sign-up process by passing a KYC/KYB check to
 gain access to all Delos Banking services."
       color="orange"
       buttonText="Continue"
-    />
+    /> */}
   </div>
 );

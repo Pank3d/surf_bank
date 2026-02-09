@@ -1,8 +1,8 @@
-import { Button, Select } from '@/shared/ui';
+import { Button, Select, Input, Textarea } from '@/shared/ui';
 import { useSendContactEmail } from '@/shared/api';
 import clsx from 'clsx';
 import style from './FindOutMoreForm.module.scss';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 interface Props {
 	className?: string;
@@ -20,7 +20,15 @@ const VOLUME_OPTIONS = [
 	'Over 5 000 001 EUR',
 ];
 
-const REGION_OPTIONS = ['US', 'Canada', 'EU', 'APAC', 'LAC'];
+const REGION_OPTIONS = [
+	'US',
+	'Canada',
+	'EU',
+	'Middle East',
+	'Africa',
+	'APAC',
+	'LAC',
+];
 
 const INDUSTRY_OPTIONS = [
 	'Precious Metals & Jewelry',
@@ -61,15 +69,49 @@ export const FindOutMoreForm = ({
 	const [formData, setFormData] = useState({
 		expectedVolume: '',
 		region: '',
-		phone: '',
+		name: '',
 		industry: '',
 		companyAge: '',
 		email: '',
+		message: '',
 	});
 	const [isChecked, setIsChecked] = useState(false);
 	const [activeSelect, setActiveSelect] = useState<string | null>(null);
+	const modalRef = useRef<HTMLDivElement>(null);
 
 	const sendContactEmail = useSendContactEmail();
+
+	// Закрытие модалки при клике вне ее области
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				modalRef.current &&
+				!modalRef.current.contains(event.target as Node)
+			) {
+				setActiveSelect(null);
+			}
+		};
+
+		// Закрытие модалки по нажатию ESC
+		const handleEscapeKey = (event: KeyboardEvent) => {
+			if (event.key === 'Escape') {
+				setActiveSelect(null);
+			}
+		};
+
+		if (activeSelect) {
+			document.addEventListener('mousedown', handleClickOutside);
+			document.addEventListener('keydown', handleEscapeKey);
+			// Запрещаем скролл страницы при открытой модалке
+			document.body.style.overflow = 'hidden';
+		}
+
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+			document.removeEventListener('keydown', handleEscapeKey);
+			document.body.style.overflow = 'unset';
+		};
+	}, [activeSelect]);
 
 	const validateEmail = (email: string) => {
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -80,10 +122,11 @@ export const FindOutMoreForm = ({
 		return (
 			formData.expectedVolume.trim() !== '' &&
 			formData.region.trim() !== '' &&
-			formData.phone.trim() !== '' &&
+			formData.name.trim() !== '' &&
 			formData.industry.trim() !== '' &&
 			formData.companyAge.trim() !== '' &&
 			formData.email.trim() !== '' &&
+			formData.message.trim() !== '' &&
 			validateEmail(formData.email) &&
 			isChecked
 		);
@@ -98,20 +141,8 @@ export const FindOutMoreForm = ({
 		setActiveSelect(selectName);
 	};
 
-	const handleEmailClick = () => {
-		const email = prompt('Please enter your email:');
-		if (email && validateEmail(email)) {
-			setFormData(prev => ({ ...prev, email }));
-		} else if (email) {
-			alert('Please enter a valid email address');
-		}
-	};
-
-	const handlePhoneClick = () => {
-		const phone = prompt('Please enter your phone number (with country code):');
-		if (phone) {
-			setFormData(prev => ({ ...prev, phone }));
-		}
+	const handleCloseModal = () => {
+		setActiveSelect(null);
 	};
 
 	const handleSubmit = async () => {
@@ -125,8 +156,8 @@ export const FindOutMoreForm = ({
 			return;
 		}
 
-		if (!formData.phone.trim()) {
-			alert('Phone is required');
+		if (!formData.name.trim()) {
+			alert('Name is required');
 			return;
 		}
 
@@ -145,6 +176,11 @@ export const FindOutMoreForm = ({
 			return;
 		}
 
+		if (!formData.message.trim()) {
+			alert('Message is required');
+			return;
+		}
+
 		if (!validateEmail(formData.email)) {
 			alert('Please enter a valid email address');
 			return;
@@ -152,16 +188,19 @@ export const FindOutMoreForm = ({
 
 		try {
 			const result = await sendContactEmail.mutateAsync({
-				name: 'N/A',
+				name: formData.name.trim(),
 				email: formData.email.trim(),
 				company: 'N/A',
-				phone: formData.phone.trim(),
+				phone: 'N/A',
 				message: `Company Information:
 Expected Monthly Crypto Payment Volume: ${formData.expectedVolume}
 Region: ${formData.region}
+Name: ${formData.name}
 Industry: ${formData.industry}
 Company Incorporation Period: ${formData.companyAge}
-Email: ${formData.email}`,
+Email: ${formData.email}
+
+Message: ${formData.message}`,
 			});
 
 			if (result.success) {
@@ -169,10 +208,11 @@ Email: ${formData.email}`,
 				setFormData({
 					expectedVolume: '',
 					region: '',
-					phone: '',
+					name: '',
 					industry: '',
 					companyAge: '',
 					email: '',
+					message: '',
 				});
 				setIsChecked(false);
 				onSubmit?.();
@@ -203,7 +243,24 @@ Email: ${formData.email}`,
 
 		return (
 			<div className={style.optionsModal}>
-				<div className={style.optionsContent}>
+				<div className={style.optionsContent} ref={modalRef}>
+					{/* Кнопка закрытия */}
+					<button
+						className={style.closeIconButton}
+						onClick={handleCloseModal}
+						aria-label='Close modal'
+					>
+						<svg
+							className={style.closeIcon}
+							viewBox='0 0 24 24'
+							fill='none'
+							stroke='currentColor'
+							strokeWidth='2'
+						>
+							<path d='M18 6L6 18M6 6l12 12' />
+						</svg>
+					</button>
+
 					<h3 className={style.optionsTitle}>
 						{activeSelect === 'expectedVolume' && 'Select Payment Volume'}
 						{activeSelect === 'region' && 'Select Region'}
@@ -221,10 +278,7 @@ Email: ${formData.email}`,
 							</button>
 						))}
 					</div>
-					<button
-						className={style.closeButton}
-						onClick={() => setActiveSelect(null)}
-					>
+					<button className={style.closeButton} onClick={handleCloseModal}>
 						Cancel
 					</button>
 				</div>
@@ -253,11 +307,6 @@ Email: ${formData.email}`,
 						placeholder={formData.region || 'Region'}
 						onClick={() => handleSelectClick('region')}
 					/>
-					<Select
-						className={style.select}
-						placeholder={formData.phone || 'Phone'}
-						onClick={handlePhoneClick}
-					/>
 				</div>
 
 				{/* Правый столбец */}
@@ -275,12 +324,45 @@ Email: ${formData.email}`,
 						}
 						onClick={() => handleSelectClick('companyAge')}
 					/>
-					<Select
-						className={style.select}
-						placeholder={formData.email || 'Email'}
-						onClick={handleEmailClick}
+				</div>
+			</div>
+
+			{/* Разделитель */}
+			<div className={style.divider} />
+
+			{/* Поля для ввода */}
+			<div className={style.inputsSection}>
+				<div className={style.inputsRow}>
+					<Input
+						placeholder='Name*'
+						value={formData.name}
+						onChange={e =>
+							setFormData(prev => ({ ...prev, name: e.target.value }))
+						}
+						required
+						className={style.input}
+					/>
+					<Input
+						placeholder='Email*'
+						type='email'
+						value={formData.email}
+						onChange={e =>
+							setFormData(prev => ({ ...prev, email: e.target.value }))
+						}
+						required
+						className={style.input}
 					/>
 				</div>
+
+				<Textarea
+					className={style.textarea}
+					placeholder='Message*'
+					value={formData.message}
+					onChange={e =>
+						setFormData(prev => ({ ...prev, message: e.target.value }))
+					}
+					required
+				/>
 			</div>
 
 			{/* Модальное окно с опциями */}
@@ -302,7 +384,7 @@ Email: ${formData.email}`,
 							id='terms-checkbox'
 						/>
 						<label htmlFor='terms-checkbox' className={style.checkboxLabel}>
-							I have read and agree to the terms above
+							I have read and agree to the Privacy Policy
 						</label>
 					</div>
 				</div>

@@ -1,8 +1,8 @@
 import style from './Footer.module.scss';
 import { footerDescription, navigationData } from '../model/data';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useFooterData } from '@/shared/api';
-import { Fragment } from 'react/jsx-runtime';
+// import { Fragment } from 'react/jsx-runtime';
 
 export const Footer = () => {
 	const { data } = useFooterData();
@@ -46,7 +46,7 @@ export const Footer = () => {
 					<p className={style.bottom__description}>
 						All rights reserved @ 2025 surfbank.co
 					</p>
-					<div className={style.bottom__links}>
+					{/* <div className={style.bottom__links}>
 						{data?.terms_privacy.map(({ title, link }, index) => (
 							<Fragment key={index}>
 								<Link className={style.link} to={link}>
@@ -57,7 +57,7 @@ export const Footer = () => {
 								)}
 							</Fragment>
 						))}
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</footer>
