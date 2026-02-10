@@ -25,9 +25,8 @@ export const SectionMultiCards = () => {
 					</Button> */}
 					<H2 className={style.title}>Our products</H2>
 					<Paragraph className={style.description}>
-						Open multi-currency fiat accounts with built-in digital asset
-						custody, proprietary on-ramp/off-ramp solution and b2b corporate
-						payments ecosystem.
+						Surf Bank provides settlement banking products that solve transfer
+						payment issues requiring crypto friendly solutions.
 					</Paragraph>
 					<Button
 						href={data?.multicards_button_link}

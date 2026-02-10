@@ -37,3 +37,9 @@ export { SectionLetsConnect as SectionMultiCardsLetsConnectPage } from './Multic
 export { SectionLegal } from './Legal/section-legal/section-legal';
 // FIND OUT MORE
 export { SectionFindOutMore } from './FindOutMore/section-find-out-more/section-find-out-more';
+// YIELD
+export { SectionYield } from './Yield/section-yield/section-yield';
+export { SectionLetsConnect as SectionYieldLetsConnect } from './Yield/section-lets-connect/section-lets-connect';
+// OTC
+export { SectionOTC } from './OTC/section-otc/section-otc';
+export { SectionLetsConnect as SectionOTCLetsConnect } from './OTC/section-lets-connect/section-lets-connect';

@@ -22,10 +22,10 @@ export const Header = () => {
 					</li>
 					<li className={style.menu__mobile_list_item}>Card issuance</li>
 					<li className={style.menu__mobile_list_item}>
-						<Link to={internalPaths.comingSoon}>Yield</Link>
+						<Link to={internalPaths.yield}>Yield</Link>
 					</li>
 					<li className={style.menu__mobile_list_item}>
-						<Link to={internalPaths.comingSoon}>OTC deals</Link>
+						<Link to={internalPaths.otc}>OTC deals</Link>
 					</li>
 					<li className={style.menu__mobile_list_item}>
 						<Link to={internalPaths.aboutUs}>About Us</Link>
@@ -66,7 +66,7 @@ export const Header = () => {
 						<li>
 							<Link
 								className={style.navigation__list_item}
-								to={internalPaths.comingSoon}
+								to={internalPaths.yield}
 							>
 								Yield
 							</Link>
@@ -74,7 +74,7 @@ export const Header = () => {
 						<li>
 							<Link
 								className={style.navigation__list_item}
-								to={internalPaths.comingSoon}
+								to={internalPaths.otc}
 							>
 								OTC deals
 							</Link>

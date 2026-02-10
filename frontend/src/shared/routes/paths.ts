@@ -12,4 +12,6 @@ export const internalPaths = {
 	termsOfService: '/terms-of-service',
 	comingSoon: '/multi-cards',
 	findOutMore: '/find-out-more',
+	otc: '/otc',
+	yield: '/yield',
 };

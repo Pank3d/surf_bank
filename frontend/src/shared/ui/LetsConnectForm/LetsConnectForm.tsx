@@ -162,7 +162,7 @@ export const LetsConnectForm = ({
 							id='terms-checkbox'
 						/>
 						<label htmlFor='terms-checkbox' className={style.checkboxLabel}>
-							I have read and agree to the terms above
+							I have read and agree to the Privacy Policy
 						</label>
 					</div>
 				</div>

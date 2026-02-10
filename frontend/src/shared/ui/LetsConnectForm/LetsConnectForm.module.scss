@@ -21,6 +21,7 @@
 	justify-content: center;
 	gap: 1rem;
 	width: 100%;
+	font-family: "Agrandir", sans-serif;
 
 	@media (max-width: 768px) {
 		flex-direction: column;
@@ -31,6 +32,8 @@
 	min-height: 120px;
 	resize: vertical;
 	width: 100%;
+	font-size:13.5px;
+	font-family: "Agrandir", sans-serif;
 }
 
 .description {

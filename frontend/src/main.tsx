@@ -18,6 +18,8 @@ import {
 	MultiCards,
 	Legal,
 	FindOutMore,
+	OTC,
+	Yield,
 } from './pages';
 
 const router = createBrowserRouter([
@@ -72,6 +74,18 @@ const router = createBrowserRouter([
 			{
 				path: '/risk-appetite',
 				element: <Legal />,
+			},
+			{
+				path: '/find-out-more',
+				element: <FindOutMore />,
+			},
+			{
+				path: '/otc',
+				element: <OTC />,
+			},
+			{
+				path: '/yield',
+				element: <Yield />,
 			},
 			{
 				path: '/find-out-more',

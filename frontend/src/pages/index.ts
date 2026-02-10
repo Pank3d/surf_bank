@@ -10,3 +10,5 @@ export { ForgotPassword } from './ForgotPassword';
 export { MultiCards } from './MultiCards';
 export { Legal } from './Legal';
 export { FindOutMore } from './FindOutMore';
+export { OTC } from './OTC';
+export { Yield } from './Yield';
