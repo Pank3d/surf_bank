@@ -9,16 +9,16 @@ export const navigationData = [
 				href: internalPaths.banking,
 			},
 			{
-				title: 'Card issuing',
-				href: '#',
+				title: 'Cards',
+				href: internalPaths.comingSoon,
 			},
 			{
 				title: 'Yield',
-				href: internalPaths.comingSoon,
+				href: internalPaths.yield,
 			},
 			{
-				title: 'OTC trading',
-				href: internalPaths.comingSoon,
+				title: 'OTC deals',
+				href: internalPaths.otc,
 			},
 		],
 	},
@@ -44,7 +44,7 @@ export const navigationData = [
 		links: [
 			{
 				title: 'Pricing',
-				href: '#',
+				href: internalPaths.findOutMore,
 			},
 			{
 				title: 'About us',

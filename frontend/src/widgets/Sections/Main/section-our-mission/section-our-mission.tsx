@@ -13,7 +13,7 @@ export const SectionOurMission = () => {
           <H2 className={style.title}>Our mission</H2>
           <Paragraph className={style.description}>
             Simplify and accelerate the processing of payments and cross-border
-            transfers using stablecoins and cryptocurrencies
+            transfers using stablecoins and cryptocurrencies.
           </Paragraph>
           <Button
             href={data?.our_mission_button_link}

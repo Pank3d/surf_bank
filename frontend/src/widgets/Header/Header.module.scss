@@ -159,6 +159,9 @@
 				.navigation__list_item {
 					font-size: 14px;
 					color: $gray-color;
+					 &:hover {
+            color: $black-color;
+          }
 				}
 			}
 		}

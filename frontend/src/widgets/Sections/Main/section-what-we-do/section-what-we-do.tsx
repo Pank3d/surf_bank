@@ -11,7 +11,7 @@ export const SectionWhatWeDo = () => (
       <H2>What we do?</H2>
       <Paragraph className={style.description}>
         We're opening a settlement accounts, support corporate cards and OTC
-        deals
+        deals.
       </Paragraph>
     </div>
     <div className={style.img}>

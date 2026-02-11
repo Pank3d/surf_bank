@@ -33,7 +33,7 @@ export const SectionHero = () => {
 					<span className={style.title__color}>freedom</span>
 				</h1>
 				<p className={style.description}>
-					Corporate banking for hight-risk market, crypto projects and startups
+					Corporate banking for hight-risk market, crypto projects and startups.
 				</p>
 				<ButtonColorize href={data?.hero_button_link}>
 					Let`s talk

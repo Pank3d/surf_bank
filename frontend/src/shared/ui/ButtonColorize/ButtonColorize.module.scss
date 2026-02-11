@@ -4,7 +4,12 @@
   padding: 20px 32px;
   position: relative;
   width: fit-content;
+  cursor: pointer;
+  &:hover{
+     cursor: pointer;
+  }
 }
+
 
 .button::before {
   content: "";
