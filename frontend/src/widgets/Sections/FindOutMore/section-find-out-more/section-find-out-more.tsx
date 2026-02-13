@@ -17,7 +17,7 @@ export const SectionFindOutMore = ({ className }: Props) => {
 		<div className={clsx(style.container, className)}>
 			<Section className={style.section}>
 				<p className={style.text}>
-					To learn more about our. Surf Bank please feel free to contact us. We
+					To learn more about our Surf Bank please feel free to contact us. We
 					are always open to exploring new collaborations that deliver
 					meaningful value for our customers and business partners.
 				</p>

@@ -11,8 +11,8 @@ export interface LegalPage {
 
 export const legalPagesData: LegalPage[] = [
 	{
-		id: 'cookies-policy',
-		title: 'Cookies Policy',
+		id: 'privacy-policy',
+		title: 'Privacy policy',
 		date: '22.12.2025',
 		sections: [
 			{ id: 'introduction', title: 'Introduction' },

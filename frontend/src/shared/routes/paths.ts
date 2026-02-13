@@ -7,7 +7,7 @@ export const internalPaths = {
 	forgotPassword: '/forgot-password',
 	aboutUs: '/about-us',
 	banking: '/banking',
-	cookiesPolicy: '/cookies-policy',
+	cookiesPolicy: '/privacy-policy',
 	riskAppetite: '/risk-appetite',
 	termsOfService: '/terms-of-service',
 	comingSoon: '/multi-cards',
