@@ -39,6 +39,8 @@
 
     .value {
       color: $gray-color-3;
+      font-family: "Agrandir", sans-serif;
+      font-size: 13.5px;
       
       &.valueSelected {
         color: #000;
@@ -50,4 +52,11 @@
     transform: rotate(-90deg);
     transition: transform 0.2s ease;
   }
+}
+
+// Если нужно, чтобы текст внутри селекта (placeholder) выглядел как placeholder
+.placeholder {
+  color: #999;
+  font-family: "Agrandir", sans-serif;
+  font-size: 13.5px;
 }

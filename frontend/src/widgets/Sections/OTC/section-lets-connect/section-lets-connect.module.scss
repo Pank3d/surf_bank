@@ -64,3 +64,25 @@
     }
   }
 }
+input::placeholder,
+textarea::placeholder {
+  font-family: "Agrandir", sans-serif;
+  font-size: 13.5px;
+  color: #999; /* или любой другой цвет, который вы используете */
+  opacity: 1; /* Для Firefox */
+}
+
+/* Для лучшей кроссбраузерности */
+::-webkit-input-placeholder {
+  font-family: "Agrandir", sans-serif;
+  font-size: 13.5px;
+}
+::-moz-placeholder {
+  font-family: "Agrandir", sans-serif;
+  font-size: 13.5px;
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  font-family: "Agrandir", sans-serif;
+  font-size: 13.5px;
+}

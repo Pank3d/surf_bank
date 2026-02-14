@@ -14,8 +14,12 @@
 	margin: 0;
 	color: #333;
 	width: 100%;
+	padding-top: 10px;
 }
 
+.form_container{
+	width:100%;
+}
 .columnsContainer {
 	display: flex;
 	width: 100%;
@@ -68,12 +72,71 @@
 
 .input {
 	width: 100%;
+	
+	// Стили для placeholder
+	&::placeholder {
+		font-family: "Agrandir", sans-serif;
+		font-size: 13.5px;
+		color: #999;
+		opacity: 1;
+	}
 }
 
 .textarea {
 	min-height: 120px;
 	resize: vertical;
 	width: 100%;
+	
+	// Стили для placeholder
+	&::placeholder {
+		font-family: "Agrandir", sans-serif;
+		font-size: 13.5px;
+		color: #999;
+		opacity: 1;
+	}
+}
+
+// Стили для placeholder в select (если они используются)
+.select {
+	:global {
+		input::placeholder {
+			font-family: "Agrandir", sans-serif;
+			font-size: 13.5px;
+			color: #999;
+			opacity: 1;
+		}
+	}
+}
+
+// Кроссбраузерные стили для placeholder
+:global {
+	::-webkit-input-placeholder {
+		font-family: "Agrandir", sans-serif;
+		font-size: 13.5px;
+		color: #999;
+		opacity: 1;
+	}
+	
+	::-moz-placeholder {
+		font-family: "Agrandir", sans-serif;
+		font-size: 13.5px;
+		color: #999;
+		opacity: 1;
+	}
+	
+	:-ms-input-placeholder {
+		font-family: "Agrandir", sans-serif;
+		font-size: 13.5px;
+		color: #999;
+		opacity: 1;
+	}
+	
+	::placeholder {
+		font-family: "Agrandir", sans-serif;
+		font-size: 13.5px;
+		color: #999;
+		opacity: 1;
+	}
 }
 
 .descContrainer {

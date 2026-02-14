@@ -64,3 +64,19 @@
     }
   }
 }
+.video {
+	   max-width: 672px;
+      height: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  
+	
+	.videoElement {
+		width: 100%;
+		height: auto;
+		max-width: 100%;
+		object-fit: cover;
+		border-radius: 8px; // если нужны скругленные углы, как у изображения
+	}
+}

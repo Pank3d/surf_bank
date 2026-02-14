@@ -290,81 +290,78 @@ Message: ${formData.message}`,
 		<div className={clsx(style.form, className)}>
 			{/* Заголовок формы */}
 			<h2 className={style.formTitle}>Company information</h2>
+			<div className={style.form_container}>
+				<div className={style.columnsContainer}>
+					{/* Левый столбец */}
+					<div className={style.column}>
+						<Select
+							className={style.select}
+							placeholder={
+								formData.expectedVolume || 'Expected monthly payment volume'
+							}
+							onClick={() => handleSelectClick('expectedVolume')}
+							hasValue={!!formData.expectedVolume}
+						/>
+						<Select
+							className={style.select}
+							placeholder={formData.region || 'Region'}
+							onClick={() => handleSelectClick('region')}
+							hasValue={!!formData.region}
+						/>
+					</div>
 
-			<div className={style.columnsContainer}>
-				{/* Левый столбец */}
-				<div className={style.column}>
-					<Select
-						className={style.select}
-						placeholder={
-							formData.expectedVolume ||
-							'Expected monthly crypto payment volume'
-						}
-						onClick={() => handleSelectClick('expectedVolume')}
-					/>
-					<Select
-						className={style.select}
-						placeholder={formData.region || 'Region'}
-						onClick={() => handleSelectClick('region')}
-					/>
+					{/* Правый столбец */}
+					<div className={style.column}>
+						<Select
+							className={style.select}
+							placeholder={formData.industry || 'Industry'}
+							onClick={() => handleSelectClick('industry')}
+							hasValue={!!formData.industry}
+						/>
+						<Select
+							className={style.select}
+							placeholder={formData.companyAge || 'How long has your company?'}
+							onClick={() => handleSelectClick('companyAge')}
+							hasValue={!!formData.companyAge}
+						/>
+					</div>
 				</div>
 
-				{/* Правый столбец */}
-				<div className={style.column}>
-					<Select
-						className={style.select}
-						placeholder={formData.industry || 'Industry'}
-						onClick={() => handleSelectClick('industry')}
-					/>
-					<Select
-						className={style.select}
-						placeholder={
-							formData.companyAge ||
-							'How long has your company been incorporated?'
+				{/* Поля для ввода */}
+				<div className={style.inputsSection}>
+					<div className={style.inputsRow}>
+						<Input
+							placeholder='Name*'
+							value={formData.name}
+							onChange={e =>
+								setFormData(prev => ({ ...prev, name: e.target.value }))
+							}
+							required
+							className={style.input}
+						/>
+						<Input
+							placeholder='Email*'
+							type='email'
+							value={formData.email}
+							onChange={e =>
+								setFormData(prev => ({ ...prev, email: e.target.value }))
+							}
+							required
+							className={style.input}
+						/>
+					</div>
+
+					<Textarea
+						className={style.textarea}
+						placeholder='Message*'
+						value={formData.message}
+						onChange={e =>
+							setFormData(prev => ({ ...prev, message: e.target.value }))
 						}
-						onClick={() => handleSelectClick('companyAge')}
+						required
 					/>
 				</div>
 			</div>
-
-			{/* Разделитель */}
-			<div className={style.divider} />
-
-			{/* Поля для ввода */}
-			<div className={style.inputsSection}>
-				<div className={style.inputsRow}>
-					<Input
-						placeholder='Name*'
-						value={formData.name}
-						onChange={e =>
-							setFormData(prev => ({ ...prev, name: e.target.value }))
-						}
-						required
-						className={style.input}
-					/>
-					<Input
-						placeholder='Email*'
-						type='email'
-						value={formData.email}
-						onChange={e =>
-							setFormData(prev => ({ ...prev, email: e.target.value }))
-						}
-						required
-						className={style.input}
-					/>
-				</div>
-
-				<Textarea
-					className={style.textarea}
-					placeholder='Message*'
-					value={formData.message}
-					onChange={e =>
-						setFormData(prev => ({ ...prev, message: e.target.value }))
-					}
-					required
-				/>
-			</div>
-
 			{/* Модальное окно с опциями */}
 			{renderOptionsModal()}
 

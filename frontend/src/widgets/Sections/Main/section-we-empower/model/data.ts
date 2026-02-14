@@ -1,22 +1,21 @@
 export const cardData = [
-  {
-    title: "Financial",
-    description:
-      "Simplify and accelerate the processing of payments and cross-border transfers using stablecoins and cryptocurrencies",
-  },
-  {
-    title: "IGaming",
-    description:
-      "Simplify and accelerate the processing of payments and cross-border transfers using stablecoins and cryptocurrencies",
-  },
-  {
-    title: "E-retail",
-    description:
-      "Simplify and accelerate the processing of payments and cross-border transfers using stablecoins and cryptocurrencies",
-  },
-  {
-    title: "Digital",
-    description:
-      "Simplify and accelerate the processing of payments and cross-border transfers using stablecoins and cryptocurrencies",
-  },
+	{
+		title: 'Financial',
+		description:
+			'Customizable Streamlined options for CFD and Fintech companies.',
+	},
+	{
+		title: 'Off-shore',
+		description:
+			'integrate digital Financial solution and flexible tools into your Off-shore rails.',
+	},
+	{
+		title: 'Crypto',
+		description:
+			'Cross-border Сryptocurrency infrastructure for secure transfers.',
+	},
+	{
+		title: 'E-commerce',
+		description: 'Advanced capabilities for seamless corporate Banking.',
+	},
 ] as const;

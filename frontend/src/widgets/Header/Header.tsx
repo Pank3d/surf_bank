@@ -20,7 +20,7 @@ export const Header = () => {
 					<li className={style.menu__mobile_list_item}>
 						<Link to={internalPaths.banking}>Banking</Link>
 					</li>
-					<li className={style.menu__mobile_list_item}>Card issuance</li>
+					<li className={style.menu__mobile_list_item}>Cards</li>
 					<li className={style.menu__mobile_list_item}>
 						<Link to={internalPaths.yield}>Yield</Link>
 					</li>
@@ -60,7 +60,7 @@ export const Header = () => {
 								className={style.navigation__list_item}
 								to={internalPaths.comingSoon}
 							>
-								Card issuance
+								Cards
 							</Link>
 						</li>
 						<li>

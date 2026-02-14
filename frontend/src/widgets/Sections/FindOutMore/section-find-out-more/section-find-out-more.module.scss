@@ -12,6 +12,9 @@
 	text-align: center;
 	font-size:16px;
 	width:600px;
+      @include breakpoint(mobile) {
+      width: 100%;
+      }
 }
 
   @include breakpoint(tablet) {
@@ -72,3 +75,5 @@
     }
   }
 }
+
+

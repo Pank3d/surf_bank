@@ -7,11 +7,18 @@ interface Props {
 	placeholder: string;
 	label?: string;
 	onClick?: () => void;
+	hasValue?: boolean; // Добавляем проп для определения, выбрано ли значение
 }
 
-export const Select = ({ className, placeholder, label, onClick }: Props) => (
+export const Select = ({
+	className,
+	placeholder,
+	label,
+	onClick,
+	hasValue,
+}: Props) => (
 	<div
-		className={clsx(style.select, className)}
+		className={clsx(style.select, className, { [style.hasValue]: hasValue })}
 		onClick={onClick}
 		role='button'
 		tabIndex={0}
@@ -23,8 +30,10 @@ export const Select = ({ className, placeholder, label, onClick }: Props) => (
 		}}
 	>
 		<div className={style.info}>
-			<span className={style.label}>{label}</span>
-			<span className={style.value}>{placeholder}</span>
+			{label && <span className={style.label}>{label}</span>}
+			<span className={clsx(style.value, { [style.placeholder]: !hasValue })}>
+				{placeholder}
+			</span>
 		</div>
 		<img className={style.arrow} src={arrow} alt='' />
 	</div>
