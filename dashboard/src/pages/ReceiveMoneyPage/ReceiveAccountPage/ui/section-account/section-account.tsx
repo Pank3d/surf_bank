@@ -1,9 +1,9 @@
-import { StepsButtons } from "@/widgets";
-import { СurrencyCard } from "@/shared/ui";
-import { internalPath } from "@/shared/routes/routes";
-import euro from "@/assets/euro-black.svg";
-import style from "./section-account.module.scss";
-import { Link } from "react-router-dom";
+import { StepsButtons } from '@/widgets';
+import { СurrencyCard } from '@/shared/ui';
+import { internalPath } from '@/shared/routes/routes';
+import euro from '@/assets/euro-black.svg';
+import style from './section-account.module.scss';
+import { Link } from 'react-router-dom';
 
 export const SectionAccount = () => (
 	<>
@@ -20,7 +20,7 @@ export const SectionAccount = () => (
 				<p className={style.description}>
 					Please contact
 					<Link to='' className={style.link}>
-						help@surfbank.co
+						support@surfbank.co
 					</Link>
 					or your dedicated Customer Success manager
 				</p>

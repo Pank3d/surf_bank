@@ -13,7 +13,7 @@ export const SectionAbout = () => {
 					<H2 className={style.title}>About Us</H2>
 					<Paragraph className={style.description}>
 						{data?.description ||
-							'Surf Bank provides high-performance settlement accounts by a Tier-1, a corporate payments platform and fintech infrastructure that bridging fiat and digital assets.'}
+							'Surf Bank delivers fast, enterprisegrade settlement accounts and crypto wallets backed by leading infrastructural banks, together with advanced tech facilities that connects fiat currencies with digital assets.'}
 					</Paragraph>
 					<Button href={data?.hero_button_link} className={style.button} arrow>
 						Learn more

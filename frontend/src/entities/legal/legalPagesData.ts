@@ -141,7 +141,7 @@ export const legalPagesData: LegalPage[] = [
 		],
 		content: `
 		<h2 id="introduction">Introduction</h2>
-		<p>Welcome to Surf Bank LTD ("Surf Bank", "we", "us", or "our"). These Terms of Service (the "Terms") govern your access to and use of the website located at www.surfbank.co (the "Website") and any services, platforms, products, or interfaces made available through the Website from time to time (collectively, the "Service").</p>
+		<p>Welcome to Surf Platform LTD ("Surf Bank", "we", "us", or "our"). These Terms of Service (the "Terms") govern your access to and use of the website located at www.surfbank.co (the "Website") and any services, platforms, products, or interfaces made available through the Website from time to time (collectively, the "Service").</p>
 		<p>These Terms should be read together with our Privacy Policy and Cookies Policy, which explain how we process personal data and use cookies and similar technologies.</p>
 		<p>By accessing or using the Website or the Services, you confirm that you have read, understood, and agree to be bound by these Terms.</p>
 
@@ -250,9 +250,9 @@ export const legalPagesData: LegalPage[] = [
 		<p>These Terms, together with any documents expressly incorporated by reference, constitute the entire agreement between you and Surf Bank regarding the Website.</p>
 
 		<h2 id="contact">Contact Us</h2>
-		<p>For questions relating to these Terms or the Service, please contact us at: <a href="mailto:help@surfbank.co">help@surfbank.co</a>.</p>
-		<p>Surf Bank LTD 205 5 Ave SW, Hong Kong, AB T2P 3L6, Email: 
-info@surfbank.co | <a href="mailto:help@surfbank.co">help@surfbank.co</a>.</p>
+		<p>For questions relating to these Terms or the Service, please contact us at: <a href="mailto:support@surfbank.co">support@surfbank.co</a>.</p>
+		<p>Surf Platform LTD Unit G15, Tin Hau Apple Solo, 14 Kings Roar, Hong Kong, Email: 
+info@surfbank.co | <a href="mailto:support@surfbank.co">support@surfbank.co</a>.</p>
 	`,
 	},
 	{

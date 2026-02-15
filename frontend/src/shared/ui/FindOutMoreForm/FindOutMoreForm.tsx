@@ -77,6 +77,7 @@ export const FindOutMoreForm = ({
 	});
 	const [isChecked, setIsChecked] = useState(false);
 	const [activeSelect, setActiveSelect] = useState<string | null>(null);
+	const [errorMessage, setErrorMessage] = useState<string | null>(null); // состояние для ошибки
 	const modalRef = useRef<HTMLDivElement>(null);
 
 	const sendContactEmail = useSendContactEmail();
@@ -118,27 +119,55 @@ export const FindOutMoreForm = ({
 		return emailRegex.test(email);
 	};
 
-	const isFormValid = () => {
-		return (
-			formData.expectedVolume.trim() !== '' &&
-			formData.region.trim() !== '' &&
-			formData.name.trim() !== '' &&
-			formData.industry.trim() !== '' &&
-			formData.companyAge.trim() !== '' &&
-			formData.email.trim() !== '' &&
-			formData.message.trim() !== '' &&
-			validateEmail(formData.email) &&
-			isChecked
-		);
+	const validateForm = (): string | null => {
+		if (!formData.expectedVolume.trim()) {
+			return 'Expected monthly crypto payment volume is required';
+		}
+
+		if (!formData.region.trim()) {
+			return 'Region is required';
+		}
+
+		if (!formData.name.trim()) {
+			return 'Name is required';
+		}
+
+		if (!formData.industry.trim()) {
+			return 'Industry is required';
+		}
+
+		if (!formData.companyAge.trim()) {
+			return 'Company incorporation period is required';
+		}
+
+		if (!formData.email.trim()) {
+			return 'Email is required';
+		}
+
+		if (!validateEmail(formData.email)) {
+			return 'Please enter a valid email address';
+		}
+
+		if (!formData.message.trim()) {
+			return 'Message is required';
+		}
+
+		if (!isChecked) {
+			return 'You must agree to the Privacy Policy';
+		}
+
+		return null;
 	};
 
 	const handleSelectOption = (field: string, value: string) => {
 		setFormData(prev => ({ ...prev, [field]: value }));
 		setActiveSelect(null);
+		setErrorMessage(null); // сбрасываем ошибку при выборе опции
 	};
 
 	const handleSelectClick = (selectName: string) => {
 		setActiveSelect(selectName);
+		setErrorMessage(null); // сбрасываем ошибку при открытии селекта
 	};
 
 	const handleCloseModal = () => {
@@ -146,43 +175,13 @@ export const FindOutMoreForm = ({
 	};
 
 	const handleSubmit = async () => {
-		if (!formData.expectedVolume.trim()) {
-			alert('Expected monthly crypto payment volume is required');
-			return;
-		}
+		// Сбрасываем предыдущую ошибку
+		setErrorMessage(null);
 
-		if (!formData.region.trim()) {
-			alert('Region is required');
-			return;
-		}
-
-		if (!formData.name.trim()) {
-			alert('Name is required');
-			return;
-		}
-
-		if (!formData.industry.trim()) {
-			alert('Industry is required');
-			return;
-		}
-
-		if (!formData.companyAge.trim()) {
-			alert('Company incorporation period is required');
-			return;
-		}
-
-		if (!formData.email.trim()) {
-			alert('Email is required');
-			return;
-		}
-
-		if (!formData.message.trim()) {
-			alert('Message is required');
-			return;
-		}
-
-		if (!validateEmail(formData.email)) {
-			alert('Please enter a valid email address');
+		// Валидируем форму
+		const validationError = validateForm();
+		if (validationError) {
+			setErrorMessage(validationError);
 			return;
 		}
 
@@ -215,13 +214,16 @@ Message: ${formData.message}`,
 					message: '',
 				});
 				setIsChecked(false);
+				setErrorMessage(null); // очищаем ошибку при успехе
 				onSubmit?.();
 			} else {
-				alert(`Failed to send message: ${result.error || result.message}`);
+					setErrorMessage(
+						'Something went wrong. Please try reloading this page.',
+					);
 			}
 		} catch (error) {
 			console.error('Error sending contact email:', error);
-			alert('Failed to send message. Please try again.');
+			setErrorMessage('Something went wrong. Please try reloading this page.');
 		}
 	};
 
@@ -333,9 +335,10 @@ Message: ${formData.message}`,
 						<Input
 							placeholder='Name*'
 							value={formData.name}
-							onChange={e =>
-								setFormData(prev => ({ ...prev, name: e.target.value }))
-							}
+							onChange={e => {
+								setFormData(prev => ({ ...prev, name: e.target.value }));
+								setErrorMessage(null); // сбрасываем ошибку при вводе
+							}}
 							required
 							className={style.input}
 						/>
@@ -343,9 +346,10 @@ Message: ${formData.message}`,
 							placeholder='Email*'
 							type='email'
 							value={formData.email}
-							onChange={e =>
-								setFormData(prev => ({ ...prev, email: e.target.value }))
-							}
+							onChange={e => {
+								setFormData(prev => ({ ...prev, email: e.target.value }));
+								setErrorMessage(null); // сбрасываем ошибку при вводе
+							}}
 							required
 							className={style.input}
 						/>
@@ -355,9 +359,10 @@ Message: ${formData.message}`,
 						className={style.textarea}
 						placeholder='Message*'
 						value={formData.message}
-						onChange={e =>
-							setFormData(prev => ({ ...prev, message: e.target.value }))
-						}
+						onChange={e => {
+							setFormData(prev => ({ ...prev, message: e.target.value }));
+							setErrorMessage(null); // сбрасываем ошибку при вводе
+						}}
 						required
 					/>
 				</div>
@@ -377,7 +382,10 @@ Message: ${formData.message}`,
 							type='checkbox'
 							className={style.checkboxInput}
 							checked={isChecked}
-							onChange={e => setIsChecked(e.target.checked)}
+							onChange={e => {
+								setIsChecked(e.target.checked);
+								setErrorMessage(null); // сбрасываем ошибку при клике на чекбокс
+							}}
 							id='terms-checkbox'
 						/>
 						<label htmlFor='terms-checkbox' className={style.checkboxLabel}>
@@ -391,10 +399,13 @@ Message: ${formData.message}`,
 				arrow
 				type='submit'
 				onClick={handleSubmit}
-				disabled={sendContactEmail.isPending || !isFormValid()}
+				disabled={sendContactEmail.isPending} // убрали !isFormValid(), кнопка всегда активна
 			>
 				{sendContactEmail.isPending ? 'Sending...' : 'Submit'}
 			</Button>
+
+			{/* Красное уведомление об ошибке */}
+			{errorMessage && <div className={style.errorMessage}>{errorMessage}</div>}
 		</div>
 	);
 };

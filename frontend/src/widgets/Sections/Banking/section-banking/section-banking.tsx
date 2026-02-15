@@ -1,6 +1,6 @@
 import style from './section-banking.module.scss';
 import { H2, Paragraph, Button } from '@/shared/ui';
-import img_1 from '@/assets/images/section-banking/12.webp';
+import video_1 from '@/assets/images/section-banking/12.mp4';
 
 export const SectionBanking = () => (
 	<section className={style.section}>
@@ -16,8 +16,15 @@ export const SectionBanking = () => (
 					Book a demo
 				</Button>
 			</div>
-			<div className={style.img}>
-				<img src={img_1} alt='' />
+			<div className={style.video}>
+				<video
+					src={video_1}
+					autoPlay
+					loop
+					muted
+					playsInline
+					className={style.videoElement}
+				/>
 			</div>
 		</div>
 	</section>

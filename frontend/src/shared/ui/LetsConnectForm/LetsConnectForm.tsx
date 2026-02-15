@@ -23,6 +23,7 @@ export const LetsConnectForm = ({
 		message: '',
 	});
 	const [isChecked, setIsChecked] = useState(false);
+	const [errorMessage, setErrorMessage] = useState<string | null>(null); // состояние для ошибки
 
 	const sendContactEmail = useSendContactEmail();
 
@@ -31,41 +32,42 @@ export const LetsConnectForm = ({
 		return emailRegex.test(email);
 	};
 
-	const isFormValid = () => {
-		return (
-			formData.name.trim() !== '' &&
-			formData.email.trim() !== '' &&
-			validateEmail(formData.email) &&
-			formData.company.trim() !== '' &&
-			formData.message.trim() !== '' &&
-			isChecked // чекбокс должен быть отмечен
-		);
-	};
-
-	const handleSubmit = async () => {
-		// Validate all required fields
+	const validateForm = (): string | null => {
 		if (!formData.name.trim()) {
-			alert('Name is required');
-			return;
+			return 'Name is required';
 		}
 
 		if (!formData.email.trim()) {
-			alert('Email is required');
-			return;
+			return 'Email is required';
 		}
 
 		if (!validateEmail(formData.email)) {
-			alert('Please enter a valid email address');
-			return;
+			return 'Please enter a valid email address';
 		}
 
 		if (!formData.company.trim()) {
-			alert('Company name is required');
-			return;
+			return 'Company name is required';
 		}
 
 		if (!formData.message.trim()) {
-			alert('Message is required');
+			return 'Message is required';
+		}
+
+		if (!isChecked) {
+			return 'You must agree to the Privacy Policy';
+		}
+
+		return null;
+	};
+
+	const handleSubmit = async () => {
+		// Сбрасываем предыдущую ошибку
+		setErrorMessage(null);
+
+		// Валидируем форму
+		const validationError = validateForm();
+		if (validationError) {
+			setErrorMessage(validationError);
 			return;
 		}
 
@@ -88,13 +90,16 @@ export const LetsConnectForm = ({
 					message: '',
 				});
 				setIsChecked(false);
+				setErrorMessage(null); // очищаем ошибку при успехе
 				onSubmit?.();
 			} else {
-				alert(`Failed to send message: ${result.error || result.message}`);
+				setErrorMessage(
+					`Something went wrong. Please try reloading this page.`,
+				);
 			}
 		} catch (error) {
 			console.error('Error sending contact email:', error);
-			alert('Failed to send message. Please try again.');
+			setErrorMessage('Something went wrong. Please try reloading this page.');
 		}
 	};
 
@@ -151,7 +156,6 @@ export const LetsConnectForm = ({
 						{str}
 					</p>
 				))}
-				{/* Добавляем чекбокс с текстом из description */}
 				<div className={style.checkboxContainer}>
 					<div className={style.checkboxWrapper}>
 						<input
@@ -172,10 +176,12 @@ export const LetsConnectForm = ({
 				arrow
 				type='submit'
 				onClick={handleSubmit}
-				disabled={sendContactEmail.isPending || !isFormValid()}
+				disabled={sendContactEmail.isPending}
 			>
 				{sendContactEmail.isPending ? 'Sending...' : 'Submit'}
 			</Button>
+
+			{errorMessage && <div className={style.errorMessage}>{errorMessage}</div>}
 		</div>
 	);
 };

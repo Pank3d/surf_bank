@@ -44,7 +44,7 @@ export const Footer = () => {
 				{/* <p className={style.description}>{data?.description}</p> */}
 				<div className={style.bottom}>
 					<p className={style.bottom__description}>
-						All rights reserved @ 2025 surfbank.co
+						All rights reserved @ 2026 surfbank.co
 					</p>
 					{/* <div className={style.bottom__links}>
 						{data?.terms_privacy.map(({ title, link }, index) => (
