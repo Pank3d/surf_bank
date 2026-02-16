@@ -244,14 +244,14 @@ export const legalPagesData: LegalPage[] = [
 		<p>Each party agrees to keep confidential any non-public, proprietary, or confidential information disclosed in connection with the Services, except where disclosure is required by law or the information is otherwise lawfully available.</p>
 
 		<h2 id="acknowledgment">Acknowledgment</h2>
-		<p>By registering for or using the Services, you acknowledge that you have read, understood, and agree to these Terms of Service, together with the Privacy Policy and Cookies Policy.</p>
+		<p>By registering for or using the Services, you acknowledge that you have read, understood, and agree to these Terms of Service, together with the Privacy Policy.</p>
 
 		<h2 id="entire-agreement">Entire Agreement</h2>
 		<p>These Terms, together with any documents expressly incorporated by reference, constitute the entire agreement between you and Surf Bank regarding the Website.</p>
 
 		<h2 id="contact">Contact Us</h2>
 		<p>For questions relating to these Terms or the Service, please contact us at: <a href="mailto:support@surfbank.co">support@surfbank.co</a>.</p>
-		<p>Surf Platform LTD Unit G15, Tin Hau Apple Solo, 14 Kings Roar, Hong Kong
+		<p>Surf Platform LTD Unit G15, Tin Hau Apple Solo, 14 Kings Roar, Hong Kong.</p>
 	`,
 	},
 	{
