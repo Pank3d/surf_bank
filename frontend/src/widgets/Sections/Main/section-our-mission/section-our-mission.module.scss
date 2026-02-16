@@ -53,6 +53,10 @@
     .img {
       max-width: 602px;
       height: auto;
+       margin-right: 50px;
+          @include breakpoint(mobile) {
+          margin-right: 0px;
+        }
 
       img {
         width: 100%;

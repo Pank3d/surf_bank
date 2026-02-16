@@ -3,6 +3,7 @@ import { useSendContactEmail } from '@/shared/api';
 import clsx from 'clsx';
 import style from './LetsConnectForm.module.scss';
 import { useState } from 'react';
+import { internalPaths } from '@/shared/routes/paths';
 
 interface Props {
 	className?: string;
@@ -166,7 +167,8 @@ export const LetsConnectForm = ({
 							id='terms-checkbox'
 						/>
 						<label htmlFor='terms-checkbox' className={style.checkboxLabel}>
-							I have read and agree to the Privacy Policy
+							I have read and agree to the{' '}
+							<a href={internalPaths.cookiesPolicy}>Privacy Policy</a>
 						</label>
 					</div>
 				</div>

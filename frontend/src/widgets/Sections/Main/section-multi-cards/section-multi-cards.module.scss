@@ -79,4 +79,26 @@
 		object-fit: cover;
 		border-radius: 8px; // если нужны скругленные углы, как у изображения
 	}
+
+     &::-webkit-media-controls {
+      display: none !important;
+    }
+    
+    &::-webkit-media-controls-start-playback-button {
+      display: none !important;
+    }
+    
+    &::-webkit-media-controls-enclosure {
+      display: none !important;
+    }
+    
+    // Для скрытия нативного плеера
+    &::cue {
+      display: none;
+    }
+    
+    // Для Firefox и других браузеров
+    &::-moz-media-controls {
+      display: none !important;
+    }
 }

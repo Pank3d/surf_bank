@@ -13,8 +13,8 @@ export const SectionMultiCards = () => {
 				<div className={style.info}>
 					<H2 className={style.title}>Multi Cards</H2>
 					<Paragraph className={style.description}>
-						Simplify and accelerate the processing of payments and cross-border
-						transfers using stablecoins and cryptocurrencies
+						Start using Surf Cards, which are attached to your account and can
+						be easily topped-up with crypto.
 					</Paragraph>
 					<Button
 						href={data?.multicards_button_link}

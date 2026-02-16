@@ -3,6 +3,7 @@ import { useSendContactEmail } from '@/shared/api';
 import clsx from 'clsx';
 import style from './FindOutMoreForm.module.scss';
 import { useState, useRef, useEffect } from 'react';
+import { internalPaths } from '@/shared/routes/paths';
 
 interface Props {
 	className?: string;
@@ -217,9 +218,9 @@ Message: ${formData.message}`,
 				setErrorMessage(null); // очищаем ошибку при успехе
 				onSubmit?.();
 			} else {
-					setErrorMessage(
-						'Something went wrong. Please try reloading this page.',
-					);
+				setErrorMessage(
+					'Something went wrong. Please try reloading this page.',
+				);
 			}
 		} catch (error) {
 			console.error('Error sending contact email:', error);
@@ -389,7 +390,8 @@ Message: ${formData.message}`,
 							id='terms-checkbox'
 						/>
 						<label htmlFor='terms-checkbox' className={style.checkboxLabel}>
-							I have read and agree to the Privacy Policy
+							I have read and agree to the{' '}
+							<a href={internalPaths.cookiesPolicy}>Privacy Policy</a>
 						</label>
 					</div>
 				</div>

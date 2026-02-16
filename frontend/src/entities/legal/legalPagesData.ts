@@ -96,7 +96,7 @@ export const legalPagesData: LegalPage[] = [
 		<p>Where we engage third-party service providers who have access to personal data collected via cookies on our Website, appropriate contractual safeguards are in place in accordance with applicable data protection laws, including the UK GDPR and, where relevant, the GDPR and PIPEDA.</p>
 		
 		<h3>Data Retention</h3>
-		<p>We retain personal data collected through cookies only for as long as necessary to provide personalised services for which you have given your consent. Further details about how we process personal data can be found in our <a href="#privacy-policy">Privacy Policy</a>.</p>
+		<p>We retain personal data collected through cookies only for as long as necessary to provide personalised services for which you have given your consent. Further details about how we process personal data can be found in our Privacy Policy.</p>
 		
 		<h3>Website Updates</h3>
 		<p>We may update the way cookies are implemented across the Website from time to time. As a result, you may be asked to review or re-confirm your cookie preferences.</p>
@@ -104,8 +104,8 @@ export const legalPagesData: LegalPage[] = [
 
 		<h2 id="your-rights">Your Rights</h2>
 		<p>By using the Website, you confirm that you have read and understood this Cookies Policy and your rights relating to the use of cookies.</p>
-		<p>Further information about your rights and how they apply to the processing of your personal data is set out in our <a href="#privacy-policy">Privacy Policy</a>.</p>
-		<p>If you have any questions or require further clarification, please contact us at: <a href="mailto:privacy@surfbank.co">privacy@surfbank.co</a>.</p>
+		<p>Further information about your rights and how they apply to the processing of your personal data is set out in our Privacy Policy.</p>
+		<p>If you have any questions or require further clarification, please contact us at: <a href="mailto:support@surfbank.co">support@surfbank.co</a>.</p>
 	`,
 	},
 	{
@@ -251,8 +251,7 @@ export const legalPagesData: LegalPage[] = [
 
 		<h2 id="contact">Contact Us</h2>
 		<p>For questions relating to these Terms or the Service, please contact us at: <a href="mailto:support@surfbank.co">support@surfbank.co</a>.</p>
-		<p>Surf Platform LTD Unit G15, Tin Hau Apple Solo, 14 Kings Roar, Hong Kong, Email: 
-info@surfbank.co | <a href="mailto:support@surfbank.co">support@surfbank.co</a>.</p>
+		<p>Surf Platform LTD Unit G15, Tin Hau Apple Solo, 14 Kings Roar, Hong Kong
 	`,
 	},
 	{

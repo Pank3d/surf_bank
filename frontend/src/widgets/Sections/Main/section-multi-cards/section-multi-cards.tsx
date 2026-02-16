@@ -31,6 +31,7 @@ export const SectionMultiCards = () => {
 						loop
 						muted
 						playsInline
+						disableRemotePlayback // Добавлено
 						className={style.videoElement}
 					/>
 				</div>
