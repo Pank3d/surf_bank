@@ -1,5 +1,5 @@
 import style from './Footer.module.scss';
-import { footerDescription, navigationData } from '../model/data';
+import { navigationData } from '../model/data';
 // import { Link } from 'react-router-dom';
 import { useFooterData } from '@/shared/api';
 // import { Fragment } from 'react/jsx-runtime';
