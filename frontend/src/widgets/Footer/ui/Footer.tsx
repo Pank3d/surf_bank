@@ -21,9 +21,7 @@ export const Footer = () => {
 							{data?.support_time ||
 								'Support: 9:00 - 18:00 GMT +3 | Athens (Mon-Fri)'}
 						</p>
-						<p className={style.text}>
-							{data?.email || 'support@surfbank.co'}
-						</p>
+						<p className={style.text}>{data?.email || 'support@surfbank.co'}</p>
 					</div>
 					<div className={style.navigation}>
 						{navigationData.map(({ title, links }, index) => (
@@ -40,7 +38,7 @@ export const Footer = () => {
 						))}
 					</div>
 				</div>
-				<p className={style.description}>{footerDescription}</p>
+				<p className={style.description}>{data?.description}</p>
 				{/* <p className={style.description}>{data?.description}</p> */}
 				<div className={style.bottom}>
 					<p className={style.bottom__description}>
