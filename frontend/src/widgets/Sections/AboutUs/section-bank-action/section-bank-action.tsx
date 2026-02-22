@@ -1,7 +1,7 @@
 import style from "./section-bank-action.module.scss";
 import { Section, H2, ButtonColorize } from "@/shared/ui";
-import img from "@/assets/images/section-bank-action/img-1.webp";
-import imgMob from "@/assets/images/section-bank-action/img-1-mobile.webp";
+import img from "@/assets/images/section-bank-action/img-1.svg";
+import imgMob from "@/assets/images/section-bank-action/img-1-mobile.svg";
 import { usePageAboutData } from "@/shared/api";
 
 export const SectionBankAction = () => {

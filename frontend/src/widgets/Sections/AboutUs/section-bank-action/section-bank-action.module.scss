@@ -9,8 +9,17 @@
   z-index: 1;
   overflow: hidden;
   margin-bottom: 54px;
-
   height: 100%;
+
+
+  .button{
+  @include breakpoint(mobile) {
+    height: 48px;
+    width:168px;
+      z-index: 3;
+    }
+  }
+
 
 
   @include breakpoint(mobile) {
@@ -29,7 +38,6 @@
     bottom: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
     z-index: 2;
     max-width: 558px;
 
@@ -40,7 +48,7 @@
 
   .img_mob {
     display: none;
-
+  z-index: 2;
     @include breakpoint(mobile) {
       display: block;
       width: 100%;
@@ -48,6 +56,7 @@
       object-fit: cover;
       position: absolute;
       bottom: 0;
+      z-index: 2;
     }
   }
 }

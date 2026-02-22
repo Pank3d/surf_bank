@@ -1,0 +1,52 @@
+.sliderContainer {
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
+  padding: 20px 0;
+}
+
+.sliderTrack {
+  display: flex;
+  animation: scroll var(--speed) linear infinite;
+  width: fit-content;
+}
+
+.logoItem {
+  flex-shrink: 0;
+  margin: 0 40px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoImage {
+  height: 40px; 
+  width: auto; 
+  object-fit: contain;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  
+  &:hover {
+    opacity: 1;
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+// Адаптивность
+@media (max-width: 768px) {
+  .logoImage {
+    height: 30px;
+  }
+  
+  .logoItem {
+    margin: 0 25px;
+  }
+}

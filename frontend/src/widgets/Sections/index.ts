@@ -43,3 +43,5 @@ export { SectionLetsConnect as SectionYieldLetsConnect } from './Yield/section-l
 // OTC
 export { SectionOTC } from './OTC/section-otc/section-otc';
 export { SectionLetsConnect as SectionOTCLetsConnect } from './OTC/section-lets-connect/section-lets-connect';
+
+export { SectionSlider } from './Main/section-slider/section-slider';
