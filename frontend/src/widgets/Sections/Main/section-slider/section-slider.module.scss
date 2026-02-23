@@ -2,7 +2,7 @@
   width: 100%;
   overflow: hidden;
   background: transparent;
-  padding: 20px 0;
+  padding: 77px 0;
 }
 
 .sliderTrack {
@@ -13,7 +13,7 @@
 
 .logoItem {
   flex-shrink: 0;
-  margin: 0 40px; 
+  margin: 0 77px; 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,7 +40,6 @@
   }
 }
 
-// Адаптивность
 @media (max-width: 768px) {
   .logoImage {
     height: 30px;
