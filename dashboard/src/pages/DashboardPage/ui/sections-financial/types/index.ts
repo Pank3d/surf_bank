@@ -41,9 +41,24 @@ export type FiatModalData = {
 	convertPrice: string;
 	balance: string;
 	bankName: string;
-	accountNumber: string;
-	swiftCode?: string;
 	type: 'fiat';
+	fiatId: string;
+	address: {
+		city: string;
+		zipCode: string;
+		country: string;
+		addressLine: string;
+		stateRegion: string;
+	};
+	recipient: {
+		recipientName: string;
+		accountId: string;
+		sendingMethod: string;
+		swiftCode: string;
+		recipientId: string;
+		currency: string;
+		iban: string;
+	};
 };
 
 export type ModalDataUnion = CryptoModalData | FiatModalData;

@@ -24,9 +24,8 @@
 .modalContent {
 	background: white;
 	border-radius: 16px;
-	padding: 24px;
 	width: 90%;
-	max-width: 400px;
+	max-width: 470px;
 	max-height: 90vh;
 	overflow-y: auto;
 	position: relative;
@@ -37,6 +36,8 @@
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 20px;
+		padding: 16px;
+		border-bottom: 1px solid #e5e7eb;
 }
 
 .modalTitle {
@@ -49,10 +50,10 @@
 	background: none;
 	border: none;
 	cursor: pointer;
-	padding: 8px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	color: $gray-color;
 
 	&:hover {
 		opacity: 0.7;
@@ -65,7 +66,7 @@
 }
 
 .cryptoSection {
-	margin-bottom: 24px;
+	padding:16px;
 }
 
 .cryptoHeaderWrapper {
@@ -78,21 +79,29 @@
 .cryptoHeader {
 	display: flex;
 	align-items: center;
-	gap: 12px;
+	gap: 16px;
 }
 
 .cryptoIcon {
-	width: 40px;
-	height: 40px;
+	width: 48px;
+	height: 48px;
 }
 
 .cryptoInfo {
 	display: flex;
 	flex-direction: column;
 }
+.walletId{
+	font-size:12px;
+	color:$gray-color;
+}
+.walletAddress{
+	font-size:12px;
+	color:$gray-color;
+}
 
 .cryptoName {
-	font-size: 16px;
+	font-size: 18px;
 	font-weight: 600;
 	margin: 0 0 4px 0;
 }
@@ -105,16 +114,25 @@
 
 .actionButtons {
 	display: flex;
-	gap: 8px;
+	gap: 20px;
 	align-items: center;
+	justify-content: center;
+}
+.actionButtonWrapper {
+	display: flex;
+	flex-direction: column;
+	gap:4px;
+	align-items: center;
+	justify-content: center;
 }
 
 .actionButton {
-	width: 36px;
-	height: 36px;
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
 	border: none;
-	background: #f3f4f6;
+	// background: #f3f4f6;
+	border: 1px solid #EEEEEE;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -138,9 +156,10 @@
 	}
 }
 
-.balanceInfo {
-	text-align: center;
+.actionButtonText{
+	font-size:12px;
 }
+
 
 .balanceAmount {
 	font-size: 32px;
@@ -150,7 +169,6 @@
 
 .priceInfo {
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	gap: 8px;
 	margin-bottom: 8px;
@@ -159,6 +177,13 @@
 .price {
 	font-size: 16px;
 	font-weight: 600;
+}
+.details{
+	display:flex;
+	flex-direction: column;
+	gap: 8px;
+	margin: 0 16px;
+	margin-bottom: 16px;
 }
 
 .rate {
@@ -184,10 +209,9 @@
 }
 
 .bankDetails {
-	border-top: 1px solid #e5e7eb;
-	border-bottom: 1px solid #e5e7eb;
-	padding: 16px 0;
-	margin-bottom: 24px;
+	padding: 16px;
+	background-color: #F9F9F9;
+	border-radius: 16px;
 }
 
 .bankDetailsTitle {
@@ -196,24 +220,36 @@
 	margin: 0 0 12px 0;
 }
 
-.bankInfo {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
+.bankGrid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px 16px; /* row-gap column-gap */
 }
 
 .bankRow {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+
+	flex-direction: column;
 }
 
 .bankLabel {
 	font-size: 14px;
 	color: #666;
+	white-space: nowrap; /* Чтобы label не переносился */
+	margin-right: 8px;
+}
+.bankValue{
+	font-size: 12px;
 }
 
-.bankValue {
-	font-size: 14px;
-	font-weight: 600;
+/* Адаптивность для мобильных */
+@media (max-width: 480px) {
+	.bankGrid {
+		grid-template-columns: 1fr;
+		gap: 8px;
+	}
+	
+	.bankRow {
+		min-height: auto;
+	}
 }

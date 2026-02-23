@@ -86,15 +86,49 @@ export const bankDetails = {
 	USD: {
 		balance: '10,000.00 USD',
 		bankName: 'J.P.Morgan',
-		accountNumber: '134567',
-		swiftCode: 'CHASUS33XXX',
+
+		fiatId: 'gh8jh7hj8h9k678',
 		type: 'fiat' as const,
+		address: {
+			city: 'New York',
+			zipCode: 'EC1V078',
+			country: 'USA',
+			addressLine: '123 Main Street, Apt 4B, New York, NY 10001, USA',
+			stateRegion: 'New York',
+		},
+
+		recipient: {
+			recipientName: 'Surf Bank LLC',
+			accountId: '79970DLOFKLV',
+			sendingMethod: 'SEPA',
+			swiftCode: 'SEO596B214',
+			recipientId: '454-trhg-hjkg78j90h-kh7890',
+			currency: 'EUR',
+			iban: '454-trhg-hjkg78j90h-kh7890',
+		},
 	},
 	EUR: {
 		balance: '9,345.00 EUR',
 		bankName: 'Deutsche Bank',
-		accountNumber: 'DE89370400440532013000',
-		swiftCode: 'DEUTDEFFXXX',
+
+		fiatId: 'gh8jh7hj8h9k678',
+
 		type: 'fiat' as const,
+		address: {
+			city: 'New York',
+			zipCode: 'EC1V078',
+			country: 'USA',
+			addressLine: '123 Main Street, Apt 4B, New York, NY 10001, USA',
+			stateRegion: 'New York',
+		},
+		recipient: {
+			recipientName: 'Surf Bank LLC',
+			accountId: '79970DLOFKLV',
+			sendingMethod: 'SEPA',
+			swiftCode: 'SEO596B214',
+			recipientId: '454-trhg-hjkg78j90h-kh7890',
+			currency: 'EUR',
+			iban: '454-trhg-hjkg78j90h-kh7890',
+		},
 	},
 } as const;
