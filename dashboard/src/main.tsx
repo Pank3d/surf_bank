@@ -28,7 +28,9 @@ import {
   ReceiveCompletedPage,
   ReceiveCurrencyPage,
   FAQPage,
+  SupportPage,
 } from "./pages";
+import { SupportLayoutPage } from "./pages/Support/layout";
 
 const router = createBrowserRouter([
 	{
@@ -113,7 +115,7 @@ const router = createBrowserRouter([
 						path: internalPath.counterparties.counterpartyCompleted,
 						element: <CounterpartyCompletedPage />,
 					},
-				], 
+				],
 			},
 			{
 				path: internalPath.faq,
@@ -122,6 +124,16 @@ const router = createBrowserRouter([
 			{
 				path: internalPath.transactions,
 				element: <TransactionPage />,
+			},
+			{
+				path: internalPath.support,
+				element: <SupportLayoutPage />,
+				children: [
+					{
+						path: internalPath.support,
+						element: <SupportPage />,
+					},
+				],
 			},
 		],
 	},

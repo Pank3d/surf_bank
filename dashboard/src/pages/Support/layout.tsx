@@ -1,8 +1,8 @@
 import { Section } from "@/shared/ui";
 import { Outlet } from "react-router-dom";
 
-export const ReceiveMoneyLayoutPage = () => (
-  <Section title="Receive Money">
+export const SupportLayoutPage = () => (
+  <Section title="Support">
     <Outlet />
   </Section>
 );

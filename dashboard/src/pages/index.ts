@@ -36,3 +36,5 @@ export { ReceiveCompletedPage } from './ReceiveMoneyPage/ReceiveСompletePage/pa
 
 // FAQ PAGE
 export { FAQPage } from './Faq/page';
+// SUPPORT PAGE
+export { SupportPage } from './Support/page';
