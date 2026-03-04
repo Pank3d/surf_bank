@@ -1,5 +1,5 @@
 .container {
-  background-image: url("@/assets/images/section-lets-connect/img-1.webp");
+  // background-image: url("@/assets/images/section-lets-connect/img-1.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -7,11 +7,11 @@
 
   @include breakpoint(tablet) {
     padding-top: 160px;
-    background-image: url("@/assets/images/section-lets-connect/img-1-mobile.webp");
+    // background-image: url("@/assets/images/section-lets-connect/img-1-mobile.webp");
   }
 
   @include breakpoint(mobile) {
-    padding-top: 120px;
+    padding-top: 40px;
   }
 
   .section {

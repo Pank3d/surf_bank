@@ -1,11 +1,11 @@
 .section {
-  background-image: url("@/assets/images/section-about/img-2.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  // background-image: url("@/assets/images/section-about/img-2.webp");
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // background-position: center;
 
   @include breakpoint(tablet) {
-    background-image: url("@/assets/images/section-about/img-mobile.webp");
+    // background-image: url("@/assets/images/section-about/img-mobile.webp");
   }
 
   .section__inner {

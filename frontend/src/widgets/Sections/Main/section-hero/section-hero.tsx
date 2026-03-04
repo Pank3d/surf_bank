@@ -14,6 +14,8 @@ export const SectionHero = () => {
 				loop
 				muted
 				playsInline
+				preload='auto'
+				poster='/video/poster.jpg'
 			/>
 			<div className={style.section__inner}>
 				<h1 className={style.title}>
@@ -33,7 +35,7 @@ export const SectionHero = () => {
 					<span className={style.title__color}>freedom</span>
 				</h1>
 				<p className={style.description}>
-					Corporate banking for hight-risk market, crypto projects and startups.
+					Corporate banking for high-risk market, crypto projects and startups.
 				</p>
 				<ButtonColorize href={data?.hero_button_link}>
 					Let`s talk

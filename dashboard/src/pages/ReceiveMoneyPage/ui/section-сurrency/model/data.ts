@@ -1,6 +1,6 @@
-import eurIcon from '@/assets/euro.svg';
-import btcIcon from '@/assets/bitcoin-black.svg';
-import usdtIcon from '@/assets/usdt.svg';
+import eurIcon from '@/assets/eurogray.svg';
+import btcIcon from '@/assets/btcgray.svg';
+import usdtIcon from '@/assets/usdtgray.svg';
 import gbpIcon from '@/assets/gpb.svg';
 
 export const accounts = [

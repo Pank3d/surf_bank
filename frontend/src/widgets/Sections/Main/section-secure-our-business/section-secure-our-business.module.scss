@@ -16,6 +16,8 @@
     text-align: center;
     padding-top: 32px;
 
+
+
     .title__color {
       color: $green-color;
     }
@@ -23,6 +25,10 @@
     @include breakpoint(tablet) {
       font-size: 32px;
     }
+
+       @include breakpoint(mobile) {
+         padding-top: 0px;
+  }
   }
 
   .img {
@@ -35,6 +41,11 @@
     @include breakpoint(tablet) {
       padding: 80px 0;
     }
+
+     @include breakpoint(mobile) {
+     padding: 10px 0;
+  }
+
 
     .img__chips {
       position: absolute;

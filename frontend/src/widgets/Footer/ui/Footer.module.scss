@@ -45,9 +45,11 @@
         max-width: 652px;
         width: 100%;
 
-        @include breakpoint(mobile) {
-          flex-direction: column;
-          gap: 24px;
+           @include breakpoint(mobile) {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 32px 24px;
+          max-width: 100%;
         }
 
         .navigation__list {

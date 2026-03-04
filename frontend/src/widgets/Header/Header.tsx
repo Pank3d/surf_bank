@@ -13,22 +13,38 @@ export const Header = () => {
 
 	useBodyScrollLock(menuOpen);
 
+	const closeMenu = () => {
+		setMenuOpen(false);
+	};
+
 	return (
 		<div className={style.header}>
 			<nav className={clsx(style.menu__mobile, !menuOpen && style.close)}>
 				<ul className={style.menu__mobile_list}>
 					<li className={style.menu__mobile_list_item}>
-						<Link to={internalPaths.banking}>Banking</Link>
-					</li>
-					<li className={style.menu__mobile_list_item}>Cards</li>
-					<li className={style.menu__mobile_list_item}>
-						<Link to={internalPaths.yield}>Yield</Link>
+						<Link to={internalPaths.banking} onClick={closeMenu}>
+							Banking
+						</Link>
 					</li>
 					<li className={style.menu__mobile_list_item}>
-						<Link to={internalPaths.otc}>OTC deals</Link>
+						<Link to={internalPaths.comingSoon} onClick={closeMenu}>
+							Cards
+						</Link>
 					</li>
 					<li className={style.menu__mobile_list_item}>
-						<Link to={internalPaths.aboutUs}>About Us</Link>
+						<Link to={internalPaths.yield} onClick={closeMenu}>
+							Yield
+						</Link>
+					</li>
+					<li className={style.menu__mobile_list_item}>
+						<Link to={internalPaths.otc} onClick={closeMenu}>
+							OTC deals
+						</Link>
+					</li>
+					<li className={style.menu__mobile_list_item}>
+						<Link to={internalPaths.aboutUs} onClick={closeMenu}>
+							About Us
+						</Link>
 					</li>
 				</ul>
 			</nav>

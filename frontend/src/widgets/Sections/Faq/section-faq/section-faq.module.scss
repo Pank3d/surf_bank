@@ -6,6 +6,12 @@
 	width: 100vw;
 	min-height: 85dvh;
 
+
+		@include breakpoint(mobile) {
+    		background-image: url('@/assets/images/section-faq/bg-mobile.webp');
+		}
+
+
 	@media (max-width: 1024px) {
 		.section {
 			gap: 54px;

@@ -13,7 +13,7 @@ export const SectionSlider: React.FC<SectionSliderProps> = ({
 	speed = 20,
 }) => {
 
-	const doubledLogos = [...logos, ...logos, ...logos];
+	const doubledLogos = [...logos, ...logos, ...logos, ...logos];
 
 	return (
 		<div className={styles.sliderContainer}>
