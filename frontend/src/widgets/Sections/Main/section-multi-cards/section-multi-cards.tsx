@@ -1,5 +1,5 @@
 import style from './section-multi-cards.module.scss';
-import { Button } from '@/shared/ui';
+import { ButtonColorize } from '@/shared/ui';
 import video_1 from '@/assets/images/section-banking/12.mp4';
 import { H2, Paragraph } from '@/shared/ui';
 import { usePageMainData } from '@/shared/api';
@@ -40,13 +40,17 @@ export const SectionMultiCards = () => {
 						Surf Bank provides settlement banking products that solve transfer
 						payment issues requiring crypto friendly solutions.
 					</Paragraph>
-					<Button
+					{/* <Button
 						href={data?.multicards_button_link}
 						className={style.button}
 						arrow
 					>
 						Book a demo
-					</Button>
+					</Button> */}
+
+					<ButtonColorize href={data?.multicards_button_link}>
+						Book a demo
+					</ButtonColorize>
 				</div>
 				<div className={style.video}>
 					<video
