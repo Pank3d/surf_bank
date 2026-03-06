@@ -6,12 +6,12 @@ export const ExchangePage = () => {
   const [isComplete, setIscomplete] = useState(false);
 
   return (
-    <Section title="Exchange">
-      {isComplete ? (
-        <SectionComplete onClick={() => setIscomplete(false)} />
-      ) : (
-        <SectionExchange onClick={() => setIscomplete(true)} />
-      )}
-    </Section>
-  );
+		<Section title='Converted' subtitle='ID: f8g7h8j90hk7g8d9f0hjhg789'>
+			{isComplete ? (
+				<SectionComplete onClick={() => setIscomplete(false)} />
+			) : (
+				<SectionExchange onClick={() => setIscomplete(true)} />
+			)}
+		</Section>
+	);
 };
