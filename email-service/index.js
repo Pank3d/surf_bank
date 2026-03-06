@@ -130,6 +130,29 @@ app.post('/send-template', async (req, res) => {
         `;
         break;
 
+        case 'company-info':
+  subject = 'New Company Information Request';
+  html = `
+    <h1>New Company Information Request</h1>
+    
+    <h2>Company Details:</h2>
+    <p><strong>Expected Monthly Volume:</strong> ${data?.expectedVolume || 'Not specified'}</p>
+    <p><strong>Region:</strong> ${data?.region || 'Not specified'}</p>
+    <p><strong>Industry:</strong> ${data?.industry || 'Not specified'}</p>
+    <p><strong>Company Age:</strong> ${data?.companyAge || 'Not specified'}</p>
+    
+    <h2>Contact Person:</h2>
+    <p><strong>Name:</strong> ${data?.name}</p>
+    <p><strong>Email:</strong> ${data?.email}</p>
+    
+    <h2>Message:</h2>
+    <p>${data?.message}</p>
+    
+    <hr>
+    <p style="color: #666; font-size: 12px;">This request was submitted through the Find Out More form on Surf Bank website.</p>
+  `;
+  break;
+
       default:
         return res.status(400).json({
           success: false,

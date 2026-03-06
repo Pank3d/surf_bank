@@ -1,9 +1,10 @@
 import { Button, Select, Input, Textarea } from '@/shared/ui';
-import { useSendContactEmail } from '@/shared/api';
+
 import clsx from 'clsx';
 import style from './FindOutMoreForm.module.scss';
 import { useState, useRef, useEffect } from 'react';
 import { internalPaths } from '@/shared/routes/paths';
+import { useSendCompanyInfoEmail } from '@/shared/api';
 
 interface Props {
 	className?: string;
@@ -81,7 +82,7 @@ export const FindOutMoreForm = ({
 	const [errorMessage, setErrorMessage] = useState<string | null>(null); // состояние для ошибки
 	const modalRef = useRef<HTMLDivElement>(null);
 
-	const sendContactEmail = useSendContactEmail();
+	const sendCompanyInfoEmail = useSendCompanyInfoEmail();
 
 	// Закрытие модалки при клике вне ее области
 	useEffect(() => {
@@ -187,20 +188,14 @@ export const FindOutMoreForm = ({
 		}
 
 		try {
-			const result = await sendContactEmail.mutateAsync({
+			const result = await sendCompanyInfoEmail.mutateAsync({
+				expectedVolume: formData.expectedVolume,
+				region: formData.region,
 				name: formData.name.trim(),
+				industry: formData.industry,
+				companyAge: formData.companyAge,
 				email: formData.email.trim(),
-				company: 'N/A',
-				phone: 'N/A',
-				message: `Company Information:
-Expected Monthly Crypto Payment Volume: ${formData.expectedVolume}
-Region: ${formData.region}
-Name: ${formData.name}
-Industry: ${formData.industry}
-Company Incorporation Period: ${formData.companyAge}
-Email: ${formData.email}
-
-Message: ${formData.message}`,
+				message: formData.message.trim(),
 			});
 
 			if (result.success) {
@@ -401,9 +396,9 @@ Message: ${formData.message}`,
 				arrow
 				type='submit'
 				onClick={handleSubmit}
-				disabled={sendContactEmail.isPending} // убрали !isFormValid(), кнопка всегда активна
+				disabled={sendCompanyInfoEmail.isPending} // убрали !isFormValid(), кнопка всегда активна
 			>
-				{sendContactEmail.isPending ? 'Sending...' : 'Submit'}
+				{sendCompanyInfoEmail.isPending ? 'Sending...' : 'Submit'}
 			</Button>
 
 			{/* Красное уведомление об ошибке */}

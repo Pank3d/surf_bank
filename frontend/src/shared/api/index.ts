@@ -3,4 +3,9 @@ export { usePageMainData } from "./page-main";
 export { useFooterData } from "./footer";
 export { usePageAboutData } from "./page-about";
 export { usePageLetsConnectData } from "./page-lets-connect";
-export { useSendEmail, useSendTemplateEmail, useSendContactEmail } from "./email";
+export {
+	useSendEmail,
+	useSendTemplateEmail,
+	useSendContactEmail,
+	useSendCompanyInfoEmail,
+} from './email';
