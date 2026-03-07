@@ -26,4 +26,17 @@
   .arrow {
     transform: rotate(-90deg);
   }
+
+  .iconBlock{
+    display:flex;
+    gap:8px;
+    font-weight: 700;
+    font-size:16px;
+    color:black;
+    align-items: center;
+
+  }
+  .iconText{
+    margin-top: 3px;
+  }
 }

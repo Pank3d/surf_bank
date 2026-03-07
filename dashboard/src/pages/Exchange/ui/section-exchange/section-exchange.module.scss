@@ -3,12 +3,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 16px;
+  @media (max-width: 768px) {
+	padding:4px;
+	}
+}
+
+.exchangeCard{
+  width:480px;
+  @media (max-width: 768px) {
+		max-width:480px;
+    width:100%;
+	}
 }
 
 .mainExchange {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 24px;
@@ -20,10 +31,28 @@
   }
 }
 
+
+
+
+.mobileButton{
+  display: none !important;
+   @media (max-width: 768px) {
+    display:flex !important;
+    position:relative;
+    left:50%;
+    transform: translateX(-50%);
+    width:100% !important;
+    margin-top: 16px;
+  }
+}
+
+
 .currencyBlock {
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  text-align: center;
   gap: 8px;
   min-width: 0;
 
@@ -53,15 +82,16 @@
 
 .currencyLabel {
   font-family: "Agrandir-Grand", sans-serif;
-  font-weight: 700;
-  font-size: 18px;
+  font-weight: 800;
+  font-size: 28px;
   color: #000000;
+  margin-top:7px;
 }
 
 .currencyId {
   font-family: monospace;
-  font-size: 12px;
-  color: #666;
+  font-size: 14px;
+  color: $gray-color;
   word-break: break-all;
   margin-top: -4px; // небольшая корректировка
 
@@ -72,21 +102,39 @@
 }
 
 .currencyAmount {
-  font-family: "Agrandir-Grand", sans-serif;
+  font-family: "Agrandir", sans-serif;
   font-weight: 700;
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  gap: 8px;
+  &:hover{
+    cursor: pointer;
+  }
+
 
   white-space: nowrap;
+  width:234px;
+  height: 56px;
+  padding: 12px 0; 
 
-  // Для отрицательных сумм
-  &:contains("-") {
-    color: #ff4d4d;
-  }
+}
 
-  // Для положительных сумм
-  &:contains("+") {
-    color: #00b894;
+.buttons{
+  display:flex;
+  justify-content: space-between;
+     @media (max-width: 768px) {
+    display:none;
   }
+}
+
+.amountNegative{
+  background-color: rgba(253, 113, 113, 0.1);
+}
+.amountPositive{
+  background-color: rgba(179, 253, 113, 0.1);
 }
 
 .arrowWrapper {
@@ -110,7 +158,6 @@
 
   @media (max-width: 768px) {
     padding: 12px;
-    margin: 12px 0;
   }
 }
 
@@ -118,8 +165,8 @@
   margin-bottom: 12px;
 
   span {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
     color: #000000;
 
     @media (max-width: 768px) {
@@ -139,42 +186,29 @@
   justify-content: space-between;
   align-items: center;
   padding: 4px 0;
-
-  @media (max-width: 480px) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-  }
 }
 
 .detailLabel {
   font-size: 14px;
-  color: #666;
+  color: $gray-color;
   white-space: nowrap;
   margin-right: 16px;
 
-  @media (max-width: 768px) {
-    font-size: 12px;
-    white-space: normal;
-  }
 }
 
 .detailValue {
   font-size: 14px;
   color: #000000;
-  font-weight: 500;
+  font-weight: 400;
   text-align: right;
   word-break: break-all;
 
-  @media (max-width: 768px) {
-    font-size: 12px;
-    text-align: left;
-    width: 100%;
-  }
 }
 
 .button {
   left:50%;
+  font-weight: 800;
+  padding:15px 20px;
   transform: translateX(-50%);
   position: relative;
 }

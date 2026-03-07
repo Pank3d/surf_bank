@@ -10,3 +10,4 @@ export { Title } from './Title/Title';
 export { Select } from './Select/Select';
 export { Table } from './Table';
 export { Faq } from './Faq/Faq';
+export { Textarea } from './Textarea/Textarea';

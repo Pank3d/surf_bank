@@ -1,40 +1,34 @@
-import style from "./section-complete.module.scss";
-import bitcoin from "@/assets/bitcoin.svg";
-import { ArrowButton, Button } from "@/shared/ui";
-import arrow from "@/assets/arrow.svg";
-import etherium from "@/assets/ethereum.svg";
-import checkDone from "@/assets/check-fill.svg";
+import style from './section-complete.module.scss';
+import checkFilled from '@/assets/check-fill.svg';
+import trio from '@/assets/exchane-trio.svg';
+import arrow from '@/assets/arrow.svg';
+import buttonArrow from '@/assets/button-arrow.svg';
+import { Button, Title } from '@/shared/ui';
+import { internalPath } from '@/shared/routes/routes';
 
 interface Props {
-  onClick: () => void;
+	onClick: () => void;
 }
 
 export const SectionComplete = ({ onClick }: Props) => (
-  <div className={style.container}>
-    <div className={style.currencies}>
-      <div className={style.currency}>
-        <div className={style.info}>
-          <img className={style.icon} src={etherium} alt="" />
-          <h4 className={style.title}>ETH</h4>
-        </div>
-        <p className={style.id}>f8g7h8j90hk7g8d9f0hjhg789</p>
-      </div>
-      <ArrowButton className={style.arrow__button} icon={arrow} />
-      <div className={style.currency}>
-        <div className={style.info}>
-          <img className={style.icon} src={bitcoin} alt="" />
-          <h4 className={style.title}>BTC</h4>
-        </div>
-        <p className={style.id}>f8g7h8j90hk7g8d9f0hjhg789</p>
-      </div>
-    </div>
-    <div className={style.card}>
-      <img className={style.icon} src={checkDone} alt="" />
-      <span className={style.description}>Exchange amount</span>
-      <h3 className={style.title}>150.00 ETH</h3>
-    </div>
-    <Button onClick={onClick} className={style.button} dark>
-      Continue
-    </Button>
-  </div>
+	<div className={style.container}>
+		<img className={style.icon} src={checkFilled} alt='' />
+		<Title className={style.title}>Success!</Title>
+		<div className={style.description}>
+			<p className={style.descriptionText}>-500 USD</p>
+			<img src={arrow} alt='' className={style.arrow} />
+			<p className={style.descriptionText}>497.80 USDT</p>
+		</div>
+		<img src={trio} alt='trio' />
+		<Button
+			href={internalPath.home}
+			dark
+			className={style.button}
+			onClick={onClick}
+		>
+			<span className={style.buttonText}>Status</span>
+
+			<img src={buttonArrow} alt='trio' />
+		</Button>
+	</div>
 );

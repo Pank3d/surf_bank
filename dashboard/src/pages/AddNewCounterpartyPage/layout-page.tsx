@@ -4,23 +4,23 @@ import { Steps } from "@/widgets";
 import { internalPath } from "@/shared/routes/routes";
 
 export const AddNewCounterpartyLayoutPage = () => (
-  <Section title="Add  counterparty">
-    <Steps
-      steps={[
-        {
-          title: "Counterparty details",
-          link: internalPath.counterparties.counterpartyDetails,
-        },
-        {
-          title: "Account details",
-          link: internalPath.counterparties.accountDetails,
-        },
-        {
-          title: "Completed",
-          link: internalPath.counterparties.counterpartyCompleted,
-        },
-      ]}
-    />
-    <Outlet />
-  </Section>
+	<Section title='Add counterparty'>
+		<Steps
+			steps={[
+				{
+					title: 'Account',
+					link: internalPath.counterparties.counterpartyDetails,
+				},
+				{
+					title: 'Counterparty',
+					link: internalPath.counterparties.accountDetails,
+				},
+				{
+					title: 'Completed',
+					link: internalPath.counterparties.counterpartyCompleted,
+				},
+			]}
+		/>
+		<Outlet />
+	</Section>
 );

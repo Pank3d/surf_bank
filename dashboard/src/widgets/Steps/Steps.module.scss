@@ -18,7 +18,8 @@
       font-size: 14px;
       color: $black-color;
       text-wrap: nowrap;
-
+      justify-content: flex-start;
+      flex: 1;
       &.active {
         background-color: $black-color;
         color: $white-color;

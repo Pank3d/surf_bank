@@ -3,6 +3,9 @@ import style from './section-exchange.module.scss';
 import usd from '@/assets/usd.svg';
 import arrowSwap from '@/assets/arrow-swap-black.svg';
 import usdt from '@/assets/usdt.svg';
+import plusGreen from '@/assets/plus-green.svg';
+import minus from '@/assets/minus.svg';
+import clsx from 'clsx';
 
 interface Props {
 	onClick: () => void;
@@ -21,7 +24,15 @@ export const SectionExchange = ({ onClick }: Props) => (
 						<span className={style.currencyLabel}>USD</span>
 					</div>
 					<div className={style.currencyId}>f8g7h8j90hk7g8d9f0hjhg789</div>
-					<div className={style.currencyAmount}>-500 USD</div>
+					<button
+						className={clsx(
+							style.currencyAmount,
+							style.amountNegative,
+							style.mobileButton,
+						)}
+					>
+						<img src={minus} alt='-' /> -500 USD
+					</button>
 				</div>
 
 				{/* Стрелка по центру */}
@@ -38,10 +49,30 @@ export const SectionExchange = ({ onClick }: Props) => (
 						<span className={style.currencyLabel}>USDT</span>
 					</div>
 					<div className={style.currencyId}>f8g7h8j90hk7g8d9f0hjhg789</div>
-					<div className={style.currencyAmount}>+497.80 USDT</div>
 				</div>
 			</div>
 
+			<button
+				className={clsx(
+					style.currencyAmount,
+					style.amountPositive,
+					style.mobileButton,
+				)}
+			>
+				<img src={plusGreen} alt='+' />
+				+497.80 USDT
+			</button>
+
+			<div className={style.buttons}>
+				<button className={clsx(style.currencyAmount, style.amountNegative)}>
+					<img src={minus} alt='-' /> -500 USD
+				</button>
+
+				<button className={clsx(style.currencyAmount, style.amountPositive)}>
+					<img src={plusGreen} alt='+' />
+					+497.80 USDT
+				</button>
+			</div>
 			{/* Детали транзакции */}
 			<div className={style.detailsSection}>
 				<div className={style.detailsHeader}>
