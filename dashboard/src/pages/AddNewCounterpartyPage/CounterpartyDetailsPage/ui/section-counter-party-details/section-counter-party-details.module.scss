@@ -1,141 +1,42 @@
+.form {
+  .container {
+    margin-bottom: 40px;
 
-.container{
-	width:100%;
-	 display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+    .form__info {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
 
-.accountsSection {
-  margin-bottom: 24px;
-  width: 680px;
-  
-  @media (max-width: 768px) {
-    width: 343px;
-  }
-}
+      @include breakpoint(mobile) {
+        grid-template-columns: 1fr;
+      }
 
-.accountsGrid {
-  gap: 12px;
-  display: flex;
-  flex-direction: column;
+      .input {
+        &:first-child {
+          grid-column: 1 / -1;
+          grid-row: 1;
+        }
+      }
+    }
 
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-  }
+    .address__info {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
 
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
-}
+       @include breakpoint(mobile) {
+        grid-template-columns: 1fr;
+      }
 
-.accountData {
-  display: flex;
-  flex-direction: column;
-}
-
-.accountHeader {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.accountIcon {
-  width: 48px;
-  height: 48px;
-  
-  @media (max-width: 768px) {
-    width: 20px;
-    height: 20px;
-  }
-}
-
-.accountName {
-  font-size: 16px;
-  font-weight: 600;
-  color: black;
-  
-  @media (max-width: 768px) {
-    font-size: 12px;
-  }
-}
-
-.accountNumber {
-  font-size: 12px;
-  font-weight: 400;
-  font-family: monospace;
-  word-break: break-all;
-  color: #7C7B85;
-  margin-bottom: 4px;
-
-  @media (max-width: 768px) {
-    font-size: 12px;
-  }
-}
-
-/* Обновленный .accountCard (добавил align-items: center) */
-.accountCard {
-  padding: 14px;
-  border-radius: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center; /* Добавлено для вертикального выравнивания */
-  gap: 8px;
-  border: 1px solid #E9EDF3;
-  &:hover{
-	background-color: #F9F9F9;
-	cursor: pointer;
-  }
-  @media (max-width: 768px) {
-    padding: 12px;
-  }
-}
-
-/* Новые вспомогательные классы для левой и правой частей */
-.accountLeft {
-  flex: 1;
-}
-
-.accountRight {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-/* Новый стиль для иконки трех точек */
-.arrowIcon {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-//   opacity: 0.6;
-  transition: opacity 0.2s ease;
-  
-  &:hover {
-    opacity: 1;
-  }
-  
-  @media (max-width: 768px) {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-/* Обновленный .accountBalance (убрал лишние стили) */
-.accountBalance {
-  display: flex;
-  align-items: center;
-  margin-top: 0; /* Изменено с 4px на 0 */
-  
-  .balanceValue {
-    font-size: 14px;
-    font-weight: 700;
-    color: #000;
-    white-space: nowrap;
-    
-    @media (max-width: 768px) {
-      font-size: 12px;
+         .input {
+        &:last-child {
+          grid-column: 1 / -1;
+        }
+      }
     }
   }
+    .button {
+    margin: 0 auto;
+
+     }
 }

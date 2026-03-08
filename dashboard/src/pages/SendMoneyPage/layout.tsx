@@ -25,7 +25,7 @@ export const SendMoneyLayoutPage = () => (
         },
         {
           title: "Completed",
-          link: internalPath.sendMoney.completed,
+          link: internalPath.sendMoney.accountDetails,
         },
       ]}
     />

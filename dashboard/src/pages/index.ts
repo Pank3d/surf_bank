@@ -10,6 +10,8 @@ export { SendMoneyPage } from './SendMoneyPage/page';
 export { CurrencyPage } from './SendMoneyPage/CurrencyPage/page';
 export { AccountPage } from './SendMoneyPage/AccountPage/page';
 export { SendMoneyCompletedPage } from './SendMoneyPage/СompletePage/page';
+export { CounterpartyPage } from './SendMoneyPage/CounterpartiesPage/page';
+export { AccountDetailsPage } from './SendMoneyPage/AccountpartyDetailsPage/page';
 
 // EXCHANGE PAGE
 export { ExchangePage } from './Exchange/page';

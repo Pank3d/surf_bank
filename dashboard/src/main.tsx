@@ -1,36 +1,38 @@
-import "./index.scss";
+import './index.scss';
 
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router';
 // import { TanstackQueryClientProvider } from "./shared/provider/tastack-provider";
-import { internalPath } from "./shared/routes/routes";
+import { internalPath } from './shared/routes/routes';
 
 import {
-  Layout,
-  DashboardPage,
-  SendMoneyPage,
-  CurrencyPage,
-  SendMoneyLayoutPage,
-  SendMoneyCompletedPage,
-  AccountPage,
-  ExchangePage,
-  CounterpartiesLayoutPage,
-  CounterpartiesPage,
-  AddNewCounterpartyLayoutPage,
-  CounterpartyDetailsPage,
-  AccountpartyDetailsPage,
-  CounterpartyCompletedPage,
-  TransactionPage,
-  ReceiveMoneyPage,
-  ReceiveMoneyLayoutPage,
-  ReceiveAccountPage,
-  ReceiveCompletedPage,
-  ReceiveCurrencyPage,
-  FAQPage,
-  SupportPage,
-} from "./pages";
-import { SupportLayoutPage } from "./pages/Support/layout";
+	Layout,
+	DashboardPage,
+	SendMoneyPage,
+	CurrencyPage,
+	SendMoneyLayoutPage,
+	SendMoneyCompletedPage,
+	AccountPage,
+	ExchangePage,
+	CounterpartiesLayoutPage,
+	CounterpartiesPage,
+	AddNewCounterpartyLayoutPage,
+	CounterpartyDetailsPage,
+	AccountpartyDetailsPage,
+	CounterpartyCompletedPage,
+	TransactionPage,
+	ReceiveMoneyPage,
+	ReceiveMoneyLayoutPage,
+	ReceiveAccountPage,
+	ReceiveCompletedPage,
+	ReceiveCurrencyPage,
+	FAQPage,
+	SupportPage,
+	CounterpartyPage,
+	AccountDetailsPage,
+} from './pages';
+import { SupportLayoutPage } from './pages/Support/layout';
 
 const router = createBrowserRouter([
 	{
@@ -58,8 +60,16 @@ const router = createBrowserRouter([
 						element: <AccountPage />,
 					},
 					{
+						path: internalPath.sendMoney.counterparty,
+						element: <CounterpartyPage />,
+					},
+					{
 						path: internalPath.sendMoney.completed,
 						element: <SendMoneyCompletedPage />,
+					},
+					{
+						path: internalPath.sendMoney.accountDetails,
+						element: <AccountDetailsPage />,
 					},
 				],
 			},
@@ -139,10 +149,10 @@ const router = createBrowserRouter([
 	},
 ]);
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    {/* <TanstackQueryClientProvider> */}
-    <RouterProvider router={router} />
-    {/* </TanstackQueryClientProvider> */}
-  </StrictMode>
+createRoot(document.getElementById('root')!).render(
+	<StrictMode>
+		{/* <TanstackQueryClientProvider> */}
+		<RouterProvider router={router} />
+		{/* </TanstackQueryClientProvider> */}
+	</StrictMode>,
 );
