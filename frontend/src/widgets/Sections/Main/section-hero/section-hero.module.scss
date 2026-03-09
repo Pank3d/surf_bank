@@ -39,122 +39,36 @@
 			width: calc(100% - 24px);
 		}
 
-		.title {
-			display: flex;
-			font-size: 62px;
-
+		.desktopTitle{
+			
 			@include breakpoint(tablet) {
-				display: none;
-			}
-
-			.title__color {
-				&:first-child {
-					border-bottom-right-radius: 0px;
-					border-bottom-left-radius: 0;
-					padding-bottom: 0;
-				}
-				&:nth-child(2) {
-					border-bottom-left-radius: 0;
-					border-top-left-radius: 0;
-					padding: 10px 24px;
-				}
-				&:last-child {
-					padding-top: 0;
-					border-top-left-radius: 0;
-					border-top-right-radius: 0;
-				}
-			}
+			display:none;
+		}
+		
 		}
 
-		.title__tablet {
-			display: none;
-			font-size: 52px;
 
-			.title__color {
-				&:first-child {
-					border-bottom-left-radius: 0;
-					padding-bottom: 0;
-				}
-
-				&:nth-child(2) {
-					border-radius: 0;
-					padding: 10px 24px;
-				}
-				&:last-child {
-					padding-top: 0;
-					border-top-left-radius: 0;
-				}
-			}
-
+			.tabletTitle{
+			display:none;
 			@include breakpoint(tablet) {
-				display: flex;
-			}
-
-			@include breakpoint(mobile) {
-				display: none;
-			}
+			display:block;
+		}
+		
+		@include breakpoint(mobile) {
+				display:none;
+		}
 		}
 
-		.title__mobile {
-			display: none;
-			font-size: 44px;
+			.mobileTitle{
+			display:none;
 
-			.title__color {
-				&:first-child {
-					border-bottom-left-radius: 0;
-					padding-bottom: 0;
-				}
-
-				&:nth-child(2) {
-					border-radius: 0;
-					padding: 10px 24px;
-					padding-left: 10px;
-				}
-				&:nth-child(3) {
-					border-top-left-radius: 0;
-					border-bottom-left-radius: 0;
-					border-bottom-right-radius: 0;
-					padding: 10px 24px;
-					padding-left: 10px;
-				}
-
-				&:last-child {
-					padding-top: 0;
-					border-top-left-radius: 0;
-					padding-right: 5px;
-				}
-			}
-			@include breakpoint(mobile) {
-				display: flex;
-			}
+		@include breakpoint(mobile) {
+					display:block;
+		}
 		}
 
-		.title,
-		.title__tablet,
-		.title__mobile {
-			font-weight: 700;
-			color: $white-color;
-			width: fit-content;
-			border-radius: 12px;
-			font-family: 'Agrandir-Grand', sans-serif;
-			font-weight: 900;
-			margin-bottom: 32px;
-			flex-direction: column;
-			width: 100%;
 
-			.title__color {
-				background: rgba(163, 255, 81, 0.6);
-				white-space: pre-wrap;
-				padding: 24px;
-				border-radius: 12px;
-				width: fit-content;
-				text-wrap: wrap;
 
-				@include breakpoint(mobile) {
-					padding: 10px;
-				}
-			}
-		}
 
 		.description {
 			font-size: 24px;
@@ -162,6 +76,7 @@
 			color: $white-color;
 			line-height: 140%;
 			margin-bottom: 36px;
+			margin-top:20px;
 			max-width: 434px;
 
 			@include breakpoint(tablet) {

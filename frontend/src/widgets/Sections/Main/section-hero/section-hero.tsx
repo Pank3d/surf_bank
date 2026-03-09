@@ -1,6 +1,9 @@
 import style from './section-hero.module.scss';
 import { ButtonColorize } from '@/shared/ui';
 import { usePageMainData } from '@/shared/api';
+import title from '@/assets/images/section-hero/title.png';
+import titleTablet from '@/assets/images/section-hero/tableTitle.png';
+import titleMobile from '@/assets/images/section-hero/mobileTitle.png';
 
 export const SectionHero = () => {
 	const { data } = usePageMainData();
@@ -18,22 +21,9 @@ export const SectionHero = () => {
 				poster='/video/poster.jpg'
 			/>
 			<div className={style.section__inner}>
-				<h1 className={style.title}>
-					<span className={style.title__color}>Uncover</span>
-					<span className={style.title__color}>your banking</span>
-					<span className={style.title__color}>freedom</span>
-				</h1>
-				<h1 className={style.title__tablet}>
-					<span className={style.title__color}>Uncover your</span>
-					<span className={style.title__color}>banking</span>
-					<span className={style.title__color}>freedom</span>
-				</h1>
-				<h1 className={style.title__mobile}>
-					<span className={style.title__color}>Uncover</span>
-					<span className={style.title__color}>your</span>
-					<span className={style.title__color}>banking</span>
-					<span className={style.title__color}>freedom</span>
-				</h1>
+				<img src={title} alt='' className={style.desktopTitle} />
+				<img src={titleTablet} alt='' className={style.tabletTitle} />
+				<img src={titleMobile} alt='' className={style.mobileTitle} />
 				<p className={style.description}>
 					Corporate banking for high-risk market, crypto projects and startups.
 				</p>
