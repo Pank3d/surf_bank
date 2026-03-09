@@ -12,6 +12,7 @@ interface Props {
 	onClick?: () => void;
 	href?: string;
 	arrowVisible?: boolean;
+	disabled?: boolean;
 }
 
 export const Button = ({
@@ -22,6 +23,7 @@ export const Button = ({
 	onClick,
 	href,
 	arrowVisible,
+	disabled,
 }: Props) => {
 	if (href) {
 		return (
@@ -49,6 +51,7 @@ export const Button = ({
 				dark && style.dark,
 				white && style.white,
 			)}
+			disabled={disabled}
 		>
 			{children}
 			{arrowVisible && <img src={arrow} alt='' />}

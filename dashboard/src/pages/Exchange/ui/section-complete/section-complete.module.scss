@@ -8,11 +8,11 @@
   text-align: center;
   margin: 0 auto;
 
-  .title{
-     font-family: "Agrandir-Grand", sans-serif;
-  font-weight: 800;
-  font-size: 32px;
-  margin-bottom: 12px;
+  .title {
+    font-family: "Agrandir-Grand", sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    margin-bottom: 12px;
   }
 
   .icon {
@@ -26,20 +26,108 @@
     color: black;
     font-size: 18px;
     font-weight: 700;
-    display:flex;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .arrow {
+    transform: rotate(180deg);
+    width: 16px;
+    height: 16px;
+  }
+
+  .iconsOverlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+    height: 48px;
+  }
+
+  .iconWrapper {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    &:nth-child(1) {
+      z-index: 1;
+    }
+
+    &:nth-child(2) {
+      z-index: 2;
+      margin-left: -5px; // Наезд 10% (примерно 5px от 48px)
+    }
+
+    &:nth-child(3) {
+      z-index: 3;
+      margin-left: -5px; // Наезд 10% (примерно 5px от 48px)
+    }
+  }
+
+  .currencyIcon {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    // background-color: white;
+    border-radius: 50%;
+    padding: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .arrowWrapper {
+    // .arrowIcon {
+    //   width: 48px;
+    //   height: 48px;
+    //   object-fit: contain;
+    //   background-color: #f0f0f0;
+    //   border-radius: 50%;
+    //   padding: 12px;
+    //   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    // }
+  }
+
+  .button {
+    margin-top: 32px;
+    align-items: center;
+    display: flex;
+    padding: 12px 32px;
     gap: 8px;
   }
-.arrow {
-  transform: rotate(180deg);
-}
-.button{
-  margin-top:32px;
-  align-items: center;
-  display:flex;
-  padding: 12px 32px;
+
+  .buttonText {
+    margin-top: 2px;
+  }
 }
 
-.buttonText{
-  margin-top:2px;
-}
+// Медиа-запрос для мобильных устройств
+@media (max-width: 768px) {
+  .container {
+    padding: 60px 16px;
+
+    .iconsOverlay {
+      .iconWrapper {
+        width: 40px;
+        height: 40px;
+
+        &:nth-child(2),
+        &:nth-child(3) {
+          margin-left: -4px; // 10% от 40px
+        }
+      }
+
+      .currencyIcon,
+      .arrowIcon {
+        width: 40px;
+        height: 40px;
+      }
+
+      .arrowIcon {
+        padding: 8px;
+      }
+    }
+  }
 }
