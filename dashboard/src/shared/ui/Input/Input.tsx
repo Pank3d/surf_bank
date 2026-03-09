@@ -6,7 +6,7 @@ interface Props {
 	placeholder: string;
 	className?: string;
 	inputValue?: string;
-	onChange: (e: any) => void | undefined;
+	onChange?: (e: any) => void | undefined;
 }
 
 export const Input = ({
