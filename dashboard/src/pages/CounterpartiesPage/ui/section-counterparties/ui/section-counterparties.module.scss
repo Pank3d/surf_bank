@@ -1,7 +1,7 @@
 
 .container{
-	width:100%;
-	 display: flex;
+  width:100%;
+   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -85,8 +85,8 @@
   gap: 8px;
   border: 1px solid #E9EDF3;
   &:hover{
-	background-color: #F9F9F9;
-	cursor: pointer;
+  background-color: #F9F9F9;
+  cursor: pointer;
   }
   @media (max-width: 768px) {
     padding: 12px;
@@ -137,150 +137,5 @@
     @media (max-width: 768px) {
       font-size: 12px;
     }
-  }
-}
-
-
-
-/* Основная карточка */
-.accountCard {
-  padding: 14px;
-  border-radius: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid #E9EDF3;
-  background-color: #F9F9F9;
-  position: relative; /* Для позиционирования разделителя */
-  
-  &:hover {
-    background-color: #F9F9F9;
-    cursor: pointer;
-  }
-  
-  @media (max-width: 768px) {
-    padding: 12px;
-  }
-  
-  /* Когда аккордеон открыт */
-  &.accountCardOpen {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border-bottom: none;
-    
-    /* Разделительная черта */
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 14px;
-      right: 14px;
-      height: 1px;
-      background-color: #E9EDF3;
-    }
-  }
-}
-
-/* Стрелка аккордеона - изначально смотрит вниз */
-.arrowIcon {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  opacity: 0.7;
-  transform: rotate(0deg); /* Изначально смотрит вниз */
-
-  /* При открытии поворачиваем вверх */
-  &.arrowIconOpen {
-    transform: rotate(180deg);
-  }
-  
-  @media (max-width: 768px) {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-/* Раскрывающийся список */
-.dropdownContent {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: all 0.3s ease-in-out;
-  border: 1px solid #E9EDF3;
-  border-top: none;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  background-color: #F9F9F9;
-
-  &.dropdownContentOpen {
-    max-height: 340px;
-    opacity: 1;
-    padding: 8px;
-  }
-}
-
-.dropdownInner {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-/* Элементы списка */
-.listItem {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  border-radius: 8px;
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.02);
-  }
-
-  &:active {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
-}
-
-.listItemText {
-  font-size: 18px;
-  font-weight: 700;
-  color: #000;
-
-  @media (max-width: 768px) {
-    font-size: 12px;
-  }
-}
-
-.listItemArrow {
-  width: 24px;
-  height: 24px;
-  
-  @media (max-width: 768px) {
-    width: 14px;
-    height: 14px;
-  }
-}
-
-.arrowIcon {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  opacity: 0.7; /* Сделал более жирной */
-
-  &.arrowIconOpen {
-    transform: rotate(90deg);
-  }
-  
-  @media (max-width: 768px) {
-    width: 18px;
-    height: 18px;
   }
 }
