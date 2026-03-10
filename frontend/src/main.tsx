@@ -72,6 +72,10 @@ const router = createBrowserRouter([
 				element: <Legal />,
 			},
 			{
+				path: '/cookies-policy',
+				element: <Legal />,
+			},
+			{
 				path: '/risk-appetite',
 				element: <Legal />,
 			},

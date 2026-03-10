@@ -1,0 +1,242 @@
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+	padding: 16px;
+}
+
+.modal {
+	background-color: white;
+	border-radius: 24px;
+	max-width: 470px;
+	width: 100%;
+	max-height: 600px;
+	overflow-y: auto;
+	position: relative;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+	&::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: #f0f0f0;
+		border-radius: 10px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: #ccc;
+		border-radius: 10px;
+	}
+}
+
+.closeButton {
+	position: absolute;
+	top: 28px;
+	right: 16px;
+	width: 32px;
+	height: 32px;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+	z-index: 10;
+
+	img {
+		width: 20px;
+		height: 20px;
+		opacity: 0.6;
+	}
+}
+
+.content {
+	padding: 16px;
+}
+
+.title {
+	font-family: "Agrandir-Grand", sans-serif;
+	font-size: 28px;
+	font-weight: 800;
+	margin-bottom: 24px;
+	padding-right: 32px;
+}
+
+.details {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.bankDetails {
+	padding: 20px;
+	background-color: #F9F9F9;
+	border-radius: 16px;
+
+	@media (max-width: 768px) {
+		padding: 16px;
+	}
+}
+
+.bankDetailsTitle {
+	font-size: 16px;
+	font-weight: 700;
+	margin: 0 0 12px 0;
+	color: #000;
+
+	@media (max-width: 768px) {
+		font-size: 14px;
+		margin-bottom: 12px;
+	}
+}
+
+.bankGrid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px 24px;
+
+	@media (max-width: 640px) {
+		grid-template-columns: 1fr;
+		gap: 8px;
+	}
+}
+
+.bankRow {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.bankLabel {
+	font-size: 12px;
+	color: $gray-color;
+
+
+	@media (max-width: 768px) {
+		font-size: 12px;
+	}
+}
+
+.bankValue {
+	font-size: 12px;
+	color: #000;
+	word-break: break-word;
+
+	@media (max-width: 768px) {
+		font-size: 12px;
+	}
+}
+
+// Медиа-запрос для мобильных устройств
+@media (max-width: 768px) {
+	.modal {
+		max-height: 95vh;
+	}
+
+	.content {
+		padding: 12px;
+	}
+
+	.title {
+		font-size: 24px;
+		margin-bottom: 20px;
+	}
+}
+
+
+
+.accountCard {
+  padding: 14px;
+    // border-bottom: 1px solid #CECECF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Добавлено для вертикального выравнивания */
+  gap: 8px;
+  margin-bottom: 16px;
+  @media (max-width: 768px) {
+    padding: 12px;
+      margin-bottom: 0px;
+  }
+}
+
+/* Новые вспомогательные классы для левой и правой частей */
+.accountLeft {
+  flex: 1;
+}
+
+.accountRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Новый стиль для иконки трех точек */
+.arrowIcon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+//   opacity: 0.6;
+  transition: opacity 0.2s ease;
+  
+  &:hover {
+    opacity: 1;
+  }
+  
+  @media (max-width: 768px) {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+
+.accountData {
+  display: flex;
+  flex-direction: column;
+}
+
+.accountHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.accountIcon {
+  width: 44px;
+  height: 44px;
+  
+  @media (max-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.accountName {
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+  
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+}
+
+.accountNumber {
+  font-size: 12px;
+  font-weight: 400;
+  font-family: monospace;
+  word-break: break-all;
+  color: #7C7B85;
+  margin-bottom: 4px;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+}

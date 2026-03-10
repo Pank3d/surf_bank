@@ -382,4 +382,62 @@ export const legalPagesData: LegalPage[] = [
       </ul>
     `,
 	},
+	{
+		id: 'cookies-policy',
+		title: 'Cookie Policy',
+		date: '22.12.2025',
+		sections: [
+			{ id: 'what-is-cookie', title: 'What is a cookie?' },
+			{ id: 'how-we-use-cookies', title: 'How we use cookies' },
+			{ id: 'use-of-cookies', title: 'Use of cookies' },
+			{ id: 'managing-cookies', title: 'Managing cookies' },
+			{
+				id: 'managing-personal-info',
+				title: 'Managing your personal information',
+			},
+			{ id: 'security', title: 'Security' },
+			{ id: 'amendments', title: 'Amendments' },
+		],
+		content: `
+		<h2 id="what-is-cookie">What is a cookie?</h2>
+		<p>A cookie is a small data file stored on your computer's hard drive when you visit a website. It enables our website to recognise your device while you navigate through different pages. Cookies allow websites and applications to remember your preferences and settings so that content, options, and features can be tailored to your needs. They also help us understand how visitors interact with the website, such as the number of users and the pages they access.</p>
+
+		<h2 id="how-we-use-cookies">How we use cookies</h2>
+		<p>We may use cookies for the following purposes:</p>
+		<ul>
+			<li><strong>Website analytics.</strong> We analyse website traffic using analytics tools. The aggregated data collected helps us improve the website's structure, design, content, and functionality.</li>
+			<li><strong>User recognition.</strong> Cookies help us determine whether and how you use our website.</li>
+			<li><strong>Content testing.</strong> Cookies may be used to test different versions of content on the website.</li>
+			<li><strong>Preference storage.</strong> Cookies allow us to store your preferences so that we can present information and content that may be more relevant to you.</li>
+			<li><strong>Returning visitor recognition.</strong> When you revisit our website, cookies enable us to display relevant content or restore functionality you have previously used.</li>
+		</ul>
+		<p>Cookies do not give us access to your computer or any personal information unless you choose to share it with us.</p>
+
+		<h2 id="use-of-cookies">Use of cookies</h2>
+		<p>This website does not store information that would independently allow us to identify individual users without their consent. Any cookies used by the website are either session-based or intended solely to maintain user preferences. Cookies are not shared with third parties.</p>
+
+		<h2 id="managing-cookies">Managing cookies</h2>
+		<p>When you first visit our website, you may choose to accept or decline Analytics cookies using our cookie control widget. This widget can be accessed at any time during your visit, allowing you to modify your preferences.</p>
+		<p>If you decide to decline cookies, essential cookies and certain third-party cookies required for the proper operation of the website will still be placed on your device. However, Analytics cookies and some non-essential third-party cookies will not be used.</p>
+		<p>You can also manage cookies through your browser settings. Please note that disabling cookies may affect the functionality of certain parts of the website.</p>
+
+		<h2 id="managing-personal-info">Managing your personal information</h2>
+		<p>When you submit information through forms on our website (for example, in contact or enquiry sections), you may be given the option to:</p>
+		<ul>
+			<li>Consent to receive marketing communications from us via email, telephone, text message, or post.</li>
+			<li>Consent to receive marketing communications from our third-party partners via email, telephone, text message, or post.</li>
+		</ul>
+		<p>If you have previously agreed to receive marketing communications, you may withdraw your consent at any time by contacting us at <a href="mailto:support@surfbank.co">support@surfbank.co</a>.</p>
+		<p>We will never lease, distribute, or sell your personal information to third parties unless we have your consent or are required to do so by law.</p>
+		<p>All personal information is stored and processed in accordance with our <a href="/privacy-policy">Privacy Policy</a> and applicable data protection laws.</p>
+
+		<h2 id="security">Security</h2>
+		<p>We take appropriate measures to ensure that your information is stored securely. To prevent unauthorised access or disclosure, we have implemented robust physical and electronic safeguards.</p>
+		<p>We also maintain procedures for responding to suspected data breaches. Where required by law, we will notify affected individuals and the relevant regulatory authorities.</p>
+
+		<h2 id="amendments">Amendments</h2>
+		<p>We reserve the right to update or modify this policy at any time. Any changes will be published on our website. We encourage you to review this policy periodically to remain informed about how we protect your information.</p>
+		<p>By continuing to use our services after any updates, you agree to the revised version of this policy. If you do not accept the changes, you should stop using our services and contact us to deactivate your account.</p>
+	`,
+	},
 ];

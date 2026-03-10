@@ -1,12 +1,12 @@
-import home from "@/assets/home.svg";
-import send from "@/assets/send.svg";
-import receive from "@/assets/receive.svg";
-import exchange from "@/assets/exchange.svg";
-import counterparties from "@/assets/counterparties.svg";
-import transactions from "@/assets/transaction.svg";
-import support from "@/assets/support.svg";
-import faq from "@/assets/faq.svg";
-import { internalPath } from "./routes";
+import home from '@/assets/home.svg';
+import send from '@/assets/send.svg';
+import receive from '@/assets/receive.svg';
+import exchange from '@/assets/exchange.svg';
+import counterparties from '@/assets/counterparties.svg';
+import transactions from '@/assets/transaction.svg';
+import support from '@/assets/support.svg';
+import faq from '@/assets/faq.svg';
+import { internalPath } from './routes';
 
 export const navigation = [
 	{
@@ -20,14 +20,14 @@ export const navigation = [
 		icon: send,
 	},
 	{
-		text: 'Receive Money',
-		link: internalPath.receiveMoney.base,
-		icon: receive,
-	},
-	{
 		text: 'Converted',
 		link: internalPath.exchange,
 		icon: exchange,
+	},
+	{
+		text: 'Receive Money',
+		link: internalPath.receiveMoney.base,
+		icon: receive,
 	},
 	{
 		text: 'Counterparties',

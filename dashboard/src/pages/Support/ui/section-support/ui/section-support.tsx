@@ -1,15 +1,23 @@
+import clsx from 'clsx';
 import { SUPPORT_ITEMS } from '../model/data';
 import style from './section-support.module.scss';
 
 export const SectionSupport = () => {
 	return (
 		<div className={style.container}>
-			{SUPPORT_ITEMS.map(item => (
+			{SUPPORT_ITEMS.map((item, index) => (
 				<div key={item.id} className={style.card}>
 					<img src={item.icon} alt={item.title} className={style.icon} />
 
 					<h3 className={style.title}>{item.title}</h3>
-					<p className={style.description}>{item.description}</p>
+					<p
+						className={clsx(
+							style.description,
+							index === 0 && style.firstDescription, // Первая карточка
+						)}
+					>
+						{item.description}
+					</p>
 
 					{item.type === 'button' ? (
 						<button className={style.supportButton}>
@@ -18,7 +26,7 @@ export const SectionSupport = () => {
 						</button>
 					) : (
 						<div className={style.contactInfo}>
-							<span className={style.label}>{item.label}</span>
+							{/* {item.label && <span className={style.label}>{item.label}</span>} */}
 							<span className={style.value}>{item.value}</span>
 						</div>
 					)}

@@ -2,13 +2,14 @@
   width: 100%;
 
   .currency {
-    display: flex;
-    align-items: stretch;
     gap: 16px;
     margin-bottom: 40px;
-
-    @include breakpoint(mobile) {
-      flex-direction: column;
-    }
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+    // Выравнивание по центру
+    justify-items: center; // Центрирует элементы по горизонтали внутри ячеек
+    align-items: center; // Центрирует элементы по вертикали
   }
 }

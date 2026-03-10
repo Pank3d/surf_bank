@@ -9,6 +9,7 @@ export const internalPaths = {
 	banking: '/banking',
 	cookiesPolicy: '/privacy-policy',
 	riskAppetite: '/risk-appetite',
+	cookies: '/cookies-policy',
 	termsOfService: '/terms-of-service',
 	comingSoon: '/multi-cards',
 	findOutMore: '/find-out-more',

@@ -6,13 +6,13 @@ export const currency = [
     icon: fiat,
     title: "Fiat",
     description:
-      "Perform a transaction using your fiat balances from one of your saved payment options",
-    active: true,
+      "Perform a transaction using your fiat balances from one of your saved payment options.",
+    active: false,
   },
   {
     icon: bitcoin,
     title: "Crypto",
-    description: "Perform a transaction Cryptocurrency",
+    description: "Perform a transaction Cryptocurrency.",
     active: false,
   },
 ] as const;

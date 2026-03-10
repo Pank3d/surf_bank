@@ -34,6 +34,10 @@ export const navigationData = [
 				href: internalPaths.cookiesPolicy,
 			},
 			{
+				title: 'Cookies Policy',
+				href: internalPaths.cookies,
+			},
+			{
 				title: 'Terms of Service',
 				href: internalPaths.termsOfService,
 			},
