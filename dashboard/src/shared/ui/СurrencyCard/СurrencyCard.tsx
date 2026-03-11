@@ -1,3 +1,4 @@
+// СurrencyCard.tsx
 import style from './СurrencyCard.module.scss';
 import check from '@/assets/check-green.svg';
 import clsx from 'clsx';
@@ -10,6 +11,7 @@ interface Props {
 	id?: string;
 	onClick?: () => void;
 	className?: string;
+	isAvailable?: boolean; // Добавляем пропс для доступности
 }
 
 export const СurrencyCard = ({
@@ -20,10 +22,16 @@ export const СurrencyCard = ({
 	id,
 	onClick,
 	className,
+	isAvailable = true, // По умолчанию доступен
 }: Props) => (
 	<div
-		className={clsx(style.card, active && style.active, className)}
-		onClick={onClick}
+		className={clsx(
+			style.card,
+			active && style.active,
+			!isAvailable && style.unavailable, // Добавляем класс для недоступных карточек
+			className,
+		)}
+		onClick={isAvailable ? onClick : undefined} // Блокируем клик для недоступных
 	>
 		<img className={style.icon} src={icon} alt='' />
 		{id ? (
@@ -36,6 +44,8 @@ export const СurrencyCard = ({
 		)}
 
 		{description && <p className={style.description}>{description}</p>}
-		{active && <img src={check} className={style.check} alt='' />}
+		{active && isAvailable && (
+			<img src={check} className={style.check} alt='' />
+		)}
 	</div>
 );

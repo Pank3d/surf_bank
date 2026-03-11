@@ -1,4 +1,4 @@
-import backpack from '@/assets/backpack.svg';
+// import backpack from '@/assets/backpack.svg';
 
 export const LLC = [
 	'Surf Bank LLC',
@@ -110,20 +110,28 @@ export const LLC_DATA = {
 	},
 } as const;
 
-export const accounts = [
-	{
-		name: 'Surf Bank LLC',
-		accountNumber: '454-trhg-hjkg78j90h-kh7890',
-		balance: '245.50',
-		icon: backpack,
-	},
-	{
-		name: 'Surf Bank LLC',
-		accountNumber: '454-trhg-hjkg78j90h-kh7890',
-		balance: '0.0235',
-		icon: backpack,
-	},
-] as const;
+
+export interface Account {
+	name: string;
+	accountNumber: string;
+	balance: string;
+	icon: string;
+}
+
+export const accounts: Account[] = [
+	// {
+	// 	name: 'Surf Bank LLC',
+	// 	accountNumber: '454-trhg-hjkg78j90h-kh7890',
+	// 	balance: '245.50',
+	// 	icon: backpack,
+	// },
+	// {
+	// 	name: 'Surf Bank LLC',
+	// 	accountNumber: '454-trhg-hjkg78j90h-kh7890',
+	// 	balance: '0.0235',
+	// 	icon: backpack,
+	// },
+];
 
 // Типы для данных
 export type LLCAddress = {

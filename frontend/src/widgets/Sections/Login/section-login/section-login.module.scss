@@ -4,8 +4,13 @@
   background-position: center;
   background-repeat: no-repeat;
   width: 100vw;
+  height:75vh;
   padding-top: 200px;
   padding-bottom: 64px;
+
+         display: flex;
+    align-items: center;
+    justify-content: center;
 
   @include breakpoint(tablet) {
     padding-top: 160px;
@@ -16,16 +21,19 @@
   }
 
   .section {
-    max-height: 480px;
+    max-height: 356px;
     height: 100%;
     background-color: white;
+    
+    padding:42px;
     display: flex;
+    max-width:524px;
+    align-items: center;
     justify-content: space-between;
     align-items: center;
     gap: 40px;
     border-radius: 32px;
     overflow: hidden;
-    padding-left: 40px;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 
     @include breakpoint(mobile) {
@@ -48,7 +56,11 @@
         font-size: 44px;
         font-weight: 800;
         font-family: "Agrandir-Grand", sans-serif;
-        margin-bottom: 50px;
+        margin-bottom: 40px;
+       display: flex;
+    align-items: center;
+    justify-content: center;
+      
 
         @include breakpoint(mobile) {
           margin-bottom: 24px;
@@ -59,7 +71,7 @@
         display: flex;
         flex-direction: column;
         gap: 12px;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
 
         @include breakpoint(mobile) {
           margin-bottom: 24px;
@@ -72,9 +84,10 @@
 
       .buttons {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         gap: 12px;
+        margin-top: 30px;
 
         @include breakpoint(mobile) {
           flex-direction: column;
@@ -83,7 +96,9 @@
         .button {
           padding: 18px 32px;
           font-size: 16px;
-
+          width:100%;
+          display:flex;
+          justify-content: center;
           @include breakpoint(mobile) {
             width: 100%;
             justify-content: center;
@@ -129,6 +144,94 @@
           }
         }
       }
+    }
+  }
+}
+// section-login.module.scss (добавить в конец файла)
+
+.codeContainer {
+  margin-bottom: 30px;
+  animation: fadeIn 0.3s ease;
+
+  .codeLabel {
+    font-size: 14px;
+    color: $gray-color;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .codeInputs {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+
+    .codeInput {
+      width: 66px;
+      height: 50px;
+      border: 1px solid $border-color;
+      border-radius: 100px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+      font-family: "Agrandir-Grand", sans-serif;
+      outline: none;
+      transition: all 0.2s ease;
+      background-color: white;
+
+      &:focus {
+        border-color: #b3fd71;
+        box-shadow: 0 0 0 3px rgba(179, 253, 113, 0.2);
+      }
+
+      &:hover {
+        border-color: darken($border-color, 10%);
+      }
+
+      // Убираем стрелки у number input
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      
+      // Для Firefox
+      -moz-appearance: textfield;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Стиль для кнопки в disabled состоянии
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+// Для будущего использования (resend code)
+.resendCode {
+  margin-top: 16px;
+  text-align: center;
+
+  .resendButton {
+    background: none;
+    border: none;
+    color: $gray-color;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+    
+    &:hover {
+      color: darken($gray-color, 20%);
     }
   }
 }

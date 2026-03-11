@@ -137,9 +137,13 @@ export const SectionFirst = ({ onClick }: Props) => {
 					onAmountChange={setToAmount}
 					onCurrencyChange={handleToCurrencyChange}
 					description={{
-						leftText: `1 ${fromCurrency.code} = ${getRate(fromCurrency, toCurrency).toFixed(6)} ${toCurrency.code}${toCurrency.network ? ` (${toCurrency.network})` : ''}`,
+						leftText: `Available balance: ${formatBalance(toCurrency)}`,
 						rightText: 'You will receive',
 					}}
+					// description={{
+					// 	leftText: `1 ${fromCurrency.code} = ${getRate(fromCurrency, toCurrency).toFixed(6)} ${toCurrency.code}${toCurrency.network ? ` (${toCurrency.network})` : ''}`,
+					// 	rightText: 'You will receive',
+					// }}
 				/>
 			</div>
 			<Button

@@ -15,10 +15,10 @@ export const SendMoneyLayoutPage = () => (
           title: "Currency",
           link: internalPath.sendMoney.currency,
         },
-        {
-          title: "Account",
-          link: internalPath.sendMoney.account,
-        },
+        // {
+        //   title: "Account",
+        //   link: internalPath.sendMoney.account,
+        // },
         {
           title: "Counterparty",
           link: internalPath.sendMoney.counterparty,

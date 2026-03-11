@@ -1,40 +1,71 @@
-import { useState } from 'react';
+// SectionCurrency.tsx - второй шаг
+import { useState, useEffect } from 'react';
 import style from './section-currency.module.scss';
 import { СurrencyCard } from '@/shared/ui';
-import { currency as currencyData } from '../model/data';
+import { fiatCurrencies, cryptoCurrencies, type Currency } from '../model/data';
 import { internalPath } from '@/shared/routes/routes';
 import { StepsButtons } from '@/widgets';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export const SectionCurrency = () => {
 	const navigate = useNavigate();
-	const [selectedCurrency, setSelectedCurrency] = useState<string | null>(
-		// Находим активный по умолчанию или выбираем первый
-		currencyData.find(c => c.active)?.title || null,
-	);
+	const location = useLocation();
+	const [selectedCurrency, setSelectedCurrency] = useState<string | null>(null);
+	const [currencies, setCurrencies] = useState<Currency[]>([]);
 
-	const handleCardClick = (title: string) => {
-		setSelectedCurrency(title);
+	const currencyType = location.state?.currencyType;
+
+	useEffect(() => {
+		if (currencyType === 'fiat') {
+			setCurrencies(fiatCurrencies);
+			// Выбираем первый доступный кошелек, если есть
+			const firstAvailable = fiatCurrencies.find(c => c.isAvailable);
+			setSelectedCurrency(firstAvailable?.title || null);
+		} else if (currencyType === 'crypto') {
+			setCurrencies(cryptoCurrencies);
+			const firstAvailable = cryptoCurrencies.find(c => c.isAvailable);
+			setSelectedCurrency(firstAvailable?.title || null);
+		} else {
+			navigate(internalPath.sendMoney.base);
+		}
+	}, [currencyType, navigate]);
+
+	const handleCardClick = (title: string, isAvailable: boolean) => {
+		if (isAvailable) {
+			setSelectedCurrency(title);
+		}
 	};
 
-  	const handleContinue = () => {
-			// Передаем state через navigate
-			navigate(internalPath.sendMoney.account, {
-				state: { selectedCurrency },
+	const handleContinue = () => {
+		if (selectedCurrency) {
+			navigate(internalPath.sendMoney.counterparty, {
+				state: {
+					selectedCurrency,
+					currencyType,
+				},
 			});
-		};
+		}
+	};
+
+	// Проверяем, доступна ли выбранная валюта
+	const isSelectedAvailable = currencies.find(
+		c => c.title === selectedCurrency,
+	)?.isAvailable;
 
 	return (
 		<div className={style.container}>
 			<div className={style.currency}>
-				{currencyData.map(({ icon, title }) => (
+				{currencies.map(({ icon, title, description, id, isAvailable }) => (
 					<СurrencyCard
 						key={title}
-						active={selectedCurrency === title}
+						active={selectedCurrency === title && !!isAvailable}
 						icon={icon}
 						title={title}
-            className={style.currencyCard}
-						onClick={() => handleCardClick(title)}
+						description={description}
+						id={id}
+						className={style.currencyCard}
+						onClick={() => handleCardClick(title, isAvailable ?? true)}
+						isAvailable={isAvailable}
 					/>
 				))}
 			</div>
@@ -42,7 +73,7 @@ export const SectionCurrency = () => {
 			<StepsButtons
 				back={internalPath.sendMoney.base}
 				onContinue={handleContinue}
-				disabled={!selectedCurrency}
+				disabled={!selectedCurrency || !isSelectedAvailable} // Блокируем кнопку, если выбран недоступный кошелек
 			/>
 		</div>
 	);
