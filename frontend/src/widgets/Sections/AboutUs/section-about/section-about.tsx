@@ -1,5 +1,5 @@
 import style from './section-about.module.scss';
-import { Button, H2, Paragraph } from '@/shared/ui';
+import { ButtonColorize, H2, Paragraph } from '@/shared/ui';
 import img_1 from '@/assets/images/section-about/img-1.png';
 import { usePageAboutData } from '@/shared/api';
 
@@ -15,9 +15,12 @@ export const SectionAbout = () => {
 						{data?.description ||
 							'Surf Bank delivers fast, enterprisegrade settlement accounts and crypto wallets backed by leading infrastructural banks, together with advanced tech facilities that connects fiat currencies with digital assets.'}
 					</Paragraph>
-					<Button href={data?.hero_button_link} className={style.button} arrow>
+					<ButtonColorize
+						href={data?.hero_button_link}
+						className={style.button}
+					>
 						Learn more
-					</Button>
+					</ButtonColorize>
 				</div>
 				<div className={style.img}>
 					<img src={img_1} alt='' />

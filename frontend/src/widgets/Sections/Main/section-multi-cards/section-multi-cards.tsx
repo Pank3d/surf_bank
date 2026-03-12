@@ -40,14 +40,6 @@ export const SectionMultiCards = () => {
 						Surf Bank provides settlement banking products that solve transfer
 						payment issues requiring crypto friendly solutions.
 					</Paragraph>
-					{/* <Button
-						href={data?.multicards_button_link}
-						className={style.button}
-						arrow
-					>
-						Book a demo
-					</Button> */}
-
 					<ButtonColorize href={data?.multicards_button_link}>
 						Book a demo
 					</ButtonColorize>

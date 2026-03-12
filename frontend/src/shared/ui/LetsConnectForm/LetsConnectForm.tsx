@@ -1,4 +1,4 @@
-import { Button, Input, Textarea } from '@/shared/ui';
+import { ButtonColorize, Input, Textarea } from '@/shared/ui';
 import { useSendContactEmail } from '@/shared/api';
 import clsx from 'clsx';
 import style from './LetsConnectForm.module.scss';
@@ -173,7 +173,7 @@ export const LetsConnectForm = ({
 					</div>
 				</div>
 			</div>
-			<Button
+			<ButtonColorize
 				className={style.button}
 				arrow
 				type='submit'
@@ -181,7 +181,7 @@ export const LetsConnectForm = ({
 				disabled={sendContactEmail.isPending}
 			>
 				{sendContactEmail.isPending ? 'Sending...' : 'Submit'}
-			</Button>
+			</ButtonColorize>
 
 			{errorMessage && <div className={style.errorMessage}>{errorMessage}</div>}
 		</div>

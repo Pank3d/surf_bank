@@ -1,5 +1,5 @@
 import style from './section-banking.module.scss';
-import { H2, Paragraph, Button } from '@/shared/ui';
+import { H2, Paragraph, ButtonColorize } from '@/shared/ui';
 import video_1 from '@/assets/images/section-banking/12.mp4';
 import { useRef, useEffect } from 'react';
 
@@ -25,9 +25,9 @@ export const SectionBanking = () => {
 						custody, proprietary on-ramp/off-ramp solution and b2b corporate
 						payments ecosystem.
 					</Paragraph>
-					<Button className={style.button} arrow>
+					<ButtonColorize className={style.button}>
 						Book a demo
-					</Button>
+					</ButtonColorize>
 				</div>
 				<div className={style.video}>
 					<video

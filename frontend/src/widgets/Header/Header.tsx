@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import style from './Header.module.scss';
-import { Button } from '@/shared/ui';
+import { ButtonColorize } from '@/shared/ui';
 import clsx from 'clsx';
 import { useBodyScrollLock } from '@/shared/hooks';
 import { Link } from 'react-router-dom';
@@ -109,9 +109,9 @@ export const Header = () => {
 					<Link className={style.link} to={internalPaths.login}>
 						Log in
 					</Link>
-					<Button className={style.button} href={data?.button_link}>
+					<ButtonColorize className={style.button} href={data?.button_link} arrow={false}>
 						Open account
-					</Button>
+					</ButtonColorize>
 				</div>
 			</div>
 		</div>

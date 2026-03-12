@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import style from './section-login.module.scss';
-import { Section, Input, Button } from '@/shared/ui';
+import { Section, Input, ButtonColorize } from '@/shared/ui';
 // import img from '@/assets/images/section-login/img-1.webp';
 // import img_mob from '@/assets/images/section-login/img-2.webp';
 
@@ -124,22 +124,15 @@ export const SectionLogin = () => {
 					)}
 
 					<div className={style.buttons}>
-						<Button
+						<ButtonColorize
 							arrow
 							className={style.button}
 							type='submit'
 							disabled={!isEmailFilled || (showCodeInput && !isCodeComplete)}
 						>
 							{showCodeInput ? 'Verify Code' : 'Log In'}
-						</Button>
+						</ButtonColorize>
 					</div>
-
-					{/* Комментарий для будущего использования */}
-					{/* <div className={style.resendCode}>
-						<button type="button" className={style.resendButton}>
-							Resend code
-						</button>
-					</div> */}
 				</form>
 			</Section>
 		</div>

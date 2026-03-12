@@ -1,4 +1,4 @@
-import { Button, Select, Input, Textarea } from '@/shared/ui';
+import { Select, Input, Textarea, ButtonColorize } from '@/shared/ui';
 
 import clsx from 'clsx';
 import style from './FindOutMoreForm.module.scss';
@@ -391,17 +391,15 @@ export const FindOutMoreForm = ({
 					</div>
 				</div>
 			</div>
-			<Button
+			<ButtonColorize
 				className={style.button}
 				arrow
 				type='submit'
 				onClick={handleSubmit}
-				disabled={sendCompanyInfoEmail.isPending} // убрали !isFormValid(), кнопка всегда активна
+				disabled={sendCompanyInfoEmail.isPending} 
 			>
 				{sendCompanyInfoEmail.isPending ? 'Sending...' : 'Submit'}
-			</Button>
-
-			{/* Красное уведомление об ошибке */}
+			</ButtonColorize>
 			{errorMessage && <div className={style.errorMessage}>{errorMessage}</div>}
 		</div>
 	);
