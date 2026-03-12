@@ -57,3 +57,78 @@ export const DATA = {
 		currency: 'USD',
 	},
 } as const;
+
+
+
+
+// Данные для модалки
+export const bankDetails = {
+	Ethereum: {
+		balance: '4,668.85 ETH',
+		ethereumId: 'gh8jh7hj8h9k678',
+		type: 'crypto' as const,
+	},
+	Bitcoin: {
+		balance: '0.11 BTC',
+		bitcoinId: 'btc-7890-xyz',
+		type: 'crypto' as const,
+	},
+	'USDT (TRC20)': {
+		balance: '12,000.00 USDT',
+		walletAddress: 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t',
+		type: 'crypto' as const,
+	},
+	USDC: {
+		balance: '8,000.00 USDC',
+		walletAddress: '0xabc123def456ghi789',
+		type: 'crypto' as const,
+	},
+	USD: {
+		balance: '10,000.00 USD',
+		bankName: 'J.P.Morgan',
+
+		fiatId: 'gh8jh7hj8h9k678',
+		type: 'fiat' as const,
+		address: {
+			city: 'New York',
+			zipCode: 'EC1V078',
+			country: 'USA',
+			addressLine: '123 Main Street, Apt 4B, New York, NY 10001, USA',
+			stateRegion: 'New York',
+		},
+
+		recipient: {
+			recipientName: 'Surf Bank LLC',
+			accountId: '79970DLOFKLV',
+			sendingMethod: 'SEPA',
+			swiftCode: 'SEO596B214',
+			recipientId: '454-trhg-hjkg78j90h-kh7890',
+			currency: 'EUR',
+			iban: '454-trhg-hjkg78j90h-kh7890',
+		},
+	},
+	EUR: {
+		balance: '9,345.00 EUR',
+		bankName: 'Deutsche Bank',
+
+		fiatId: 'gh8jh7hj8h9k678',
+
+		type: 'fiat' as const,
+		address: {
+			city: 'New York',
+			zipCode: 'EC1V078',
+			country: 'USA',
+			addressLine: '123 Main Street, Apt 4B, New York, NY 10001, USA',
+			stateRegion: 'New York',
+		},
+		recipient: {
+			recipientName: 'Surf Bank LLC',
+			accountId: '79970DLOFKLV',
+			sendingMethod: 'SEPA',
+			swiftCode: 'SEO596B214',
+			recipientId: '454-trhg-hjkg78j90h-kh7890',
+			currency: 'EUR',
+			iban: '454-trhg-hjkg78j90h-kh7890',
+		},
+	},
+} as const;

@@ -59,7 +59,7 @@ export const SectionFinancial = ({
 		<div className={style.container}>
 			<div className={style.financials}>
 				<Toggle
-					toggles={['Crypto', 'Fiat']}
+					toggles={['Fiat', 'Crypto' ]}
 					onClick={handleToggleChange}
 					activeToggle={currencyType === 'crypto' ? 'Crypto' : 'Fiat'}
 				/>

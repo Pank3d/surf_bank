@@ -8,7 +8,7 @@ import {
 import { useState } from 'react';
 
 export const DashboardPage = () => {
-	const [currencyType, setCurrencyType] = useState<'crypto' | 'fiat'>('crypto');
+	const [currencyType, setCurrencyType] = useState<'crypto' | 'fiat'>('fiat');
 	return (
 		<Section title='Dashboard'>
 			<SectionNotifications />

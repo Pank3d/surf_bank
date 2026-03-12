@@ -37,6 +37,7 @@
       gap: 12px;
       cursor: pointer;
       color: $black-color;
+     
 
       .icon {
         width: 48px;
@@ -46,6 +47,9 @@
         justify-content: center;
         border-radius: 50%;
         border: 1px solid $bg-color-gray;
+         &:hover{
+            border: 1px solid $green-color;
+      }
       }
     }
   }

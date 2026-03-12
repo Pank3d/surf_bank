@@ -63,6 +63,7 @@
   align-items: center; /* Добавлено для вертикального выравнивания */
   gap: 8px;
   border: 1px solid #E9EDF3;
+  cursor: pointer;
 
   @media (max-width: 768px) {
     padding: 12px;

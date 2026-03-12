@@ -3,6 +3,7 @@ import style from './section-account-details.module.scss';
 import { Button, Select, Textarea } from '@/shared/ui';
 import { StepsButtons } from '@/widgets';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import plusIcon from '@/assets/plus-gray.svg';
 import usd from '@/assets/newusd.svg';
 import wallet from '@/assets/wallet.svg';
@@ -10,15 +11,17 @@ import wallet from '@/assets/wallet.svg';
 
 export const SectionAccountDetails = () => {
 	const [files, setFiles] = useState<File[]>([]);
+	const location = useLocation();
+	const { selectedCounterparty, selectedAccount } = location.state || {};
 
 	return (
 		<form className={style.form} action=''>
 			<button type='button' className={style.addButton}>
-				Counterparty
+				{selectedCounterparty}
 				<img src={plusIcon} alt='add' />
 			</button>
 			<button type='button' className={style.addButton}>
-				Counterparty account
+				{selectedAccount.accountNumber}
 				<img src={plusIcon} alt='add' />
 			</button>
 
